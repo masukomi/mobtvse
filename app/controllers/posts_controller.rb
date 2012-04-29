@@ -11,8 +11,7 @@ class PostsController < ApplicationController
 
   def index
     #TODO reimplement paging mongo style
-    @posts = Post.all(conditions: {draft:false}).entries
-    #@posts = Post.page(params[:page]).per(10).where(draft:false)
+    @posts = Kaminari.paginate_array(Post.all(conditions: {draft:false}).entries).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html
@@ -33,8 +32,8 @@ class PostsController < ApplicationController
     @no_header = true
     @post = Post.new
     #todo re-implement the paging mongoid style
-    @published = Post.all(conditions: {draft: false}).entries#.page(params[:post_page]).per(20)
-    @drafts = Post.all(conditions: {draft: true}).entries#.page(params[:draft_page])#.per(20)
+    @published = Kaminari.paginate_array(Post.all(conditions: {draft: false}).entries).page(params[:post_page]).per(20)
+    @drafts = Kaminari.paginate_array(Post.all(conditions: {draft: true}).entries).page(params[:draft_page]).per(20)
     logger.debug("Published: #{@published.inspect}")
     logger.debug("Drafts: #{@drafts.inspect}")
     respond_to do |format|

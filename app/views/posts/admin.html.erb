@@ -15,6 +15,6 @@
   <ul>
     <%= render :partial => 'li', :collection => @published %>
   </ul>
-  <%= #paginate @published, :param_name => "post_page" 
+  <%= paginate @published #, :param_name => "post_page" 
   %>
 </div>
