@@ -5,6 +5,14 @@ gem 'rails', '~> 3'
 # Extention libraries
 gem 'thin', '~> 1'
 
+# MongoDB drivers
+gem 'mongo', '~>1.5.2'
+gem 'bson', '~>1.5.2'
+gem 'bson_ext', '~>1.5.2'
+gem "mongoid", "~> 2.3.4"
+gem 'mongoid_rails_migrations'
+gem "mongo_session_store-rails3"
+
 # Rendering engines and vendor libraries
 gem 'jquery-rails', '~> 2'
 gem 'redcarpet'
@@ -17,7 +25,7 @@ gem 'kaminari', '~> 0.13'
 group :production do
   # gem 'newrelic_rpm', '~> 3'
   # gem 'dalli', '~> 1'
-  gem 'pg', '~> 0.13'
+  # gem 'pg', '~> 0.13'
 end
 
 group :development do
@@ -33,6 +41,7 @@ group :test do
   gem 'capybara', '~> 1'
   gem 'spork', '~> 0.9'
   gem 'database_cleaner', '~> 0.7'
+  gem 'minitest'
 end
 
 group :development, :test do
