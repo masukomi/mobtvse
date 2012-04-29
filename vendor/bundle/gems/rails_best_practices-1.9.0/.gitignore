@@ -1,0 +1,9 @@
+.DS_STORE
+.*.swp
+pkg/**
+*.gem
+.bundle
+rdoc/**
+doc/**
+.yardoc/**
+rails_best_practices_output.html
