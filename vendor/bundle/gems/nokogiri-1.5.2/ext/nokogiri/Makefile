@@ -114,8 +114,8 @@ STATIC_LIB =
 
 BINDIR        = $(bindir)
 RUBYCOMMONDIR = $(sitedir)$(target_prefix)
-RUBYLIBDIR = /Users/masukomi/workspace/obtvse/vendor/bundle/gems/nokogiri-1.5.2/lib$(target_prefix)
-RUBYARCHDIR = /Users/masukomi/workspace/obtvse/vendor/bundle/gems/nokogiri-1.5.2/lib$(target_prefix)
+RUBYLIBDIR = /Users/masukomi/workspace/mobtvse/vendor/bundle/gems/nokogiri-1.5.2/lib$(target_prefix)
+RUBYARCHDIR = /Users/masukomi/workspace/mobtvse/vendor/bundle/gems/nokogiri-1.5.2/lib$(target_prefix)
 HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
 ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 

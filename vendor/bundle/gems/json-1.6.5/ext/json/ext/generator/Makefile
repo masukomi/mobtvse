@@ -114,8 +114,8 @@ STATIC_LIB =
 
 BINDIR        = $(bindir)
 RUBYCOMMONDIR = $(sitedir)$(target_prefix)
-RUBYLIBDIR = /Users/masukomi/workspace/obtvse/vendor/bundle/gems/json-1.6.5/ext/json/ext$(target_prefix)
-RUBYARCHDIR = /Users/masukomi/workspace/obtvse/vendor/bundle/gems/json-1.6.5/ext/json/ext$(target_prefix)
+RUBYLIBDIR = /Users/masukomi/workspace/mobtvse/vendor/bundle/gems/json-1.6.5/ext/json/ext$(target_prefix)
+RUBYARCHDIR = /Users/masukomi/workspace/mobtvse/vendor/bundle/gems/json-1.6.5/ext/json/ext$(target_prefix)
 HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
 ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 

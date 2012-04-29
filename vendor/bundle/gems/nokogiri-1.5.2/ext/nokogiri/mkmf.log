@@ -49,7 +49,7 @@ have_func: checking for iconv_open() in iconv.h... -------------------- no
 ld: warning: directory not found for option '-L/opt/local/lib'
 Undefined symbols for architecture x86_64:
   "_iconv_open", referenced from:
-      _t in cc3EEwe8.o
+      _t in ccdjT6g0.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 checked program was:
