@@ -1,9 +1,18 @@
 class PostsController < ApplicationController
+
+  ##################
+  ## TODO NOTES
+  ## the .page functionality that needs reimplementing
+  ## is a scope added to the model by the kaminari gem
+  ##################
+
   before_filter :authenticate, :except => [:index, :show]
   layout :choose_layout
 
   def index
-    @posts = Post.page(params[:page]).per(10).where(draft:false)
+    #TODO reimplement paging mongo style
+    @posts = Post.all(conditions: {draft:false}).entries
+    #@posts = Post.page(params[:page]).per(10).where(draft:false)
 
     respond_to do |format|
       format.html
@@ -23,9 +32,11 @@ class PostsController < ApplicationController
   def admin
     @no_header = true
     @post = Post.new
-    @published = Post.where(draft:false).page(params[:post_page]).per(20)
-    @drafts = Post.where(draft:true).page(params[:draft_page]).per(20)
-
+    #todo re-implement the paging mongoid style
+    @published = Post.all(conditions: {draft: false}).entries#.page(params[:post_page]).per(20)
+    @drafts = Post.all(conditions: {draft: true}).entries#.page(params[:draft_page])#.per(20)
+    logger.debug("Published: #{@published.inspect}")
+    logger.debug("Drafts: #{@drafts.inspect}")
     respond_to do |format|
       format.html
     end
@@ -33,7 +44,7 @@ class PostsController < ApplicationController
 
   def show
     @single_post = true
-    @post = admin? ? Post.find_by_slug(params[:slug]) : Post.find_by_slug_and_draft(params[:slug],false)
+    @post = admin? ? Post.first(conditions: {slug: params[:slug]}) : Post.first(conditions: {slug: params[:slug],  draft: false})
 
     respond_to do |format|
       if @post.present?
@@ -47,7 +58,9 @@ class PostsController < ApplicationController
 
   def new
     @no_header = true
-    @posts = Post.page(params[:page]).per(20)
+    #TODO reimplement paging mongo style
+    @posts = Post.all.entries
+    #@posts = Post.page(params[:page]).per(20)
     @post = Post.new
 
     respond_to do |format|
@@ -76,7 +89,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by_slug(params[:slug])
+    @post = Post.first(conditions: {slug: params[:slug]})
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -90,7 +103,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by_slug(params[:slug])
+    @post = Post.first(conditions: {slug: params[:slug]})
     @post.destroy
 
     respond_to do |format|
