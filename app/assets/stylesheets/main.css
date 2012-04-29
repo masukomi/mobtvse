@@ -1,0 +1,136 @@
+body {
+	font-family: 'PT Sans Caption', sans-serif;
+}
+
+.callout {
+	font-size: 24pt;
+	line-height: 120%;
+}
+/*.entry-title {
+	font-size: 200%;
+	line-height: 150%;
+}*/
+.emphasized, .entry-title {
+	font-weight: bold;
+}
+.embiggened{
+	font-size: 140%;
+	line-height: 120%;
+}
+.spaced{
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+div#content ul {
+	list-style: disc; 
+	margin-left: 2em;
+}
+div#content ol {
+	list-style: decimal;
+}
+/* web symbols */
+.websymbol{
+	font-family: 'WebSymbolsRegular';
+	font-size: 120%;
+}
+.rss_link {
+	color: #FB6631
+}
+.twitter_link {
+	color: #429CC4;
+	font-size: 160%;
+}
+.email_link {
+
+}
+
+
+
+
+/* main navigation */
+ul.main-navigation {
+	padding-top: .35em;
+	padding-bottom: .35em;
+}
+ul.main-navigation li {
+	margin: 0;
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+ul.main_navigation li + li {
+	border-left: 1px solid #b0b0b0;
+	margin-left: .8em;
+}
+ul.main-navigation li + li a {
+	padding-left: .8em;
+	border-left: 1px solid #dedede;
+}
+#main_nav_right{
+	float: right;
+}
+#main_nav_right:first-child{
+	border-left: none;
+}
+/* sidebar */
+.sidebar ul {
+	list-style-type: none;
+}
+.sidebar ul li {
+	border-bottom: 1px solid #b0b0b0;
+	padding-left: .8em;
+	margin-bottom: 0px; /*overriding one from foundation.css */
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+}
+
+.sidebar > section {
+	margin-bottom: 2em;
+}
+
+#heading {
+	margin-bottom: 0px;
+}
+#header_bottom_line {
+	margin: 0.1em;
+}
+footer {
+	margin-top: 3em;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#copyright, div#powered_by {
+	font-size: 80%;
+	color: #666666;
+}
+
+article + article {
+	border-top: 1px dashed #b0b0b0;
+	margin-top: 1em;
+}
+/* Double-color dashed line */
+		
+hr.dashed_line {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
+.post_admin_section{
+	border: dashed 1px black;
+	background: #ccc;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 0.5rem;
+}
+.post_admin_section h3{
+	color: #933;
+}
+ul.actions{
+	margin-bottom: 0.5rem;
+}
+li.admin_action{
+	display:inline-block;
+	margin-right:0.5rem;
+}

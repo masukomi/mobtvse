@@ -1,3 +1,4 @@
+<!-- BEGIN _page.html.erb -->
 <%# Link showing page number
   - available local variables
     page:          a page object for "this" page
@@ -10,3 +11,4 @@
 <span class="page<%= ' current' if page.current? %>">
   <%= link_to_unless page.current?, page, url, opts = {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
 </span>
+<!-- BEGIN _page.html.erb -->

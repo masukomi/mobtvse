@@ -1,47 +1,97 @@
 <!doctype html>
+/ BEGIN application.html.haml
 %html{ :lang=>"en-US"}
 	%head
 		%title= html_title yield(:title)
 		= csrf_meta_tag
-		= stylesheet_link_tag 'application'
+		-# = stylesheet_link_tag 'application'
+		=stylesheet_link_tag 'foundation'
+		=stylesheet_link_tag 'main'
+		=stylesheet_link_tag 'websymbols'
+		=stylesheet_link_tag 'screen'
+		-if @meta_description || CONFIG['meta_description']
+			%meta{:name=>'description', :content=>"#{@meta_description || CONFIG['meta_description']}"}
 		%meta{ :name=>"author", :content=>"#{CONFIG['name'] }"}
-		%link{:href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
-		%link{:href=>'http://fonts.googleapis.com/css?family=Lato:300,900', :rel=>'stylesheet', :type=>'text/css'}
+		%meta{ :name=>"HandheldFriendly", :content=>"True"}
+		%meta{ :name=>'mobileOptimized', :content=>"320"}
+		-if CONFIG['canonical_url']
+			%meta{:name=>'canonical', :content=>CONFIG['canonical_url']}
+		%link{:rel=>"shortcut icon",:href=>"/favicon.ico"}
+		-if CONFIG['me_link']
+			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
+		
+		%link{ :href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+		=stylesheet_link_tag('foundation')
+
 	%body{:class=>"#{controller_name} #{action_name }"}
-		- unless @no_header
-			%header
-				%h1= link_to CONFIG['title'], root_url
-				%span= CONFIG['tagline'].html_safe 
-				%ul
-					- if CONFIG['twitter']
-						%li= link_to '@' + CONFIG['twitter'], 'http://twitter.com/' + CONFIG['twitter'] 
-					- if CONFIG['github']
-						%li= link_to 'github', 'https://github.com/' + CONFIG['github']
-					- if CONFIG['email']
-						%li= link_to 'say hi', "mailto:#{CONFIG['email']}?subject:whats up!"
-					%li = link_to 'rss feed', '/posts.rss'
-				%span.powered-by
-					Powered by 
-					%a{:href=>"http://github.com/natew/obtvse.git"}
-						Obtvse
-					-if is_admin? 
-						&nbsp;&middot;&nbsp; 
-						%a{:href=>"/admin"}
-							Admin
+		.container
+			/ BEGIN heading row
+			.row
+				.twelve.columns
+					%h1#heading
+						= link_to CONFIG['title'], root_url
+						-# if CONFIG['tagline']
+							%h3=CONFIG['tagline']
+					%hr#header_bottom_line
+			/ END heading row
+			/ BEGIN navigation
+			.row
+				.twelve.columns
+					%ul.main-navigation
+						%li= link_to 'Home', root_url
+						/%li= link_to 'Archives', root_url + '/blog/archives'
+						%li
+							#main_nav_right
+								- if CONFIG['twitter']
+									=link_to 't', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"websymbol twitter"}
+								=link_to 'B', '/posts.rss', {:class=>"websymbol rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
+			/ END navigation
+			/ BEGIN main content block
+			.row
+				.nine.columns
+					#main
+						-#
+							-unless @no_header
+								/ TODO move this into _post.html.haml
+								%time
+									- if @post && @post.created_at
+										Posted 
+										= @post.created_at.to_formatted_s(:day_month_year)
+									- else 
+										= Time.now.to_formatted_s(:day_month_year)
+						#content
+							- if notice
+								%span.notice= notice
+							= yield
+				.three.columns
+					.sidebar
+						%section
+							.emphasized
+								Who?
+								-if CONFIG['about_url']
+									=link_to CONFIG['name'], CONFIG['about_url']
+								-else
+									=CONFIG['name']
+							#contact
+								Contact me via
+								-if CONFIG['twitter']
+									=link_to 't', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"websymbol twitter"}
+								-if CONFIG['twitter'] and CONFIG['email']
+									&nbsp;or&nbsp;
+								-if CONFIG['email']
+									%a.websymbol.email_link{:title=>'email',:alt=>'email',:href=>"mailto:#{CONFIG['email']}"}
 
-
-		#container
-			-unless @no_header
-				%time
-					- if @post && @post.created_at
-						Posted 
-						= @post.created_at.to_formatted_s(:day_month_year)
-					- else 
-						= Time.now.to_formatted_s(:day_month_year)
-			#content
-				- if notice
-					%span.notice= notice
-				= yield
+		.row
+			.twelve.columns
+				%footer{:role=>'contentinfo'}
+					#powered-by
+						Powered by 
+						%a{:href=>"http://github.com/masukomi/mobtvse.git"}
+							MObtvse
+						-if is_admin? 
+							&nbsp;&middot;&nbsp; 
+							%a{:href=>"/admin"}
+								Admin
 
 		= javascript_include_tag 'application'
 
@@ -52,3 +102,4 @@
 				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g,s)}(document,'script'));
+/ END application.html.haml

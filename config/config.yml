@@ -1,10 +1,27 @@
 ---
-title:               Obtvse Demo
+title:               MObtvse Demo
 tagline:             Clever tagline.
+meta_description:    A Clever blog by a clever person
+# OPTIONAL Used for the meta description tag
+# keep it less than 156 characters. 
+canonical_url:       http://example.com
+# for the meta canonical tag
+# this is typicall the same as the root url of your blog
+me_link:             http://www.google.com/profiles/my_google_username
+# OPTIONAL I can't find the docs anymore but google uses this 
+# to associate the owner of the blog up to their g+ and other assets.
+about_url:           http://example.com/about.html
+# OPTIONAL Got an about page that isn't part of your blog? 
+# Use this to link to it.
+
 login:               <%= ENV["obtvse_login"] ? ENV["obtvse_login"] : "username" %>
 password:            <%= ENV["obtvse_password"] ? ENV["obtvse_password"] : "password" %>
 name:                Your name
 twitter:             your_twitter_handle
+#OPTIONAL
 github:              your_github_handle
+#OPTIONAL
 email:               address@example.com
+#OPTIONAL
 google_analytics_id: YOUR_GA_ID
+#OPTIONAL

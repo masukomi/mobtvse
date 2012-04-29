@@ -1,9 +1,15 @@
 <!doctype html>
+<!-- BEGIN admin.html.erb -->
 <html lang="en-US">
 <head>
   <title><%= html_title yield(:title) %></title>
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag 'application' %>
+  <%= #stylesheet_link_tag 'application' 
+	%>
+  <%= stylesheet_link_tag 'foundation' %>
+  <%= stylesheet_link_tag 'normalize' %>
+  <%= stylesheet_link_tag 'embed' %>
+  <%= stylesheet_link_tag 'posts' %>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,900' rel='stylesheet' type='text/css' />
 </head>
 
@@ -17,3 +23,4 @@
   <%= javascript_include_tag 'application' %>
 </body>
 </html>
+<!-- END admin.html.erb -->

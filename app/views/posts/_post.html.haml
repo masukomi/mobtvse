@@ -1,0 +1,45 @@
+/ BEGIN _post.html.haml
+%div
+	%article.hentry{:id=>"post-#{post.id}", :role=>"article"}
+		-unless @no_header
+			.row
+				.twelve.columns
+					%header
+						-if post.external?
+							-if @single_post
+								%h1= link_to post.title, post.url
+							-else
+								%h1= link_to post.title, post.url
+						-else
+							-if @single_post
+								%h1= post.title
+							-else
+								%h1= link_to post.title, post.slug
+					%time
+						%p.meta
+							-if @post and @post.created_at
+								Posted 
+								= @post.created_at.to_formatted_s(:day_month_year)
+							-else
+								= Time.now.to_formatted_s(:day_month_year)
+					/TODO insert disqus comment code here
+		-else
+			/ no_header
+		.row
+			.twelve.columns
+				.entry-content
+					-if post.content
+						= markdown(post.content).to_html.html_safe
+					-if is_admin?
+						.div.post_admin_section
+							%h3 Super Secret Admin Section
+							.emphasized
+								Available Actions:
+							%ul.actions
+								-unless @preview
+									%li.admin_action= link_to 'Edit', '/edit/' + post.id.to_s
+
+					-if @single_post
+						%a.button.space-top{:href=>"#{ root_url }"}
+							Back to Blog
+/ END _post.html.haml
