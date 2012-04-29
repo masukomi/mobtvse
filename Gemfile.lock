@@ -1,14 +1,15 @@
 GIT
-  remote: git://github.com/ches/mongoid_taggable.git
-  revision: 12fd6e329044f29abe54f7aa0f1cc7ff9e32d369
-  specs:
-    mongoid_taggable (0.1.1)
-
-GIT
   remote: git://github.com/rsl/stringex.git
   revision: cdac489cb78de158dd52cfbfa388a3c9c3069e4e
   specs:
     stringex (1.3.2)
+
+GIT
+  remote: git://github.com/wilkerlucio/mongoid_taggable.git
+  revision: 1cbdd5cb22ab3e75626677bac64e3b3c7ceca553
+  ref: 1cbdd5cb22ab3e75626677bac64e3b3c7ceca553
+  specs:
+    mongoid_taggable (0.1.7)
 
 GEM
   remote: https://rubygems.org/

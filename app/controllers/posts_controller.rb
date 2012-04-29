@@ -11,7 +11,13 @@ class PostsController < ApplicationController
 
   def index
     #TODO reimplement paging mongo style
-    @posts = Kaminari.paginate_array(Post.all(conditions: {draft:false}).entries).page(params[:page]).per(10)
+    all_posts = nil
+    unless params[:tag]
+      all_posts = Post.all(conditions: {draft:false}).entries
+    else
+      all_posts = Post.tagged_with(params[:tag]).entries
+    end
+    @posts = Kaminari.paginate_array(all_posts).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html

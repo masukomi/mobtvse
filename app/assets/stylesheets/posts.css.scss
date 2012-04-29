@@ -34,6 +34,14 @@ h1,
   font-size: 35px;
   color: #666;
 }
+.expandingArea#tags{
+	height: 4rem;
+}
+
+#tag_container{
+	left: 0;
+	padding-left: 1em;
+}
 
 p {
   color: #555;
@@ -515,23 +523,25 @@ form .permalink {
     display: none;
   }
 
+  /*  
   #post-editor {
     margin-left: -25%;
     left: 50%;
     width: 600px;
   }
+  */
 }
 
 #split.preview {
   #post-preview {display: block;}
-  #post-editor {
+  /*#post-editor {
     left: 0;
     margin: 0;
     width: 50%;
-  }
+  }*/
 }
 
-.split-section {
+/*.split-section {
   width: 50%;
   position: fixed;
   left: 0;
@@ -542,7 +552,7 @@ form .permalink {
           box-sizing: border-box;
      -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-}
+}*/
 
 #post-preview {
   background: #f0f4fc;

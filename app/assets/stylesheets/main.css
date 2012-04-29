@@ -45,6 +45,26 @@ div#content ol {
 
 }
 
+div.tags_list {
+
+}
+
+div#content ul.tags_list {
+	display: inline-block;
+	list-style: none;
+}
+div#content ul.tags_list li {
+	display: inline-block;
+}
+div#content ul.tags_list li:before{
+	content:"#";
+}
+div#content ul.tags_list li:after{
+	content:",";
+}
+div#content ul.tags_list li:last-child:after{
+	display:none;
+}
 
 
 

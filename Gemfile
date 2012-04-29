@@ -23,7 +23,8 @@ gem "haml-rails", '~> 0.3.4'
 gem 'stringex', '~> 1', git: 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
 
-gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
+#gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
+gem 'mongoid_taggable', git: 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
 
 
 group :production do

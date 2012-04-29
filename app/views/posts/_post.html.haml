@@ -30,6 +30,11 @@
 				.entry-content
 					-if post.content
 						= markdown(post.content).to_html.html_safe
+					.tags_list
+						-if post.tags_array.size > 0
+							%ul.tags_list
+								-post.tags_array.each do |t|
+									%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
 					-if is_admin?
 						.div.post_admin_section
 							%h3 Super Secret Admin Section
