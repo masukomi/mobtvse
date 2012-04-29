@@ -16,11 +16,13 @@ gem "mongo_session_store-rails3"
 # Rendering engines and vendor libraries
 gem 'jquery-rails', '~> 2'
 gem 'redcarpet'
+gem "haml-rails", '~> 0.3.4'
 
 # Misc libraries
 # gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
 gem 'stringex', '~> 1', git: 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
+
 
 group :production do
   # gem 'newrelic_rpm', '~> 3'
