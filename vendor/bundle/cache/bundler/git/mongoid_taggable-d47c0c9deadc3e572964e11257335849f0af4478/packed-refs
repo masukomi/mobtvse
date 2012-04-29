@@ -1,0 +1,6 @@
+# pack-refs with: peeled 
+acbf7318d10455f2ed37b4f5c4f1a67ea95ec191 refs/heads/refactor
+1cf0c005d69ed500f0b384ec6e64d75b81a60086 refs/heads/mongoid2
+12fd6e329044f29abe54f7aa0f1cc7ff9e32d369 refs/heads/master
+1ebd73b363ee94e3ee0fe6e2e414a04f1e10129e refs/heads/integration
+f736dcf74d9800d97831e7000663f6ff7dcb6aeb refs/heads/dev-cleanup

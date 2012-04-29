@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/ches/mongoid_taggable.git
+  revision: 12fd6e329044f29abe54f7aa0f1cc7ff9e32d369
+  specs:
+    mongoid_taggable (0.1.1)
+
+GIT
   remote: git://github.com/rsl/stringex.git
   revision: cdac489cb78de158dd52cfbfa388a3c9c3069e4e
   specs:
@@ -217,6 +223,7 @@ DEPENDENCIES
   mongo_session_store-rails3
   mongoid (~> 2.3.4)
   mongoid_rails_migrations
+  mongoid_taggable!
   rails (~> 3)
   rails_best_practices (~> 1)
   redcarpet
