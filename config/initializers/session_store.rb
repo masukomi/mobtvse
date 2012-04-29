@@ -1,13 +1,13 @@
 # Be sure to restart your server when you modify this file.
-require "mongo_session_store/mongoid"
-ActionController::Base.session_store = :mongoid_store
+Obtvse::Application.config.session_store :mongoid_store
 
-Obtvse::Application.config.session_store :cookie_store, :key => '_obtvse_session'
+
+#Obtvse::Application.config.session_store :cookie_store, :key => '_obtvse_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-Obtvse::Application.config.session_store :active_record_store
+#Obtvse::Application.config.session_store :active_record_store
 
 # if Rails.env.production?
 # 	require 'action_dispatch/middleware/session/dalli_store'
