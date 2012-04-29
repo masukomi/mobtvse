@@ -11,7 +11,7 @@ gem 'bson', '~>1.5.2'
 gem 'bson_ext', '~>1.5.2'
 gem "mongoid", "~> 2.3.4"
 gem 'mongoid_rails_migrations'
-gem 'mongoid-ancestry'
+gem 'mongo_session_store'
 
 # Rendering engines and vendor libraries
 gem 'jquery-rails', '~> 2'

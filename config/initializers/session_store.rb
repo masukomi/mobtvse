@@ -1,4 +1,6 @@
 # Be sure to restart your server when you modify this file.
+require "mongo_session_store/mongoid"
+ActionController::Base.session_store = :mongoid_store
 
 Obtvse::Application.config.session_store :cookie_store, :key => '_obtvse_session'
 
