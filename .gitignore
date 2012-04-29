@@ -20,3 +20,4 @@
 
 deploy.rb
 .DS_Store
+.rvmrc
