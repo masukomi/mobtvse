@@ -15,9 +15,9 @@ This is a port of  [Obtvse](https://github.com/NateW/obtvse) by [Nate Winert](ht
 The goal is to add support for:
 
 * Generation of static html files for fast serving, or tools for making that easily implementable.
-* Explicit Meta-description control
-* Archive pages (by tag) 
+* Explicit per-post Meta-description control
 * [Mixpanel](http://mixpanel.com/)
+* [Disqus](http://disqus.com) 
 
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
