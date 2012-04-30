@@ -20,11 +20,11 @@ gem "haml-rails", '~> 0.3.4'
 
 # Misc libraries
 # gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
-gem 'stringex', '~> 1', git: 'git://github.com/rsl/stringex.git'
+gem 'stringex', '~> 1', :git => 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
 
 #gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
-gem 'mongoid_taggable', git: 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
+gem 'mongoid_taggable', :git => 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
 
 
 group :production do
@@ -51,7 +51,7 @@ end
 
 group :development, :test do
   gem 'foreman', '~> 0.40'
-  gem 'sqlite3', '~> 1', platform: [:ruby, :mswin, :mingw]
+  gem 'sqlite3', '~> 1', :platform => [:ruby, :mswin, :mingw]
   gem 'faker', '~> 1'
   gem 'factory_girl_rails', '~> 1'
 end
