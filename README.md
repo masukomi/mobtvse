@@ -19,11 +19,18 @@ The goal is to add support for:
 * [Mixpanel](http://mixpanel.com/)
 * [Disqus](http://disqus.com) 
 
+See [the full ToDo list here](https://github.com/masukomi/mobtvse/blob/master/ToDo.mkdn).
+
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
 
 Installation
 ============
+
+## Requirements
+* Ruby 1.9.x (it's time to upgrade folks)
+* Ruby Gems and Bundler 
+* A MongoDB install to point it at (install locally or use one of the free/paid hosting options). 
 
 If you are new to Rails development, check out guides for getting your development environment set up for [Mac](http://astonj.com/tech/setting-up-a-ruby-dev-enviroment-on-lion/) and [Windows](http://jelaniharris.com/2011/installing-ruby-on-rails-3-in-windows/).
 
@@ -59,7 +66,7 @@ TODO
 
 
 
-SCREENSHOTS (currently from Obtvse)
+SCREENSHOTS (these are from Obtvse. The UI has changed slightly since and I'll update these shortly)
 ===========
 ![Admin](http://i.imgur.com/OVr7q.png)
 ![New](http://i.imgur.com/MTm2c.png)
