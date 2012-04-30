@@ -8,14 +8,13 @@ This is a port of  [Obtvse](https://github.com/NateW/obtvse) by [Nate Winert](ht
 ### Current
 
 * MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
+* Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
+* [Haml](http://haml-lang.com/) (partially implemented)
 
 ### Planned
 The goal is to add support for:
 
-* [Haml](http://haml-lang.com/)
-* [Sass](http://sass-lang.com/)
 * Generation of static html files for fast serving, or tools for making that easily implementable.
-* Tagging (posts will be taggable and Admin UI will allow filtering based on tags)
 * Explicit Meta-description control
 * Archive pages (by tag) 
 * [Mixpanel](http://mixpanel.com/)
