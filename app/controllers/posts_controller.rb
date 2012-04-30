@@ -38,10 +38,17 @@ class PostsController < ApplicationController
     @no_header = true
     @post = Post.new
     #todo re-implement the paging mongoid style
-    @published = Kaminari.paginate_array(Post.all(conditions: {draft: false}).entries).page(params[:post_page]).per(20)
+    all_published = nil
+    unless params[:tag]
+      all_published = Post.all(conditions: {draft: false}).entries
+    else
+      all_published = Post.tagged_with(params[:tag]).entries
+    end
+    @tags = Post.tags #Post.tags_with_weight returns [['foo', 2],['bar', 1],['baz', 3]]
+    @published = Kaminari.paginate_array(all_published).page(params[:post_page]).per(20)
     @drafts = Kaminari.paginate_array(Post.all(conditions: {draft: true}).entries).page(params[:draft_page]).per(20)
-    logger.debug("Published: #{@published.inspect}")
-    logger.debug("Drafts: #{@drafts.inspect}")
+    #logger.debug("Published: #{@published.inspect}")
+    #logger.debug("Drafts: #{@drafts.inspect}")
     respond_to do |format|
       format.html
     end
