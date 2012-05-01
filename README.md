@@ -1,8 +1,6 @@
 MObtvse
 ================
-A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com).
-
-This is a port of  [Obtvse](https://github.com/NateW/obtvse) by [Nate Winert](http://natewienert.com/) 
+A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and bootstrapped by [Obtvse](https://github.com/NateW/obtvse). 
 
 ## Notable differences from Obvtse
 ### Current
@@ -18,8 +16,11 @@ The goal is to add support for:
 * Explicit per-post Meta-description control
 * [Mixpanel](http://mixpanel.com/)
 * [Disqus](http://disqus.com) 
+* Static File generation
+* Image Uploads
+* Great features that HTML based blogging platforms like Wordpress have had for years.
 
-See [the full ToDo list here](https://github.com/masukomi/mobtvse/blob/master/ToDo.mkdn).
+See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/master/ToDo.mkdn).
 
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
@@ -56,15 +57,6 @@ Or in your shell (~/.bashrc or ~/.zshrc for example)
 
     export obtvse_login=<LOGIN>
     export obtvse_password=<PASSWORD>
-
-
-
-TODO
-====
-- Easy deployment
-- Draft preview and post save history
-- Lots of refactoring, cleanup and refinements
-
 
 
 SCREENSHOTS
