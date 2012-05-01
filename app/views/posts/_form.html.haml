@@ -50,7 +50,7 @@
 								%li
 									= f.label :url, 'URL'
 									= f.text_field :url, :placeholder => 'Optional external link'
-						.right
+						.right.nobr
 							= f.label :draft
 							= f.check_box :draft
 							= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
