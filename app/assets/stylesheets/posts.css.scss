@@ -165,7 +165,6 @@ code {
   color: #fff;
   width: 100%;
   text-align: center;
-  padding: 15px 0 15px;
 
   .contain {
     margin: 0 auto;
@@ -192,18 +191,17 @@ code {
 
   .sub-menu {
     margin: 0;
-    background: #222;
+    background: rgba(0,0,0,0.8);
     padding: 20px;
     position: absolute;
-    bottom: 0;
+    bottom: 44px;
     left: 60px;
     visibility: hidden;
-            border-radius: 5px;
-       -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    display:none;
 
     &.visible {
       visibility: visible;
+      display: block;
     }
   }
 
@@ -221,9 +219,6 @@ code {
   font-weight: bold;
   border: none;
   color: #fff;
-          border-radius: 5px;
-     -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
 .button.secondary {

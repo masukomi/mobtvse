@@ -38,21 +38,23 @@
 		.twelve_columns
 			#publish-bar-hover
 				#publish-bar
-					.contain
-						.left
-							=link_to('Admin', '/admin')
-							= link_to 'Delete', @post, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
-							= link_to 'Options', '#options', :class => 'menu'
-							%ul.sub-menu#options
-								%li
-									= f.label :url, 'Slug'
-									= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
-								%li
-									= f.label :url, 'URL'
-									= f.text_field :url, :placeholder => 'Optional external link'
-						.right.nobr
-							= f.label :draft
-							= f.check_box :draft
-							= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
-							= f.submit 'Save', :id => 'save-button'
+					.row
+						.six.columns
+							.left
+								=link_to('Admin', '/admin')
+								= link_to 'Delete', @post, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
+								= link_to 'Options', '#options', :class => 'menu'
+								%ul.sub-menu#options
+									%li
+										= f.label :url, 'Slug'
+										= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
+									%li
+										= f.label :url, 'URL'
+										= f.text_field :url, :placeholder => 'Optional external link'
+						.six.columns
+							.nobr
+								= f.label :draft
+								= f.check_box :draft
+								= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
+								= f.submit 'Save', :id => 'save-button'
 / END _form.html.haml
