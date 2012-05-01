@@ -66,8 +66,14 @@ TODO
 
 
 
-SCREENSHOTS (these are from Obtvse. The UI has changed slightly since and I'll update these shortly)
+SCREENSHOTS
 ===========
-![Admin](http://i.imgur.com/OVr7q.png)
-![New](http://i.imgur.com/MTm2c.png)
-![Edit](http://i.imgur.com/VSR7M.png)
+### Admin Screen
+![](http://mobtvse.com/images/mobtvse_admin_screen_500.jpg)
+
+### Creating and Editing a Post
+![](http://mobtvse.com/images/mobtvse_editing_a_post_500.jpg)
+
+### Viewing a Single Post
+
+![](http://mobtvse.com/images/mobtvse_single_post_500.jpg)
