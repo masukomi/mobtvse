@@ -7,6 +7,7 @@ div:before, div:after {content:''; display:table;}
 aside {position:relative; display:block;}
 ul {list-style-type:none;}
 .hide {visibility:hidden; height:1px; clip:rect(0 0 0 0); position:absolute;}
+.nobr  { white-space:nowrap; }
 input, textarea {outline:none; background:none;}
 
 body {
@@ -164,7 +165,6 @@ code {
   color: #fff;
   width: 100%;
   text-align: center;
-  padding: 15px 0 15px;
 
   .contain {
     margin: 0 auto;
@@ -179,6 +179,10 @@ code {
     font-size: 12px;
     color: #999;
   }
+  label {
+    display: inline;
+    font-size: 16px;
+  }
 
   .menu.active {
     background: #fff;
@@ -187,18 +191,17 @@ code {
 
   .sub-menu {
     margin: 0;
-    background: #222;
+    background: rgba(0,0,0,0.8);
     padding: 20px;
     position: absolute;
-    bottom: 0;
+    bottom: 44px;
     left: 60px;
     visibility: hidden;
-            border-radius: 5px;
-       -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    display:none;
 
     &.visible {
       visibility: visible;
+      display: block;
     }
   }
 
@@ -216,9 +219,6 @@ code {
   font-weight: bold;
   border: none;
   color: #fff;
-          border-radius: 5px;
-     -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
 .button.secondary {
@@ -229,8 +229,8 @@ code {
 
 #publish-bar input[type=submit]:hover,
 #publish-bar a:hover,
-.col h1 a:hover,
-.col h2 a:hover,
+.admin_content h1 a:hover,
+.admin_content h2 a:hover,
 .button:hover,
 .button.secondary:hover {
   background: $linkhover;
@@ -303,7 +303,6 @@ body.posts.new #admin {
 }
 
 #admin {
-  width: 808px;
   margin: 0 auto;
   position: relative;
 
@@ -316,12 +315,12 @@ body.posts.new #admin {
   }
 
   #drafts {
-    float: left;
     border: 4px solid #000;
     border-top: none;
     background: #fff;
     margin: 0 0 20px 0;
     padding-top: 10px;
+    padding-right: 1em;
 
     form {
        margin: 20px 0 20px -20px;
@@ -330,7 +329,6 @@ body.posts.new #admin {
      }
 
     #post_title {
-      width: 350px;
       font-size: 16px;
       font-weight: 400;
       margin: 0;
@@ -339,21 +337,20 @@ body.posts.new #admin {
   }
 
   #published {
-    float: right;
-
+    padding-right: 1em;
     h2 {color: #999;}
     h2 a {margin-top: -2px;}
     h3 a {color: #999;}
   }
 
-  .col h1,
-  .col h2 {
+  .admin_content h1,
+  .admin_content h2 {
     position: relative;
     text-transform: uppercase;
   }
 
-  .col h1 a,
-  .col h2 a {
+  .admin_content h1 a,
+  .admin_content h2 a {
     position: absolute;
     top: 0;
     right: 0;
@@ -363,9 +360,7 @@ body.posts.new #admin {
     margin: 5px 0 0;
   }
 
-  .col {
-    width: 360px;
-    padding: 20px;
+  .admin_content {
 
     h2 a {
       background: #999;
@@ -388,16 +383,11 @@ body.posts.new #admin {
         padding-top:0px;
 
 
-        &:hover .links {
-          visibility: visible;
-        }
-
         .links {
           position: relative;
           background: #fff;
           float:right;
           top: 0px;
-          visibility: hidden;
 
           a {
             color: #999;
@@ -501,7 +491,6 @@ fieldset.markdown {
 }
 
 #post_title {
-  width: 100%;
   border: none;
   background: none;
   line-height: 45px;
@@ -544,7 +533,9 @@ form .permalink {
     width: 50%;
   }*/
 }
-
+.split-section{
+	margin-bottom: 44px;
+}
 /*.split-section {
   width: 50%;
   position: fixed;
@@ -588,8 +579,7 @@ nav.pagination {
 div.tags_list {
 
 }
-
-div#published.col {
+#published {
 
 	div.tags_list ul.tags_list {
 		display: inline-block;
@@ -606,10 +596,8 @@ div#published.col {
 			
 		}
 		li.current_tag {
-			background-color: #ccf;
-			-moz-border-radius: 4px;
-			-webkit-border-radius: 4px;
-			border-radius: 4px
+			background-color: rgba(0,0,0,0.3);
+			padding: 1px;
 		}
 		li:before{
 			content:"#";

@@ -1,30 +1,33 @@
 / BEGIN admin.html.haml
-.col#drafts
-	%h1 
-		Drafts 
-		= link_to 'New Draft', '/new', :class => 'button'
-	= form_for @post do |f| 
-		= f.text_field :title, :placeholder => 'Start typing your title here...' 
-	%ul
-		= render :partial => 'li', :collection => @drafts
-	-# = paginate @drafts, :param_name => "draft_page" 
-.col#published
-	%h2
-		Published 
-		= link_to 'Home', root_url, :class => 'button'
-	.tags_list
-		-if @tags.size > 0
-			%ul.tags_list
-				-unless params[:tag]
-					%li.current_tag=link_to('All Tags', {:controller=>:posts, :action=>:admin})
-				-else
-					%li=link_to('All Tags', {:controller=>:posts, :action=>:admin})
-				-@tags.each do |t|
-					-if params[:tag] == t
-						%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
-					-else
-						%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
-	%ul
-		= render :partial => 'li', :collection => @published
-	= paginate @published , :param_name => "post_page" 
+.row.admin_content
+	.six.columns
+		#drafts
+			%h1 
+				Drafts 
+				= link_to 'New Draft', '/new', :class => 'button'
+			= form_for @post do |f| 
+				= f.text_field :title, :placeholder => 'Start typing your title here...' 
+			%ul
+				= render :partial => 'li', :collection => @drafts
+			-# = paginate @drafts, :param_name => "draft_page" 
+	.six.columns
+		#published
+			%h2
+				Published 
+				= link_to 'Home', root_url, :class => 'button'
+			.tags_list
+				-if @tags.size > 0
+					%ul.tags_list
+						-unless params[:tag]
+							%li.current_tag=link_to('All Tags', {:controller=>:posts, :action=>:admin})
+						-else
+							%li=link_to('All Tags', {:controller=>:posts, :action=>:admin})
+						-@tags.each do |t|
+							-if params[:tag] == t
+								%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
+							-else
+								%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
+			%ul
+				= render :partial => 'li', :collection => @published
+			= paginate @published , :param_name => "post_page" 
 / END admin.html.haml

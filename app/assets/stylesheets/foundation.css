@@ -66,7 +66,7 @@ table {
 body {
   background: #fff;
   font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 18px;
   color: #555;
   position: relative;
@@ -197,33 +197,33 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   font-weight: inherit; }
 
 h1 {
-  font-size: 46px;
-  font-size: 4.6rem;
+  font-size: 38px;
+  font-size: 3.8rem;
   margin-bottom: 12px; }
 
 h2 {
-  font-size: 36px;
-  font-size: 4rem;
+  font-size: 23px;
+  font-size: 2rem;
   margin-bottom: 9px; }
 
 h3 {
-  font-size: 28px;
-  font-size: 3rem;
+  font-size: 15px;
+  font-size: 2rem;
   margin-bottom: 9px; }
 
 h4 {
-  font-size: 21px;
-  font-size: 2rem;
+  font-size: 11px;
+  font-size: 1rem;
   margin-bottom: 3px; }
 
 h5 {
-  font-size: 18px;
-  font-size: 2rem;
+  font-size: 11px;
+  font-size: 1rem;
   font-weight: normal;
   margin-bottom: 3px; }
 
 h6 {
-  font-size: 15px;
+  font-size: 10px;
   font-size: 1rem;
   font-weight: normal; }
 

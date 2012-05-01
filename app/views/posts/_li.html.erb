@@ -3,8 +3,8 @@
 	<h3>
 		<%= link_to li.title, '/edit/' + li.id.to_s %>
 		<span class="links">
-			<%= link_to 'view', li, :class => 'admin-view' %>
-			<%= link_to 'x', li, :confirm => 'Are you sure?', :method => :delete, :class => 'admin-delete' %>
+			<%= link_to 'i', li, :class => 'entypo admin-view' %>
+			<%= link_to "X", li, :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete' %>
 		</span>
 	</h3>
 </li>
