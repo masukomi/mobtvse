@@ -388,16 +388,11 @@ body.posts.new #admin {
         padding-top:0px;
 
 
-        &:hover .links {
-          visibility: visible;
-        }
-
         .links {
           position: relative;
           background: #fff;
           float:right;
           top: 0px;
-          visibility: hidden;
 
           a {
             color: #999;

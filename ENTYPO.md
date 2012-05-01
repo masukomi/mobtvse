@@ -1,0 +1,1 @@
+[Entypo](http://www.entypo.com/) is a set of 100+ carefully crafted pictograms available as an OpenType font, vector EPS and web font. All released for free under the Creative Commons [CC BY-SA 3.0 license](http://creativecommons.org/licenses/by-sa/3.0/).
