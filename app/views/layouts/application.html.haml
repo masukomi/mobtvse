@@ -74,12 +74,13 @@
 									=CONFIG['name']
 							#contact
 								Contact me via
-								-if CONFIG['twitter']
-									=link_to 't', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"websymbol twitter"}
-								-if CONFIG['twitter'] and CONFIG['email']
-									&nbsp;or&nbsp;
-								-if CONFIG['email']
-									%a.websymbol.email_link{:title=>'email',:alt=>'email',:href=>"mailto:#{CONFIG['email']}"}
+								.nobr
+									-if CONFIG['twitter']
+										=link_to 't', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"websymbol twitter"}
+									-if CONFIG['twitter'] and CONFIG['email']
+										&nbsp;or&nbsp;
+									-if CONFIG['email']
+										%a.websymbol.email_link{:title=>'email',:alt=>'email',:href=>"mailto:#{CONFIG['email']}"}@
 
 		.row
 			.twelve.columns
