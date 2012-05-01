@@ -37,9 +37,10 @@ If you are new to Rails development, check out guides for getting your developme
     git clone git://github.com/masukomi/mobtvse.git
     cd obtvse
     bundle install
-    rake db:migrate
 
-Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables.
+Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables (see below). 
+
+Edit `config/mongoid.yml` to point to your mongodb installation.
 
 Start the local server:
 
