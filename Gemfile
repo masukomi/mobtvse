@@ -46,6 +46,7 @@ group :test do
   gem 'spork', '~> 0.9'
   gem 'database_cleaner', '~> 0.7'
   gem 'minitest'
+  gem 'timecop'
 end
 
 group :development, :test do
