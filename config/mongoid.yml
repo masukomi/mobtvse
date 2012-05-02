@@ -1,10 +1,10 @@
 development:
   host: localhost
-  database: obtvse_development
+  database: mobtvse_development
 
 test:
   host: localhost
-  database: obtvse_test
+  database: mobtvse_test
 
 # set these environment variables on your prod server
 production:
