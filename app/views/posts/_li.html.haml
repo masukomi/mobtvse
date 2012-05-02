@@ -1,0 +1,11 @@
+/ BEGIN _li.html.erb
+%li{:id=>"post-#{li.id}"}
+	%h3
+		-#= link_to li.title, '/edit/' + li.id.to_s , :controller=>:posts, :action=>:edit, :id=>li.id 
+		= link_to li.title, edit_post_path(li.id)
+		%span.links
+			- if li.external?
+				= link_to 'i', permalink_path_for(li), {:class => 'entypo admin-view'}
+			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete'
+			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
+/ END _li.html.erb 

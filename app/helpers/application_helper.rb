@@ -27,4 +27,10 @@ module ApplicationHelper
   	end
   	output.join
   end
+
+  def permalink_path_for(post)
+    raise "Can't permalink to drafts" unless post.permalinkable?
+    date_plus_slug = post.posted_on.strftime(CONFIG['post_url_style']).gsub(':slug', post.slug)
+    return "#{CONFIG['canonical_url']}#{date_plus_slug}"
+  end
 end

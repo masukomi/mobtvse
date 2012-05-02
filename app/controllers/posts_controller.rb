@@ -89,13 +89,16 @@ class PostsController < ApplicationController
   end
 
   def create
+logger.debug("XXX in PostsController#create")
     @post = Post.new(params[:post])
 
     respond_to do |format|
       if @post.save
+logger.debug(" saved")
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post created successfully" }
         format.xml { render :xml => @post, :status => :created, location: @post }
       else
+logger.debug(" failed to save")
         format.html { render :action => 'new' }
         format.xml { render :xml => @post.errors, :status => :unprocessable_entity}
       end
@@ -103,10 +106,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.first(conditions: {slug: params[:slug]})
-
+    @post = Post.find(params[:id])
+    #@post = Post.first(conditions: {slug: params[:slug]})
+    booleanify_params(params)
     respond_to do |format|
       if @post.update_attributes(params[:post])
+
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post updated successfully" }
         format.xml { head :ok }
       else
@@ -117,7 +122,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.first(conditions: {slug: params[:slug]})
+    @post = Post.first(conditions: {id: params[:id]})
     @post.destroy
 
     respond_to do |format|
@@ -130,6 +135,16 @@ class PostsController < ApplicationController
 
   def admin?
     session[:admin] == true
+  end
+
+  def booleanify_params(params)
+    ['draft', 'aside'].each do |param|
+      if params[param] == '1'
+        params[param] = true
+      else
+        params[param] = false
+      end
+    end
   end
 
   def choose_layout

@@ -1,6 +1,6 @@
 / BEGIN _form.html.haml
 
-= form_for @post do |f|
+= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
 	.row
 		.three.columns
 			/nothing here for now
@@ -11,8 +11,8 @@
 						.notice
 							- @post.errors.full_messages.each do |msg|
 								= msg
-					-if @post.slug
-						= link_to '⚓', @post, :class => 'permalink', :target => '_blank'
+					-if @post.slug and @post.permalinkable?
+						%a.permalink{:href=>"#{permalink_path_for(@post)}", :target=>'_blank'}⚓
 					.expandingArea#text-title
 						%pre
 							%span
@@ -42,7 +42,7 @@
 						.six.columns
 							.left
 								=link_to('Admin', '/admin')
-								= link_to 'Delete', @post, :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
+								= link_to 'Delete',  "/posts/#{@post.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
 								= link_to 'Options', '#options', :class => 'menu'
 								%ul.sub-menu#options
 									%li

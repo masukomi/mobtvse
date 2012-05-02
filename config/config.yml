@@ -25,3 +25,4 @@ email:               address@example.com
 #OPTIONAL
 google_analytics_id: YOUR_GA_ID
 #OPTIONAL
+post_url_style:          /%Y/%m/%d/:slug

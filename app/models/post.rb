@@ -14,48 +14,50 @@ class Post
   field :url,             :type => String
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime
+  field :posted_on,       :type => Date
 
   scope :order, order_by(:created_at => :desc) #.limit(100)
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true
-  acts_as_url :title, :url_attribute => :slug
+  #acts_as_url :title, :url_attribute => :slug
+  before_validation :slug_from_title
+    # You can't call before_save on a field that is part of 
+    # the validations
 
-  def to_param
-    slug
+  def slug_from_title()
+    if (self.title and self.slug.blank?)
+      self.slug= title.to_url
+    end
+  end
+  # NOTE: 
+  # when setting the post into non-draft mode
+  # we also create the posted_on date.
+  # This is because we don't currently support setting 
+  # future posted_on dates
+  # We also create the url since it is based on the posted on
+  # WARNING: if you make a post public
+  # then set it to a draft until the next day ( or later ) 
+  # and then make it public again THE URL WILL CHANGE
+  def draft=(new_draft_status)
+    if ((draft and not new_draft_status) or (draft and not posted_on) )
+      #NOTE We'll have to change this in the future
+      # when we allow people to set the post date
+      # manually
+      self.posted_on = Date.today
+      self.url = self.posted_on.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
+    elsif (self.posted_on and not new_draft_status)
+      self.posted_on = nil
+      self.url = nil
+    end
+    
+    super(new_draft_status)
   end
 
   def external?
-  	!url.blank?
+    !url.blank?
   end
 
-
-  def ensure_unique_url
-    url_attribute = self.class.url_attribute
-    separator = self.class.duplicate_count_separator
-    base_url = self.send(url_attribute)
-    base_url = self.send(self.class.attribute_to_urlify).to_s.to_url(:allow_slash => self.allow_slash) if base_url.blank? || !self.only_when_blank
-    #conditions = ["#{url_attribute} LIKE ?", base_url+'%']
-
-    criteria = {:url_attribute.to_sym => /#{base_url}.*/}
-    unless new_record?
-      #conditions.first << " and id != ?"
-      #conditions << id
-      criteria[:id.ne] = id
-    end
-    # not using this functionilaty here
-    #if self.class.scope_for_url
-    #  conditions.first << " and #{self.class.scope_for_url} = ?"
-    #  conditions << send(self.class.scope_for_url)
-    #end
-    #url_owners = self.class.find(:all, :conditions => conditions)
-    url_owners = Post.where(criteria)
-    write_attribute url_attribute, base_url
-    if url_owners.any?{|owner| owner.send(url_attribute) == base_url}
-      n = 1
-      while url_owners.any?{|owner| owner.send(url_attribute) == "#{base_url}#{separator}#{n}"}
-        n = n.succ
-      end
-      write_attribute url_attribute, "#{base_url}#{separator}#{n}"
-    end
+  def permalinkable?
+    return posted_on.nil? ? false : true
   end
 end
