@@ -611,4 +611,20 @@ div.tags_list {
 	}
 
 }
-
+.meta_description label{
+	float: left;
+}
+textarea#post_meta_description {
+	height:4rem;
+	border: solid 1px #333;
+}
+#description_counter,
+textarea#post_meta_description {
+	background-color: #323232;
+	color: #999;
+}
+#description_counter{
+	position: relative;
+	background: transparent;
+	bottom: 4px;
+}

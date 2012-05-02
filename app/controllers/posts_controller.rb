@@ -57,7 +57,9 @@ class PostsController < ApplicationController
   def show
     @single_post = true
     @post = admin? ? Post.first(conditions: {slug: params[:slug]}) : Post.first(conditions: {slug: params[:slug],  draft: false})
-
+    unless @post.meta_description.blank?
+      @meta_description = @post.meta_description
+    end
     respond_to do |format|
       if @post.present?
         format.html

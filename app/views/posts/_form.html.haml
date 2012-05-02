@@ -51,6 +51,12 @@
 									%li
 										= f.label :url, 'URL'
 										= f.text_field :url, :placeholder => 'Optional external link'
+									%li.meta_description
+										= f.label :meta_description, 'meta-description'
+										%div#description_counter 156
+										%br
+										= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
+										
 						.six.columns
 							.nobr
 								= f.label :draft
