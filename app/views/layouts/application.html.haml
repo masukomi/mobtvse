@@ -24,8 +24,12 @@
 			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
 		
 		%link{ :href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+		-if CONFIG['disqus_developer']
+			:javascript
+				var disqus_developer = 1;
 		=stylesheet_link_tag('foundation')
-		= render :partial => "posts/disqus"
+		- if CONFIG['disqus_enabled'] and @single_post and @post.comments_enabled?
+			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}
 		.container

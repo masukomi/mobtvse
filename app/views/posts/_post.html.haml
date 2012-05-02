@@ -24,7 +24,6 @@
 								= @post.created_at.to_formatted_s(:day_month_year)
 							-else
 								= Time.now.to_formatted_s(:day_month_year)
-					/TODO insert disqus comment code here
 		-else
 			/ no_header
 		.row
@@ -38,6 +37,14 @@
 							%ul.tags_list
 								-post.tags_array.each do |t|
 									%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
+					- if CONFIG['disqus_enabled'] and @post.comments_enabled?
+						.comments_section
+							%h1
+								Comments
+							#disqus_thread{'aria-live'=>"polite"}
+								%noscript
+									Please enable JavaScript to view the 
+									%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
 					-if @single_post
 						%a.button.space-top#back_button{:href=>"#{ root_url }"}
 							Back to Blog
