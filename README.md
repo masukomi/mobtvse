@@ -13,7 +13,6 @@ A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and b
 The goal is to add support for:
 
 * Generation of static html files for fast serving, or tools for making that easily implementable.
-* Explicit per-post Meta-description control
 * [Mixpanel](http://mixpanel.com/)
 * [Disqus](http://disqus.com) 
 * Static File generation
