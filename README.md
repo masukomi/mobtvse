@@ -23,6 +23,10 @@ See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/master/
 
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
+Free MongoDB hosts
+==================
+If you want to run this on Heroku you're going to need somewhere to put your MongoDB install. Fortunately [MongoLab](https://mongolab.com/home) and [MongoHQ](https://mongohq.com/home) both have free plans. We'd recommend going with MongoHQ simply because they offer fifteen times more free storage than MongoLab (240Mb vs 16Mb). MObtvse can, of course, point to your own MongoDB install if you have one. 
+
 
 Installation
 ============
@@ -38,7 +42,7 @@ If you are new to Rails development, check out guides for getting your developme
     cd obtvse
     bundle install
 
-Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables (see below). 
+Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables (see below) or store them in the config.yml. 
 
 Edit `config/mongoid.yml` to point to your mongodb installation.
 
