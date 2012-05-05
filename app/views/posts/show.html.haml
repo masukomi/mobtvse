@@ -1,5 +1,11 @@
-/show.html.haml
+/ BEGIN show.html.haml
 - content_for(:title) { @post.title }
 - content_for(:page_title) { linked_title }
 
 = render @post
+- if @post.comments_enabled? 
+	%noscript
+		Please enable JavaScript to view the 
+		%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
+
+/ END show.html.haml

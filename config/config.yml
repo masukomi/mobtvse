@@ -6,7 +6,8 @@ meta_description:    A Clever blog by a clever person
 # keep it less than 156 characters. 
 canonical_url:       http://example.com
 # for the meta canonical tag
-# this is typicall the same as the root url of your blog
+# this is typically the same as the root url of your blog
+# This should not end in a slash
 me_link:             http://www.google.com/profiles/my_google_username
 # OPTIONAL I can't find the docs anymore but google uses this 
 # to associate the owner of the blog up to their g+ and other assets.
@@ -26,3 +27,10 @@ email:               address@example.com
 google_analytics_id: YOUR_GA_ID
 #OPTIONAL
 post_url_style:          /%Y/%m/%d/:slug
+### DISQUS SECTION (OPTIONAL)
+disqus_enabled:      false
+# Set that to true to enable disqus comments
+disqus_short_name:   disqus_short_name_here
+# Enter your disqus shortname
+disqus_developer: false
+# if you're testing disqus on localhost set this to true

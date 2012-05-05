@@ -11,6 +11,7 @@ class Post
   field :meta_description,:type => String
   field :draft,           :type => Boolean,   default: true
   field :aside,           :type => Boolean,   default: true
+  field :comments_enabled,:type => Boolean,   default: true
   field :url,             :type => String
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime

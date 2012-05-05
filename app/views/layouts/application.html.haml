@@ -15,13 +15,21 @@
 		%meta{ :name=>"HandheldFriendly", :content=>"True"}
 		%meta{ :name=>'mobileOptimized', :content=>"320"}
 		-if CONFIG['canonical_url']
-			%meta{:name=>'canonical', :content=>CONFIG['canonical_url']}
+			- if ! @single_post
+				%meta{:name=>'canonical', :content=>"#{CONFIG['canonical_url']}"}
+			- else
+				%meta{:name=>'canonical', :content=>"#{CONFIG['canonical_url']}#{permalink_path_for(@post)}" }
 		%link{:rel=>"shortcut icon",:href=>"/favicon.ico"}
 		-if CONFIG['me_link']
 			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
 		
 		%link{ :href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+		-if CONFIG['disqus_developer']
+			:javascript
+				var disqus_developer = 1;
 		=stylesheet_link_tag('foundation')
+		- if CONFIG['disqus_enabled'] and @single_post and @post.comments_enabled?
+			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}
 		.container
