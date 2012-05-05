@@ -105,6 +105,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     minitest (2.12.1)
+    minitest-firemock (0.0.2)
     mongo (1.5.2)
       bson (= 1.5.2)
     mongo_session_store-rails3 (3.0.6)
@@ -221,6 +222,7 @@ DEPENDENCIES
   jquery-rails (~> 2)
   kaminari (~> 0.13)
   minitest
+  minitest-firemock
   mongo (~> 1.5.2)
   mongo_session_store-rails3
   mongoid (~> 2.3.4)
