@@ -22,6 +22,11 @@ twitter:             your_twitter_handle
 #OPTIONAL
 github:              your_github_handle
 #OPTIONAL
+facebook_id:         1234567890
+#OPTIONAL
+# go to facebook. click on your profile. The link should look like this:
+# http://www.facebook.com/profile.php?id=1041015448
+# You want the ID number from the end
 email:               address@example.com
 #OPTIONAL
 google_analytics_id: YOUR_GA_ID

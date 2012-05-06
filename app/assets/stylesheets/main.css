@@ -1,6 +1,7 @@
 body {
 	font-family: 'PT Sans Caption', sans-serif;
 	font-size: 16px;
+	background: #FDFDFA ! important;
 }
 
 .callout {
@@ -48,8 +49,22 @@ hr.style-two {
 	color: #429CC4;
 	font-size: 160%;
 }
+.rss_link,
+.twitter_link,
+.facebook_link {
+	position: relative;
+	bottom: -0.5rem;
+	line-height: 10px;
+
+}
 .email_link {
 
+}
+#contact{
+	margin-top: 0.5rem;
+}
+#contact > div{
+	margin-bottom: 0.5rem;
 }
 
 #back_button {
@@ -92,7 +107,8 @@ ul.main_navigation li + li {
 	margin-left: .8em;
 }
 ul.main-navigation li + li a {
-	padding-left: .8em;
+	padding-left: .4em;
+	padding-right: .4em;
 	border-left: 1px solid #dedede;
 }
 #main_nav_right{
