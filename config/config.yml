@@ -15,8 +15,8 @@ about_url:           http://example.com/about.html
 # OPTIONAL Got an about page that isn't part of your blog? 
 # Use this to link to it.
 
-login:               <%= ENV["obtvse_login"] ? ENV["obtvse_login"] : "username" %>
-password:            <%= ENV["obtvse_password"] ? ENV["obtvse_password"] : "password" %>
+login:               <%= ENV["MOBTVSE_LOGIN"] ? ENV["MOBTVSE_LOGIN"] : "username" %>
+password:            <%= ENV["MOBTVSE_PASSWORD"] ? ENV["MOBTVSE_PASSWORD"] : "password" %>
 name:                Your name
 twitter:             your_twitter_handle
 #OPTIONAL
