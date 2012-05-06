@@ -1,6 +1,8 @@
 / BEGIN _form.html.haml
 
 = form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
+	-if @post.created_at?
+		%input{:type=>"hidden", :name=>"id", :value=>@post.id}
 	.row
 		.three.columns
 			/nothing here for now
