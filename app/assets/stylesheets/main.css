@@ -3,6 +3,39 @@ body {
 	font-size: 16px;
 	background: #FDFDFA ! important;
 }
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a{
+	color: #2E3D4C;
+	text-decoration: underline;
+	line-height: inherit;
+	-moz-transition:color 0.3s;
+	-webkit-transition:color 0.3s;
+	-o-transition:color 0.3s;
+	transition:color 0.3s;
+}
+h1 a{
+	text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover{
+	color: #0181eb;
+}
+h1 a:visited,
+h2 a:visited,
+h3 a:visited,
+h4 a:visited,
+h5 a:visited,
+h6 a:visited{
+	color: ##751590;
+}
 
 .callout {
 	font-size: 24pt;
@@ -48,6 +81,9 @@ hr.style-two {
 .twitter_link {
 	color: #429CC4;
 	font-size: 160%;
+}
+.facebook_link{
+	color: #429CC4;
 }
 .rss_link,
 .twitter_link,
