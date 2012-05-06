@@ -7,6 +7,7 @@ A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and b
 
 * MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
 * Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
+* [Disqus](http://disqus.com) integration for great comment functionality.
 * [Haml](http://haml-lang.com/) (partially implemented)
 
 ### Planned
@@ -14,7 +15,6 @@ The goal is to add support for:
 
 * Generation of static html files for fast serving, or tools for making that easily implementable.
 * [Mixpanel](http://mixpanel.com/)
-* [Disqus](http://disqus.com) 
 * Static File generation
 * Image Uploads
 * Great features that HTML based blogging platforms like Wordpress have had for years.
