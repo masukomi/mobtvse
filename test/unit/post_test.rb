@@ -18,6 +18,7 @@ class PostTest < ActiveSupport::TestCase
 		assert_not_nil p.slug, "slug was nil after save with title" 
 		assert p.draft, "post wasn't a draft by default" # it should default to being a draft.
 		assert_nil p.posted_on, "post had a posted on by default" 
+		assert_not_nil p.created_at
 	end
 	test "url creation" do
 		p = Post.new({:title => 'this is a title'})

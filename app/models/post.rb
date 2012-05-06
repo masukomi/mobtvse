@@ -2,6 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
   include Mongoid::Taggable
+  include Mongoid::Timestamps
   include Stringex::ActsAsUrl
 
   field :title,           :type => String
