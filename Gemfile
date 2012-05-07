@@ -24,6 +24,7 @@ gem 'kaminari', '~> 0.13'
 #gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
 gem 'mongoid_taggable', :git => 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
 
+gem 'thin', '~> 1'
 group :production do
   # gem 'newrelic_rpm', '~> 3'
   # gem 'dalli', '~> 1'
@@ -32,7 +33,6 @@ end
 
 group :development do
   # Extention libraries
-  gem 'thin', '~> 1'
   # gem 'heroku', '~> 2'
   # gem 'capistrano', '~> 2.9'
   # gem 'guard', '~> 1'
