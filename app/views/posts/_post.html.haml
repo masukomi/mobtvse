@@ -2,51 +2,59 @@
 %div
 	%article.hentry{:id=>"post-#{post.id}", :role=>"article"}
 		-unless @no_header
-			.row
-				.twelve.columns
-					%header
-						-if post.external?
-							-if @single_post
-								%h1= link_to post.title, post.url
-							-else
-								%h1= link_to post.title, post.url
-						-else
-							-if @single_post
-								%h1= post.title
-							-else
-								%h1= link_to post.title, post.slug
-					-if is_admin? and @single_post and not @preview
-						%span.admin_action= link_to 'Edit', '/edit/' + post.id.to_s
-					%time.post_date
-						%p.meta
-							-if @post and @post.created_at
-								Posted 
-								= @post.created_at.to_formatted_s(:day_month_year)
-							-else
-								= Time.now.to_formatted_s(:day_month_year)
+
 		-else
 			/ no_header
 		.row
-			.twelve.columns
-				.entry-content
-					-if post.content
-						= markdown(post.content).to_html.html_safe
-					.tags_list
-						Tags: 
-						-if post.tags_array.size > 0
-							%ul.tags_list
-								-post.tags_array.each do |t|
-									%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
-					- if CONFIG['disqus_enabled'] and @post.comments_enabled?
-						.comments_section
-							%h1
-								Comments
-							#disqus_thread{'aria-live'=>"polite"}
-								%noscript
-									Please enable JavaScript to view the 
-									%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
-					-if @single_post
-						%a.button.space-top#back_button{:href=>"#{ root_url }"}
-							Back to Blog
-				%hr.style-two
+			.ninecol
+				.row
+					.twelvencol.last
+						.post_heading
+							-if post.external?
+								-if @single_post
+									%h1= link_to post.title, post.url
+								-else
+									%h1= link_to post.title, post.url
+							-else
+								-if @single_post
+									%h1= post.title
+								-else
+									%h1= link_to post.title, post.slug
+				.row
+					.twelvecol.last
+						.entry-content
+							- if post.content
+								= markdown(post.content).to_html.html_safe
+								
+							- if post.tags_array.size > 0
+								.tags_list
+									Tags:
+									%ul.tags_list
+										-post.tags_array.each do |t|
+											%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
+							- if CONFIG['disqus_enabled'] and @post.comments_enabled?
+								.comments_section
+									%h1
+										Comments
+									#disqus_thread{'aria-live'=>"polite"}
+										%noscript
+											Please enable JavaScript to view the 
+											%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
+							/
+								-if @single_post
+									%a.sans_serif.button.space-top#back_button{:href=>"#{ root_url }"}
+										Home
+						%hr.style-two
+			.threecol.last
+				%time.post_date.sans_serif
+					.meta
+						-if @post and @post.created_at
+							%div
+								Posted 
+								= @post.created_at.to_formatted_s(:day_month_year)
+								-if is_admin? and @single_post and not @preview
+									.admin_action.sans_serif= link_to 'Edit', '/edit/' + post.id.to_s
+						-else
+							= Time.now.to_formatted_s(:day_month_year)
+
 / END _post.html.haml

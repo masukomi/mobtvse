@@ -54,12 +54,15 @@ Go to [0.0.0.0:3000](http://0.0.0.0:3000/), to administrate you go to [/admin](h
 
 For production, you will want to set your password in config.yml or with environment variables (preferred).  On Heroku this is simply:
 
-    heroku config:add obtvse_login=<LOGIN> obtvse_password=<PASSWORD>
+    heroku config:add MOBTVSE_LOGIN=<LOGIN> MOBTVSE_PASSWORD=<PASSWORD> \
+    MONGOID_HOST=<MONGODB HOST> MONGOID_PORT=<DB PORT> \
+    MONGOID_DATABASE=<DATABASE NAME> \
+    MONGOID_USERNAME=<DB USERNAME> MONGOID_PASSWORD=<DB PASSWORD>
 
 Or in your shell (~/.bashrc or ~/.zshrc for example)
 
-    export obtvse_login=<LOGIN>
-    export obtvse_password=<PASSWORD>
+    export MOBTVSE_LOGIN=<LOGIN>
+    export MOBTVSE_PASSWORD=<PASSWORD>
 
 
 SCREENSHOTS

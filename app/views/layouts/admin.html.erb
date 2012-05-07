@@ -4,9 +4,12 @@
 <head>
   <title><%= html_title yield(:title) %> - Admin</title>
   <%= csrf_meta_tag %>
+  <%=javascript_include_tag 'css3-mediaqueries' %>
   <%= #stylesheet_link_tag 'application' 
-	%>
-  <%= stylesheet_link_tag 'foundation' %>
+    %>
+  <%=stylesheet_link_tag '1140' %>
+  <%=stylesheet_link_tag 'ie' %>
+
   <%= stylesheet_link_tag 'normalize' %>
   <%= stylesheet_link_tag 'embed' %>
   <%= stylesheet_link_tag 'posts' %>
