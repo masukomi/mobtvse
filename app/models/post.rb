@@ -14,6 +14,7 @@ class Post
   field :aside,           :type => Boolean,   default: true
   field :comments_enabled,:type => Boolean,   default: true
   field :url,             :type => String
+  field :kudos,           :type => Integer,   default: 0
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime
   field :posted_on,       :type => Date
