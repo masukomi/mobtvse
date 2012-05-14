@@ -14,6 +14,10 @@ me_link:             http://www.google.com/profiles/my_google_username
 about_url:           http://example.com/about.html
 # OPTIONAL Got an about page that isn't part of your blog? 
 # Use this to link to it.
+use_kudos: true
+# set this to false if you don't want 
+# to give people the ability to tell you how awesome 
+# your posts are.
 
 login:               <%= ENV["obtvse_login"] ? ENV["obtvse_login"] : "username" %>
 password:            <%= ENV["obtvse_password"] ? ENV["obtvse_password"] : "password" %>
