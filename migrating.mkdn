@@ -1,0 +1,56 @@
+# Migrating from other systems:
+
+## Importing from Jekyll / Octopress
+
+### Prerequisites
+Before running the import scripts you must get MObtvse up and running. This means setting up a MongoDB database, and configuring the `config/config.yml` file with the appropriate information.  Please see the README for more information. 
+
+**Before running either of these scripts, be sure to set your RAILS_ENV appropriately** by default Rails will use your development environment (and database), which is fine if you are just testing, BUT if you are attempting to load this data into your production database, you must set the RAILS_ENV environment variable to 'production', and set up the appropriate MONGOID_\* variables. Please see the README for more information. 
+
+### Importing your images to Amazon S3
+This is totally optional, *BUT* **if you want to upload your images to S3 you *must* run this script before migrating your posts, because it will need to rewrite the image URLs in your posts. 
+
+#### Prerequisites
+This requires an Amazon Web Services account. You must set up a "bucket" in S3,  a and user with access to that bucket. You must then configured the S3 section of the `config/config.yml` file with the corresponding information.
+
+#### Running the script
+
+On the command line, run the following from the root of the MObtvse directory.
+
+    bundle exec rake jekyll:migrate_files[:images_dir, :absolute_posts_dir, :old_domain_name]
+    
+Example: `bundle exec rake jekyll:migrate_files['/path/to/images/','/Users/me/octopress_blog/source/_posts']`
+
+`:images_dir` is the directory containing all of the images and files uploaded to your jekyll / Octopress site. It is assumed that this directory is served from the root of your blog. So, /path/to/images is assumed to be equivalent to http://example.com/images
+
+It does not have to be named 'images', and it does not have to contain only images.
+
+`:absolute_posts_dir` is the ABSOLUTE path (from the root of your computer not relative) to your jekyll / Octopress `_posts` directory
+
+`:old_domain_name` This can be the same as the new domain name. It should be the domain name with no surrounding text. For example "www.example.com" This is required because all links or image urls to files we are uploading to S3 will need be rewritten to point to s3. For example: 
+`http://www.example.com/images/foo.jpg` might be rewritten to 
+`http://s3.amazonaws.com/my_s3_bucket/images/foo.jpg`
+
+**Please Note** this will *only* upload images that are referenced from within your posts. Other images must be uploaded to S3, or elsewhere, manually. This is because S3 is not free, and minimizing the number of files uploaded will minimize your monthly bill. 
+
+
+### Importing your posts
+#### WARNING:  
+If you do not run the image import script you must copy your images into the public directory. For example, if on your old blog the images were served from an url like `http://www.example.com/images/2012/06/30/cat.jpg` you would copy the `images` directory under MObtvse's `public` directory.  Please note that at the time of this writing (June 30, 2012) MObtvse is not capable of uploading images to local directories. It can only upload to Amazon's S3 or link to images uploaded elsewhere. 
+
+#### Running the script
+
+    bundle exec rake jekyll:migrate_jekyll[:src_dir, :domain_name]
+    
+Example: `rake jekyll:migrate_jekyll['/path/to/_posts', 'www.example.com']`
+
+Please note that the domain name must *only* be the domain name.
+This means no http://, and no trailing slash. This should be the domain name 
+you will be hosting it under as posts will have their base url 
+written to include this at the beginning.
+
+This script import your posts into MObtvse but not rewrite any image urls. If you have run the image import script beforehand then the image urls will have already been rewritten.
+
+
+
+

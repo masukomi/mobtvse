@@ -199,6 +199,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    unidecode (1.0.0)
     win32-api (1.4.8-x86-mingw32)
     win32-process (0.6.5)
       windows-pr (>= 1.1.2)
@@ -248,3 +249,4 @@ DEPENDENCIES
   thin (~> 1)
   timecop
   uglifier (~> 1)
+  unidecode (~> 1.0.0)
