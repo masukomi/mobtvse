@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3'
 
+gem 'rake'
 
 # MongoDB drivers
 gem 'mongo', '~>1.5.2'

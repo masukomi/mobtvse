@@ -3,13 +3,14 @@
 %html{ :lang=>"en-US"}
 	%head
 		%title= html_title yield(:title)
+		=javascript_include_tag 'css3-mediaqueries'
 		= csrf_meta_tag
-		-# = stylesheet_link_tag 'application'
-		=stylesheet_link_tag 'foundation'
+		=stylesheet_link_tag '1140'
+		=stylesheet_link_tag 'ie'
 		=stylesheet_link_tag 'main'
 		=stylesheet_link_tag 'socialicons'
-		-#=stylesheet_link_tag 'websymbols'
 		=stylesheet_link_tag 'screen'
+		=stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Cagliostro|Muli:400,400italic'
 		-if @meta_description || CONFIG['meta_description']
 			%meta{:name=>'description', :content=>"#{@meta_description || CONFIG['meta_description']}"}
 		%meta{ :name=>"author", :content=>"#{CONFIG['name'] }"}
@@ -28,29 +29,24 @@
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
-		=stylesheet_link_tag('foundation')
 		- if CONFIG['disqus_enabled'] and @single_post and @post.comments_enabled?
 			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}
-		.container
+		.container.header
 			/ BEGIN heading row
 			.row
-				.twelve.columns
+				.eightcol
 					%h1#heading
 						= link_to CONFIG['title'], root_url
-						-# if CONFIG['tagline']
-							%h3=CONFIG['tagline']
-					%hr#header_bottom_line
-			/ END heading row
-			/ BEGIN navigation
-			.row
-				.twelve.columns
+						- if CONFIG['tagline']
+							%h3.tagline=CONFIG['tagline']
+				/ END heading row
+				/ BEGIN navigation
+				.fourcol.last
 					%ul.main-navigation
-						%li= link_to 'Home', root_url, {:class=>'emphasized'}
-						/%li= link_to 'Archives', root_url + '/blog/archives'
 						%li
-							#main_nav_right
+							#main_nav_right.nobr
 								%span.emphasized
 									-if CONFIG['about_url']
 										=link_to CONFIG['name'], CONFIG['about_url']
@@ -63,10 +59,11 @@
 								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
+		.container
 			.row
-				.one.columns
+				.onecol
 					/ left gutter
-				.ten.columns
+				.tencol
 					#main
 						-#
 							-unless @no_header
@@ -81,13 +78,13 @@
 							- if notice
 								%span.notice= notice
 							= yield
-				.one.columns
+				.onecol.last
 					.sidebar
 						/TODO swap to 2 columns and dynamically load a sidebar here
 		.row
-			.twelve.columns
+			.twelvecol.last
 				%footer{:role=>'contentinfo'}
-					#powered-by
+					#powered-by.sans_serif.emphasized
 						Powered by 
 						%a{:href=>"http://github.com/masukomi/mobtvse.git"}
 							MObtvse
@@ -95,6 +92,9 @@
 							&nbsp;&middot;&nbsp; 
 							%a{:href=>"/admin"}
 								Admin
+						/
+							%br
+							#mobtvse_icon
 
 		= javascript_include_tag 'application'
 

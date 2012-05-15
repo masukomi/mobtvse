@@ -1,68 +1,68 @@
 / BEGIN _form.html.haml
-
-= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
-	-if @post.created_at
-		%input{:type=>"hidden", :name=>"id", :value=>@post.id}
-	.row
-		.three.columns
-			/nothing here for now
-		.six.columns
-			#split
-				.split-section#post-editor
-					- if @post.errors.any?
-						.notice
-							- @post.errors.full_messages.each do |msg|
-								= msg
-					-if @post.slug and @post.permalinkable?
-						%a.permalink{:href=>"#{permalink_path_for(@post)}", :target=>'_blank'}⚓
-					.expandingArea#text-title
-						%pre
-							%span
-							%br
-						= f.text_area :title, :rows => 1, :placeholder => 'Title here'
-					%fieldset.markdown
-						.expandingArea#text-content
+.content
+	= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
+		-if @post.created_at
+			%input{:type=>"hidden", :name=>"id", :value=>@post.id}
+		.row
+			.threecol
+				/nothing here for now
+			.sixcol
+				#split
+					.split-section#post-editor
+						- if @post.errors.any?
+							.notice
+								- @post.errors.full_messages.each do |msg|
+									= msg
+						-if @post.slug and @post.permalinkable?
+							%a.permalink{:href=>"#{permalink_path_for(@post)}", :target=>'_blank'}⚓
+						.expandingArea#text-title
 							%pre
 								%span
 								%br
-							= f.text_area :content, :placeholder => 'Write post here'
-				.split-section#post-preview
-		.three.columns
-			#tag_container
-				Tags:
-				%fieldset.tags
-					.expandingArea#tags
-						%pre
-							%span
-							%br
-						= f.text_area :tags, :placeholder => 'Add comma separated tags here'
-	.row
-		.twelve_columns
-			#publish-bar-hover
-				#publish-bar
-					.row
-						.six.columns
-							.left
-								=link_to('Admin', '/admin')
-								= link_to 'Delete',  "/posts/#{@post.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
-								= link_to 'Options', '#options', :class => 'menu'
-								%ul.sub-menu#options
-									%li
-										= f.label :url, 'Slug'
-										= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
-									%li
-										= f.label :url, 'URL'
-										= f.text_field :url, :placeholder => 'Optional external link'
-									%li.meta_description
-										= f.label :meta_description, 'meta-description'
-										%div#description_counter 156
-										%br
-										= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
-										
-						.six.columns
-							.nobr
-								= f.label :draft
-								= f.check_box :draft
-								= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
-								= f.submit 'Save', :id => 'save-button'
+							= f.text_area :title, :rows => 1, :placeholder => 'Title here'
+						%fieldset.markdown
+							.expandingArea#text-content
+								%pre
+									%span
+									%br
+								= f.text_area :content, :placeholder => 'Write post here'
+					.split-section#post-preview
+			.threecol.last
+				#tag_container
+					Tags:
+					%fieldset.tags
+						.expandingArea#tags
+							%pre
+								%span
+								%br
+							= f.text_area :tags, :placeholder => 'Add comma separated tags here'
+		.row
+			.twelvecol.last
+				#publish-bar-hover
+					#publish-bar
+						.row
+							.sixcol
+								.left
+									=link_to('Admin', '/admin')
+									= link_to 'Delete',  "/posts/#{@post.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
+									= link_to 'Options', '#options', :class => 'menu'
+									%ul.sub-menu#options
+										%li
+											= f.label :url, 'Slug'
+											= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
+										%li
+											= f.label :url, 'URL'
+											= f.text_field :url, :placeholder => 'Optional external link'
+										%li.meta_description
+											= f.label :meta_description, 'meta-description'
+											%div#description_counter 156
+											%br
+											= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
+											
+							.sixcol.last
+								.nobr
+									= f.label :draft
+									= f.check_box :draft
+									= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
+									= f.submit 'Save', :id => 'save-button'
 / END _form.html.haml
