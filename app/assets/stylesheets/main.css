@@ -34,7 +34,7 @@ h3 a:visited,
 h4 a:visited,
 h5 a:visited,
 h6 a:visited{
-	color: ##751590;
+	color: #751590;
 }
 
 .callout {
@@ -220,5 +220,5 @@ ul.actions{
 	float: left;
 }
 p.meta {
-	margin: 0px;<D-r>
+	margin: 0px;
 }
