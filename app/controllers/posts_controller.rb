@@ -138,8 +138,8 @@ logger.debug(" failed to save")
   end
 
   def booleanify_params(params)
-    ['draft', 'aside'].each do |param|
-      if params[param] == '1'
+    Post.get_boolean_fields.each do |param|
+      if params[param] == '1' or params[param] == 'true'
         params[param] = true
       else
         params[param] = false

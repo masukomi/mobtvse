@@ -40,4 +40,10 @@ class PostTest < ActiveSupport::TestCase
 		end
 		p.draft = false
 	end
+    test "get_boolean_fields" do 
+        boolean_fields = Post.get_boolean_fields()
+        %w(draft aside comments_enabled ).each do | field | 
+          assert boolean_fields.include? field
+        end
+    end
 end

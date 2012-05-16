@@ -63,4 +63,13 @@ class Post
   def permalinkable?
     return posted_at.nil? ? false : true
   end
+  def self.get_boolean_fields
+    unless @boolean_fields
+      @@boolean_fields = []
+      Post.fields.each do |f|
+        @@boolean_fields << f[0] if f[1].type == Boolean
+      end
+    end
+    return @@boolean_fields
+  end
 end
