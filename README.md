@@ -44,7 +44,7 @@ If you are new to Rails development, check out guides for getting your developme
 
 Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables (see below) or store them in the config.yml. 
 
-Edit `config/mongoid.yml` to point to your mongodb installation.
+Edit `config/mongoid.yml` to point to your mongodb installation (more details below).
 
 Start the local server:
 
@@ -52,14 +52,31 @@ Start the local server:
 
 Go to [0.0.0.0:3000](http://0.0.0.0:3000/), to administrate you go to [/admin](http://0.0.0.0:3000/admin)
 
-For production, you will want to set your password in config.yml or with environment variables (preferred).  On Heroku this is simply:
+For production, you will want to set your password in config.yml or with environment variables (preferred).  If you are deploying to Heroku you can edit and run `script/heroku_env.sh` shell script to set up your environment variables and push them to Heroku. Do this *after* deploying the app to Heroku the first time. Heroku is a "production" environment, and for your security MObtvse only uses environment variables to configure the database and the admin login. 
 
-    heroku config:add obtvse_login=<LOGIN> obtvse_password=<PASSWORD>
 
 Or in your shell (~/.bashrc or ~/.zshrc for example)
 
-    export obtvse_login=<LOGIN>
-    export obtvse_password=<PASSWORD>
+    export MOBTVSE_LOGIN=<LOGIN>
+    export MOBTVSE_PASSWORD=<PASSWORD>
+
+## MongoDB configuration
+When getting things set up in development it is configured by default ( in `mongoid.yml`) to run against a db named `mobtvse_development` on `localhost`
+
+In production you will want to set the following environment variables: 
+
+* `MONGOID_HOST`
+* `MONGOID_PORT`
+* `MONGOID_USERNAME`
+* `MONGOID_PASSWORD`
+* `MONGOID_DATABASE`
+
+You can set these up in your `.bashrc` file or just copy, and edit, the relevant section of `script/heroku_env.sh`
+
+Support:
+==========================
+* Twitter: [MObtvse](http://twitter.com/#!/MObtvse)  
+* File an issue on Github. 
 
 
 SCREENSHOTS

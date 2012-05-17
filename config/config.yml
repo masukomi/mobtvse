@@ -19,13 +19,18 @@ use_kudos: true
 # to give people the ability to tell you how awesome 
 # your posts are.
 
-login:               <%= ENV["obtvse_login"] ? ENV["obtvse_login"] : "username" %>
-password:            <%= ENV["obtvse_password"] ? ENV["obtvse_password"] : "password" %>
+login:               <%= ENV["MOBTVSE_LOGIN"] ? ENV["MOBTVSE_LOGIN"] : "username" %>
+password:            <%= ENV["MOBTVSE_PASSWORD"] ? ENV["MOBTVSE_PASSWORD"] : "password" %>
 name:                Your name
 twitter:             your_twitter_handle
 #OPTIONAL
 github:              your_github_handle
 #OPTIONAL
+facebook_id:         1234567890
+#OPTIONAL
+# go to facebook. click on your profile. The link should look like this:
+# http://www.facebook.com/profile.php?id=1041015448
+# You want the ID number from the end
 email:               address@example.com
 #OPTIONAL
 google_analytics_id: YOUR_GA_ID

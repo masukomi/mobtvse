@@ -230,6 +230,7 @@ DEPENDENCIES
   mongoid_taggable!
   rails (~> 3)
   rails_best_practices (~> 1)
+  rake
   redcarpet
   sass-rails (~> 3)
   spork (~> 0.9)

@@ -1,3 +1,4 @@
+require 'date'
 class Post
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
@@ -17,7 +18,7 @@ class Post
   field :kudos,           :type => Integer,   default: 0
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime
-  field :posted_on,       :type => Date
+  field :posted_at,       :type => DateTime
 
   scope :order, order_by(:created_at => :desc) #.limit(100)
   validates :title, presence: true
@@ -34,22 +35,22 @@ class Post
   end
   # NOTE: 
   # when setting the post into non-draft mode
-  # we also create the posted_on date.
+  # we also create the posted_at date.
   # This is because we don't currently support setting 
-  # future posted_on dates
+  # future posted_at dates
   # We also create the url since it is based on the posted on
   # WARNING: if you make a post public
   # then set it to a draft until the next day ( or later ) 
   # and then make it public again THE URL WILL CHANGE
   def draft=(new_draft_status)
-    if ((draft and not new_draft_status) or (draft and not posted_on) )
+    if ((draft and not new_draft_status) or (draft and not posted_at) )
       #NOTE We'll have to change this in the future
       # when we allow people to set the post date
       # manually
-      self.posted_on = Date.today
-      self.url = self.posted_on.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
-    elsif (self.posted_on and not new_draft_status)
-      self.posted_on = nil
+      self.posted_at = DateTime.now
+      self.url = self.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
+    elsif (self.posted_at and not new_draft_status)
+      self.posted_at = nil
       self.url = nil
     end
     
@@ -61,6 +62,15 @@ class Post
   end
 
   def permalinkable?
-    return posted_on.nil? ? false : true
+    return posted_at.nil? ? false : true
+  end
+  def self.get_boolean_fields
+    unless @boolean_fields
+      @@boolean_fields = []
+      Post.fields.each do |f|
+        @@boolean_fields << f[0] if f[1].type == Boolean
+      end
+    end
+    return @@boolean_fields
   end
 end

@@ -13,9 +13,9 @@ class PostsController < ApplicationController
     #TODO reimplement paging mongo style
     all_posts = nil
     unless params[:tag]
-      all_posts = Post.all(conditions: {draft:false}).entries
+      all_posts = Post.all(conditions: {draft:false},sort: [[ :posted_at, :desc ]]).entries
     else
-      all_posts = Post.tagged_with(params[:tag]).entries
+      all_posts = Post.any_in(:tags_array => [params[:tag]]).desc(:posted_at).entries
     end
     @posts = Kaminari.paginate_array(all_posts).page(params[:page]).per(10)
 
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     #todo re-implement the paging mongoid style
     all_published = nil
     unless params[:tag]
-      all_published = Post.all(conditions: {draft: false}).entries
+      all_published = Post.all(conditions: {draft: false},sort: [[ :posted_at, :desc ]]).entries
     else
       all_published = Post.tagged_with(params[:tag]).entries
     end
@@ -138,8 +138,8 @@ logger.debug(" failed to save")
   end
 
   def booleanify_params(params)
-    ['draft', 'aside'].each do |param|
-      if params[param] == '1'
+    Post.get_boolean_fields.each do |param|
+      if params[param] == '1' or params[param] == 'true'
         params[param] = true
       else
         params[param] = false
