@@ -3,8 +3,12 @@
 %html{ :lang=>"en-US"}
 	%head
 		%title= html_title yield(:title)
-		=javascript_include_tag 'css3-mediaqueries'
 		= csrf_meta_tag
+		=javascript_include_tag 'jquery-1.7.2.min'
+		=javascript_include_tag 'jquery.cookie'
+		=javascript_include_tag 'css3-mediaqueries'
+		- if CONFIG['use_kudos']
+			=stylesheet_link_tag 'kudos'
 		=stylesheet_link_tag '1140'
 		=stylesheet_link_tag 'ie'
 		=stylesheet_link_tag 'main'
@@ -105,4 +109,8 @@
 				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g,s)}(document,'script'));
+		=javascript_include_tag 'jquery.cookie'
+		=javascript_include_tag 'css3-mediaqueries'
+		- if CONFIG['use_kudos']
+			=javascript_include_tag 'kudos'
 / END application.html.haml

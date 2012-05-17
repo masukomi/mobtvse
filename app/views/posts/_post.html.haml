@@ -54,6 +54,8 @@
 								= @post.created_at.to_formatted_s(:day_month_year)
 								-if is_admin? and @single_post and not @preview
 									.admin_action.sans_serif= link_to 'Edit', '/edit/' + post.id.to_s
+							- if CONFIG['use_kudos']
+								= render :partial => "kudos", :locals=>{:post => @post}
 						-else
 							= Time.now.to_formatted_s(:day_month_year)
 
