@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   ## is a scope added to the model by the kaminari gem
   ##################
 
-  before_filter :authenticate, :except => [:index, :show]
+  before_filter :authenticate, :except => [:index, :show, :update_kudo]
   layout :choose_layout
 
   def index
@@ -119,6 +119,13 @@ logger.debug(" failed to save")
         format.xml { render :xml => @post.errors, :status => :unprocessable_entity}
       end
     end
+  end
+
+  def update_kudo
+     @post = Post.find(params[:id])
+     @post.kudos +=1
+     @post.save()
+     render :nothing=>true
   end
 
   def destroy

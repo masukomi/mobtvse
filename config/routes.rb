@@ -15,5 +15,6 @@ Obtvse::Application.routes.draw do
   delete '/:slug', :to => 'posts#destroy', :as  => 'post'
   put '/:slug', :to => 'posts#update', :as  => 'post'
 
+  match ':controller(/:action(/:id(.:format)))'
   root :to => 'posts#index'
 end

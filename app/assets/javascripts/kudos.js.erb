@@ -9,11 +9,12 @@ function sendKudoInfoToServer(element_id){
 		sending_kudo = true;
 			// just to guarantee you don't accidentally send two 
 			// right after each other.
-		console.log("kudo sent");
+		var post_id = element_id.replace(/^kudo-/, '')
+		var ajax_url = '/posts/update_kudo/' + post_id + '.js';
+		$.ajax(ajax_url);
 		setTimeout("sending_kudo = false;", 50);
 	}
 }
-
 
 function startKudoing(element) {
 	element.oldKudoText = element.children("p.count").html();
