@@ -2,6 +2,14 @@
 %li{:id=>"post-#{li.id}"}
 	%h3
 		-#= link_to li.title, '/edit/' + li.id.to_s , :controller=>:posts, :action=>:edit, :id=>li.id 
+		- if CONFIG['use_kudos'] and (not li.draft or li.kudos > 0)
+			-# someone could have created a post, gotten kudos, then made it a draft again
+			-if li.kudos < 100
+				%span.mini_kudo.mini_kudos_few
+					=li.kudos
+			-else
+				%span.mini_kudo.mini_kudos_many
+					=li.kudos
 		= link_to li.title, edit_post_path(li.id)
 		%span.links
 			- if li.external?

@@ -9,7 +9,9 @@
     %>
   <%=stylesheet_link_tag '1140' %>
   <%=stylesheet_link_tag 'ie' %>
-
+  <% if CONFIG['use_kudos'] %>
+    <%=stylesheet_link_tag 'kudos' %>
+  <% end %>
   <%= stylesheet_link_tag 'normalize' %>
   <%= stylesheet_link_tag 'embed' %>
   <%= stylesheet_link_tag 'posts' %>

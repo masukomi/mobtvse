@@ -197,3 +197,29 @@ a.kudos.completed div.circle div.filled{
 	height:42px;
 	border-radius:50%;
 }
+
+/* ADMIN PAGE */
+.mini_kudo,
+.mini_kudos_circular{
+	display: inline-block;
+	text-align: center;
+	min-width: 1.5em;
+}
+.mini_kudos{
+	margin-right: 0.5em;
+}
+.mini_kudos_many{
+	border-bottom: solid 2px #33CC33;
+}
+.mini_kudos_few{
+	border-bottom: solid 2px #9999FF;
+}
+.mini_kudos_circular{
+	/* not quite ready for prime time */
+	border: solid;
+	height: 1.5em;
+	border-radius: 20px;
+	float: left;
+	position: relative;
+	bottom: 3px;
+}
