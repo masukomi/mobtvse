@@ -32,7 +32,7 @@
 									%ul.tags_list
 										-post.tags_array.each do |t|
 											%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
-							- if CONFIG['disqus_enabled'] and @post.comments_enabled?
+							- if CONFIG['disqus_enabled'] and post.comments_enabled?
 								.comments_section
 									%h1
 										Comments
@@ -48,15 +48,14 @@
 			.threecol.last
 				%time.post_date.sans_serif
 					.meta
-						-if @post and @post.created_at
+						-if post and post.posted_at
 							%div
 								Posted 
-								= @post.created_at.to_formatted_s(:day_month_year)
+								= post.posted_at.to_formatted_s(:day_month_year)
 								-if is_admin? and @single_post and not @preview
 									.admin_action.sans_serif= link_to 'Edit', '/edit/' + post.id.to_s
 							- if CONFIG['use_kudos']
-								= render :partial => "kudos", :locals=>{:post => @post}
-						-else
-							= Time.now.to_formatted_s(:day_month_year)
-
+								= render :partial => "kudos", :locals=>{:post => post}
+						-#
+							Otherwise something is just damn weird
 / END _post.html.haml
