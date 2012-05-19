@@ -9,9 +9,6 @@ Because we're going to be generating static pages we need a comment system that 
 ## Mixpanel Integration
 Let's go beyond just tagging the pages with a simple Mixpanel tracking code. When viewing a page in the admin section each post should  have pre-generated links with query strings that will allow users to track things like how many people came from posting about an article on Twitter vs. Facebook vs. Google+. This will require not only a custom link, generation but custom JS to convert those links into the appropriate Mixpanel calls. 
 
-## Kudos
-Our great grandfather ([Svbtle](http://svbtle.com)) had a great idea with those Kudos. Let's do that too, but track it with Mixpanel. Kudos support should, obviously, be optional, because some people have a surprisingly visceral reaction to it. Also, the "Don't Move..." text should hint that you're giving a Kudo because the visceral reactions seem to be from people being surprised that they're giving a Kudo when they do that. 
-
 ## Static HTML Generation Support
 Let's face it. Nothing beats the speed or scalability of raw HTML when it comes to hosting a web site. It's good for SEO and it's better when you get linked to by sites like Reddit and HackerNews. MObtvse should either generate static HTML or have an easy API that would allow a chron script on a remote server to easily pull down the changed files. In the latter scenario MObtvse would be acting in an admin only capacity and probably should allow admins to disable the public facing pages. We may come up with better solutions. 
 

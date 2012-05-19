@@ -9,6 +9,7 @@ A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and b
 * Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
 * [Disqus](http://disqus.com) integration for great comment functionality.
 * [Haml](http://haml-lang.com/) (partially implemented)
+* Svbtle-style Kudos
 
 ### Planned
 The goal is to add support for:
