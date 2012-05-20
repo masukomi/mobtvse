@@ -7,6 +7,7 @@ Obtvse::Application.routes.draw do
   calculate_posts_view_route(CONFIG['post_url_style'])
   resources :posts
   match '/admin', :to => 'posts#admin'
+  match '/get/:id', :to => 'posts#get'
   match '/new', :to => 'posts#new'
   match '/edit/:id', :to => 'posts#edit'
   post '/preview', :to => 'posts#preview'

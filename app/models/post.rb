@@ -54,6 +54,9 @@ class Post
       # when we allow people to set the post date
       # manually
       self.posted_at = DateTime.now
+      slug_from_title() unless slug 
+         # a slugless post can happen during testing (pre-save), and I just want 
+         # to guarantee that it doesn't cause issues in production
       self.url = self.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
     elsif (not draft and not new_draft_status) #it's currently posted, but about to not be
       self.posted_at = nil
@@ -64,7 +67,7 @@ class Post
   end
 
   def external?
-    !url.blank?
+    !url.blank? and ! draft
   end
 
   def next

@@ -1,19 +1,21 @@
 / BEGIN admin.html.haml
 .content
 	.row.admin_content
-		.sixcol
+		.onecol
+			// just a gutter
+		.fivecol
 			#drafts
 				%h1 
 					Drafts 
 					= link_to 'New Draft', '/new', :class => 'button'
-				= form_for @post do |f| 
+				= form_for @placeholder_post do |f| 
 					= f.text_field :title, :placeholder => 'Start typing your title here...' 
 				%ul
 					= render :partial => 'li', :collection => @drafts
 				-# = paginate @drafts, :param_name => "draft_page" 
-		.sixcol.last
+		.fivecol
 			#published
-				%h2
+				%h1
 					Published 
 					= link_to 'Home', root_url, :class => 'button'
 				.tags_list
@@ -31,4 +33,5 @@
 				%ul
 					= render :partial => 'li', :collection => @published
 				= paginate @published , :param_name => "post_page" 
+		.onecol.last
 / END admin.html.haml

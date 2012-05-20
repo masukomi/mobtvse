@@ -28,9 +28,9 @@ module ApplicationHelper
   	output.join
   end
 
-  def permalink_path_for(post)
+  def permalink_path_for(post, include_domain=true)
     raise "Can't permalink to drafts" unless post.permalinkable?
     date_plus_slug = post.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', post.slug)
-    return "#{CONFIG['canonical_url']}#{date_plus_slug}"
+    return "#{ include_domain ? CONFIG['canonical_url'] : ''}#{date_plus_slug}"
   end
 end

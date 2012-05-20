@@ -72,6 +72,15 @@ class PostTest < ActiveSupport::TestCase
 		assert_nil p.previous()
 		assert_equal p, p.next.previous, "the previous of next was not the same as the starting item"
 		assert_equal n, n.previous.next, "the next of previous was not the same as the starting item"
-
+	end
+	test "external" do 
+		#TODO when we enable future posting we need to make sure
+		# that the post's date is <= now
+		p = Post.new({:title => 'this is a title'})
+		assert_equal false, p.external?, "draft post with no url returned true for external?"
+		p.url = 'http://www.example.com/some/post'
+		assert_equal false, p.external?, "draft post returned true for external?"
+		p.draft = false
+		assert_equal true, p.external?, "a viable post returned false for external?"
 	end
 end

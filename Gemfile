@@ -19,6 +19,7 @@ gem "haml-rails", '~> 0.3.4'
 
 # Misc libraries
 # gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
+gem 'bourbon', '~> 2.0.0.rc1'
 gem 'stringex', '~> 1', :git => 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
 

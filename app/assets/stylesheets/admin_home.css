@@ -1,0 +1,39 @@
+div.tags_list{
+	/*margin-top: 1rem;*/
+}
+dl,
+menu,
+ol,
+ul {
+    margin: 0 0 0 0;
+}
+ul.tags_list {
+	display: inline-block;
+	list-style: none;
+	margin-left: 0.5em;
+}
+ul.tags_list li {
+	display: inline-block;
+}
+ul.tags_list li:before{
+	content:"#";
+}
+ul.tags_list li:after{
+	content:",";
+}
+ul.tags_list li:last-child:after{
+	display:none;
+}
+
+#admin h1 {
+	margin-bottom: 0px;
+}
+
+#drafts > ul > li > h3,
+#published > ul > li > h3 {
+	margin: 0 0 0 0 ;
+}
+
+.entypo {
+	display: inline-block;
+}

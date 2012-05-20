@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 
   def admin
     @no_header = true
-    @post = Post.new
+    @placeholder_post = Post.new
     #todo re-implement the paging mongoid style
     all_published = nil
     unless params[:tag]
@@ -92,9 +92,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def get
+    @post = Post.find(params[:id])
+    render :text => @post.to_json
+  end
+
   def edit
     @no_header = true
     @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @post }
+    end
   end
 
   def create
@@ -106,10 +115,12 @@ logger.debug("XXX in PostsController#create")
 logger.debug(" saved")
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post created successfully" }
         format.xml { render :xml => @post, :status => :created, location: @post }
+        format.text { render :text => @post.to_json }
       else
 logger.debug(" failed to save")
         format.html { render :action => 'new' }
         format.xml { render :xml => @post.errors, :status => :unprocessable_entity}
+        format.text { head :bad_request }
       end
     end
   end
@@ -123,9 +134,11 @@ logger.debug(" failed to save")
 
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post updated successfully" }
         format.xml { head :ok }
+        format.text{ render :text => @post.to_json}
       else
         format.html { render :action => 'edit' }
         format.xml { render :xml => @post.errors, :status => :unprocessable_entity}
+        format.text { head :bad_request }
       end
     end
   end

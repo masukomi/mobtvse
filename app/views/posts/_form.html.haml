@@ -1,68 +1,89 @@
 / BEGIN _form.html.haml
 .content
-	= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
+	= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts}, :html => {:id => "post_form"} do |f|
 		-if @post.created_at
 			%input{:type=>"hidden", :name=>"id", :value=>@post.id}
 		.row
+			/begin left section
 			.threecol
-				/nothing here for now
+				#bar
+					= link_to 'Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
+					/= link_to 'Preview', '#', :id => 'preview-button', :target => "_blank", :class => 'icon-eye-open'
+					= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
+					.middle
+						.menu#menu-date
+							= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar', :onClick=>"return false;"
+							%ul.sub-menu#date
+								%li
+									= f.label :posted_at, 'Published Date'
+									= f.text_field :posted_at
+
+						.menu#menu-info
+							= link_to 'Info', '#info', :class => 'icon-info-sign', :onClick=>"return false;"
+							%ul.sub-menu#info
+								%li
+									= f.label :slug, 'Permalink'
+									= f.text_field :slug, :placeholder => 'Leave blank to automatically generate'
+								%li
+									= f.label :url, 'External URL'
+									= f.text_field :url, :placeholder => 'Optional'
+								%li.meta_description
+									= f.label :meta_description, 'meta-description'
+									%div#description_counter 156
+									%br
+									= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
+								%li
+									%label
+										Wordcount
+									%span#wordcount
+						/
+							.menu
+								= link_to 'History', '#history', :class => 'icon-list', :onClick=>"return false;"
+								%ul.sub-menu#history
+									%li= f.label :url, 'History'
+									%li= link_to 'Version 3', '#'
+									%li= link_to 'Version 2', '#'
+									%li= link_to 'Version 1', '#'
+
+					.bottom
+						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit', :onClick=>"return false;"
+						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
+				.hide
+					= f.check_box :draft
+			/ begin middle section
 			.sixcol
-				#split
-					.split-section#post-editor
+				.split-section#post-editor
+					.inner
 						- if @post.errors.any?
 							.notice
 								- @post.errors.full_messages.each do |msg|
 									= msg
-						-if @post.slug and @post.permalinkable?
-							%a.permalink{:href=>"#{permalink_path_for(@post)}", :target=>'_blank'}⚓
-						.expandingArea#text-title
+						#text-title.expandingArea
 							%pre
 								%span
 								%br
-							= f.text_area :title, :rows => 1, :placeholder => 'Title here'
-						%fieldset.markdown
-							.expandingArea#text-content
+							=f.text_area :title, :rows => 1, :placeholder => 'Enter your idea...'
+						%fieldset#content-fieldset.markdown
+							#text-content.expandingArea
 								%pre
 									%span
 									%br
-								= f.text_area :content, :placeholder => 'Write post here'
-					.split-section#post-preview
+								= f.text_area :content, :placeholder => 'Write post here', :class => 'faded'
+							%pre#line-height.goaway
+								Test text
+				
+
+				#post-preview.split-section
+					.inner
+
+			/ begin right section
 			.threecol.last
 				#tag_container
 					Tags:
 					%fieldset.tags
-						.expandingArea#tags
-							%pre
-								%span
-								%br
+						#tags
 							= f.text_area :tags, :placeholder => 'Add comma separated tags here'
-		.row
-			.twelvecol.last
-				#publish-bar-hover
-					#publish-bar
-						.row
-							.sixcol
-								.left
-									=link_to('Admin', '/admin')
-									= link_to 'Delete',  "/posts/#{@post.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
-									= link_to 'Options', '#options', :class => 'menu'
-									%ul.sub-menu#options
-										%li
-											= f.label :url, 'Slug'
-											= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
-										%li
-											= f.label :url, 'URL'
-											= f.text_field :url, :placeholder => 'Optional external link'
-										%li.meta_description
-											= f.label :meta_description, 'meta-description'
-											%div#description_counter 156
-											%br
-											= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
-											
-							.sixcol.last
-								.nobr
-									= f.label :draft
-									= f.check_box :draft
-									= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
-									= f.submit 'Save', :id => 'save-button'
+
+%button.animated#save-button
+
 / END _form.html.haml
