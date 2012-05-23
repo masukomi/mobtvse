@@ -25,6 +25,15 @@ class PostsController < ApplicationController
       format.rss { render :layout => false }
     end
   end
+  def tag
+    @tag = params[:id]
+    @posts = Post.any_in(:tags_array => [@tag]).desc(:posted_at).entries
+      # we don't want a paginated list here
+    #logger.debug("#{@posts.size} posts were found with tag #{@tag}")
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def preview
     @post = Post.new(params[:post])
@@ -42,7 +51,7 @@ class PostsController < ApplicationController
     unless params[:tag]
       all_published = Post.all(conditions: {draft: false},sort: [[ :posted_at, :desc ]]).entries
     else
-      all_published = Post.tagged_with(params[:tag]).entries
+      all_published = Post.any_in({:tags_array => [params[:tag]]}).descending(:posted_at).entries
     end
     @tags = Post.tags #Post.tags_with_weight returns [['foo', 2],['bar', 1],['baz', 3]]
     @published = Kaminari.paginate_array(all_published).page(params[:post_page]).per(20)

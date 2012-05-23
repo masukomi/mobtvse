@@ -172,6 +172,11 @@ div#content ul.tags_list li:last-child:after{
 	display:none;
 }
 
+ul.tagged_post_list > li {
+  list-style-type: none;
+  border-bottom: solid 1px #DDD;
+}
+
 
 
 /* main navigation */

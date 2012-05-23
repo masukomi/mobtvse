@@ -31,7 +31,7 @@
 									Tags:
 									%ul.tags_list
 										-post.tags_array.each do |t|
-											%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
+											%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
 							- if CONFIG['disqus_enabled'] and post.comments_enabled?
 								.comments_section
 									%h1
