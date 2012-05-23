@@ -61,6 +61,45 @@ class Post
     !url.blank?
   end
 
+  def next
+    # gt seems to have the same problems as lt
+    # see details in def previous
+    mostly_next_entries = self.class.all(:conditions=>{
+              :posted_at.gt => self.posted_at, #(self.posted_at ? self.posted_at : self.created_at), :draft=>(! published), 
+              :draft => false,
+              :_id.ne=>self._id
+            }, 
+            :sort=>[:posted_at, :asc]).entries
+    mostly_next_entries.each do |entry|
+      if entry.posted_at > self.posted_at
+        return entry
+      end
+    end
+    return nil
+  end
+
+  def previous
+  # there's a bug in mongoid's date comparisons
+  # :posted_at.lt=>self.posted_at will include self 
+  # and sometimes items that are actually greater than. 
+  # so we have to get the closest we can and iterate until we find the right one.
+    mostly_previous_entries = self.class.all(:conditions=>{
+            :posted_at.lt => self.posted_at, #(self.posted_at ? self.posted_at : self.created_at), 
+            :draft=>false, 
+            :_id.ne=>self._id
+            }, 
+            :sort=>[:posted_at, :desc]
+          ).entries
+    mostly_previous_entries.each do |entry| 
+      #puts "testing #{entry.posted_at} < #{self.posted_at}"
+      if entry.posted_at < self.posted_at #(self.posted_at ? self.posted_at : self.created_at)
+        #puts "it was! returning"
+        return entry
+      end
+    end
+    return nil
+  end
+
   def permalinkable?
     return posted_at.nil? ? false : true
   end
