@@ -51,6 +51,13 @@
     </div>
   </div>
   <%= javascript_include_tag 'admin' %>
+  <% if @post and params[:action]=='edit' %>
+     <script language='JavaScript'>
+        $(document).ready(function(){
+          setDraftInput(<%=@post.draft%>);
+        })
+     </script>
+  <% end%>
 </body>
 </html>
 <!-- END admin.html.erb -->
