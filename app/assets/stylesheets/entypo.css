@@ -15,5 +15,9 @@
 	font-family: 'EntypoRegular';
 	font-size: 320%;
 	text-transform: none;
+	cursor: default;
 }
-
+a.entypo{
+	cursor: pointer;
+	cursor: hand;
+}

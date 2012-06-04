@@ -24,7 +24,7 @@ class Post
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true
   #acts_as_url :title, :url_attribute => :slug
-  before_validation :slug_from_title
+  before_validation :slug_from_title, :update_posted_at
     # You can't call before_save on a field that is part of 
     # the validations
 
@@ -33,6 +33,11 @@ class Post
       self.slug= title.to_url
     end
   end
+  def update_posted_at()
+    if (! self.draft and ! self.posted_at)
+      self.posted_at = DateTime.now
+    end
+  end 
   # NOTE: 
   # when setting the post into non-draft mode
   # we also create the posted_at date.
@@ -68,6 +73,13 @@ class Post
 
   def external?
     !url.blank? and ! draft
+  end
+
+  def future?
+    unless (self.posted_at.nil?)
+      return self.posted_at > DateTime.now
+    end
+    return false
   end
 
   def next

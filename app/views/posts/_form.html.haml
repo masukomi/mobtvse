@@ -16,7 +16,7 @@
 							%ul.sub-menu#date
 								%li
 									= f.label :posted_at, 'Published Date'
-									= f.text_field :posted_at
+									= f.datetime_select('posted_at', :order=>[:year, :month, :day], :include_blank=>true)
 
 						.menu#menu-info
 							= link_to 'Info', '#info', :class => 'icon-info-sign', :onClick=>"return false;"

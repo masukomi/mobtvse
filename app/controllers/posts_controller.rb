@@ -12,10 +12,11 @@ class PostsController < ApplicationController
   def index
     #TODO reimplement paging mongo style
     all_posts = nil
+    now = DateTime.now
     unless params[:tag]
-      all_posts = Post.all(conditions: {draft:false},sort: [[ :posted_at, :desc ]]).entries
+      all_posts = Post.all(conditions: {:draft=>false, :posted_at=>{"$lte"=>now}},:sort=> [[ :posted_at, :desc ]]).entries
     else
-      all_posts = Post.any_in(:tags_array => [params[:tag]]).desc(:posted_at).entries
+      all_posts = Post.any_in(:tags_array => [params[:tag]]).where(:posted_at=>{"$lte"=>now}).desc(:posted_at).entries
     end
     @posts = Kaminari.paginate_array(all_posts).page(params[:page]).per(10)
 
@@ -27,7 +28,8 @@ class PostsController < ApplicationController
   end
   def tag
     @tag = params[:id]
-    @posts = Post.any_in(:tags_array => [@tag]).desc(:posted_at).entries
+    now = DateTime.now
+    @posts = Post.any_in(:tags_array => [@tag]).where(:posted_at=>{"$lte"=>now}).desc(:posted_at).entries
       # we don't want a paginated list here
     #logger.debug("#{@posts.size} posts were found with tag #{@tag}")
     respond_to do |format|

@@ -12,6 +12,8 @@
 					=li.kudos
 		%span.links
 			- if li.external?
+				-if li.future?
+					%span.entypo.admin-view{:title=>"This post is scheduled for the future"} N
 				= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view'}
 			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete'
 			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'

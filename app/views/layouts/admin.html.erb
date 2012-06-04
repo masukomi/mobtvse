@@ -20,7 +20,8 @@
      <script language='JavaScript'>
          var post_data = <%=(@post.nil? ? @placeholder_post : @post).to_json.html_safe %>;
      </script>
-  <% else %>
+  <% end
+  if params[:action] == 'admin' %>
     <%= stylesheet_link_tag 'admin_home' %>
     
   <% end %>
