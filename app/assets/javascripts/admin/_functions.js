@@ -61,6 +61,9 @@ var state = {
 
 // Allows for auto expanding textareas
 function makeExpandingArea(container) {
+  if (container == null){
+    return;
+  } 
   var area = container.querySelector('textarea'),
       span = container.querySelector('span');
 
