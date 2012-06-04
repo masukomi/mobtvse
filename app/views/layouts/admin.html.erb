@@ -16,9 +16,9 @@
   <%= stylesheet_link_tag 'posts' %>
   <%= stylesheet_link_tag 'entypo' %>
   <%= stylesheet_link_tag 'fonts/font-awesome' %>
-  <% if @post %>
+  <% if @post or @placeholder_post %>
      <script language='JavaScript'>
-         var post_data = <%=@post.to_json.html_safe %>;
+         var post_data = <%=(@post.nil? ? @placeholder_post : @post).to_json.html_safe %>;
      </script>
   <% else %>
     <%= stylesheet_link_tag 'admin_home' %>
