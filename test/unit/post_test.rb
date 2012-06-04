@@ -83,4 +83,19 @@ class PostTest < ActiveSupport::TestCase
 		p.draft = false
 		assert_equal true, p.external?, "a viable post returned false for external?"
 	end
+	test "future" do 
+		p = Post.new({:title => 'this is a title'})
+		assert_equal false, p.future?, "A post with no posted_at was incorrectly marked as future" 
+		p.posted_at = 1.day.ago
+		assert_equal false, p.future?, "A post with a past posted_at was incorrectly marked as future" 
+		p.posted_at = 1.day.from_now
+		assert_equal true, p.future?, "A draft post with a valid posted_at was not marked as future" 
+		p.draft = false
+		assert_equal true, p.future?, "A published post with a valid posted_at was not marked as future" 
+		
+		# make sure unpublishing doesn't screw posted_at
+		p.draft = true
+		assert_equal true, p.future?, "A published post with a valid posted_at was not marked as future" 
+
+	end
 end

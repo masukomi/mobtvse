@@ -47,25 +47,16 @@ class Post
   # WARNING: if you make a post public
   # then set it to a draft until the next day ( or later ) 
   # and then make it public again THE URL WILL CHANGE
-  # TODO: AFTER Admin UI makeover
-  #       - remove the elsif block
-  #       - add a field in the UI to set the date (month, day, year)
-  #       - once it's posted the posted_at will remain 
-  #         regardless of draft status until someone manually 
-  #         changes it. 
   def draft=(new_draft_status)
     if ((draft and not new_draft_status) or (draft and not posted_at) )
       #NOTE We'll have to change this in the future
       # when we allow people to set the post date
       # manually
-      self.posted_at = DateTime.now
+      self.posted_at = DateTime.now unless self.posted_at
       slug_from_title() unless slug 
          # a slugless post can happen during testing (pre-save), and I just want 
          # to guarantee that it doesn't cause issues in production
       self.url = self.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
-    elsif (not draft and not new_draft_status) #it's currently posted, but about to not be
-      self.posted_at = nil
-      self.url = nil
     end
     
     super(new_draft_status)
