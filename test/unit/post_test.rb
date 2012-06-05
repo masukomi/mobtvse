@@ -98,4 +98,17 @@ class PostTest < ActiveSupport::TestCase
 		assert_equal true, p.future?, "A published post with a valid posted_at was not marked as future" 
 
 	end
+
+	test "permalinkable?" do
+		# You can generate a permalink to a post even if it is a draft
+		# Deciding if a user is allowed to view that post is another matter entirely
+		p = Post.new({:title => 'this is a title'})
+		assert_equal false, p.permalinkable?, "post without posted_at was permalinkable"
+		p.posted_at = 1.day.from_now
+		assert_equal true, p.permalinkable?, "draft post with future posted_at wasn't permalinkable"
+		p.posted_at = 1.day.ago
+		assert_equal true, p.permalinkable?, "draft post with posted_at wasn't permalinkable"
+		p.draft = false
+		assert_equal true, p.permalinkable?, "published post with posted_at wasn't permalinkable"
+	end
 end
