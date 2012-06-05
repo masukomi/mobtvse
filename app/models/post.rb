@@ -20,6 +20,9 @@ class Post
   field :created_at,      :type => DateTime
   field :posted_at,       :type => DateTime
 
+  index({draft: 1})
+  index({posted_at: 1})
+
   scope :order, order_by(:created_at => :desc) #.limit(100)
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true
