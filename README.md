@@ -27,6 +27,14 @@ Because of the significance of these infrastructural changes and a number of pla
 ## The New Hotness
 Want the *latest* tweaks, the *bleeding edge* functionality? Check out the "experimental" branch. New changes are pushed to experimental where they are allowed to percolate for a little while to increase stability, and catch any wayward bugs before they're pushed to the "master" branch. This also helps to minimize the churn in the master codebase. 
 
+## Take it for a test drive!
+You can try out the recent changes from the "experimental" branch on our demo box. 
+
+The home page is [here](http://blazing-rain-3059.herokuapp.com/) and the admin page is [here](http://blazing-rain-3059.herokuapp.com/admin)
+
+* username: username
+* password: password 
+
 Free MongoDB hosts
 ==================
 If you want to run this on Heroku you're going to need somewhere to put your MongoDB install. Fortunately [MongoLab](https://mongolab.com/home) and [MongoHQ](https://mongohq.com/home) both have free plans. We'd recommend going with MongoHQ simply because they offer fifteen times more free storage than MongoLab (240Mb vs 16Mb). MObtvse can, of course, point to your own MongoDB install if you have one. 
