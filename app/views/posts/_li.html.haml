@@ -14,8 +14,8 @@
 			- if li.external?
 				-if li.future?
 					%span.entypo.admin-view{:title=>"This post is scheduled for the future"} N
-				= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view'}
-			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete'
+				= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view', :title=>"view this post"}
+			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete', :title=>'delete this post'
 			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
 		= link_to li.title, edit_post_path(li.id)
 / END _li.html.erb 
