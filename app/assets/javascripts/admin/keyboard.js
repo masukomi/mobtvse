@@ -1,5 +1,10 @@
 
 $(window).keydown(function windowKeydown(e) {
+  return;
+  /* This functionality is not currently supported
+     but hopefully soon will be */
+
+
   fn.log(e.which);
 
   // Not editing
