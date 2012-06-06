@@ -7,10 +7,13 @@ $(window).keydown(function windowKeydown(e) {
     switch (e.which) {
       // Enter
       case 13:
-        e.preventDefault();
-        if (el.curItem.length > 0) {
-          editSelectedItem();
-        }
+        var active_element = document.activeElement;
+        if(! (active_element && active_element.id == 'post_title')){
+          e.preventDefault();
+          if (el.curItem.length > 0) {
+            editSelectedItem();
+          }
+        } // else they just hit enter on the new draft field
         break;
       // Down, Tab
       case 40: case 9:
