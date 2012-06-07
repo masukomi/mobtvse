@@ -79,6 +79,10 @@ h5 a:visited:hover,
 h6 a:visited:hover{
 	color: #751590;
 }
+.header a:visited:hover,
+.header a:hover {
+    color: #FFF;
+}
 
 .callout {
 	font-size: 24pt;
