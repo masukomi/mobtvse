@@ -10,7 +10,6 @@
 		- if CONFIG['use_kudos']
 			=stylesheet_link_tag 'kudos'
 		=stylesheet_link_tag '1140'
-		=stylesheet_link_tag 'ie'
 		=stylesheet_link_tag 'main'
 		=stylesheet_link_tag 'socialicons'
 		=stylesheet_link_tag 'screen'
@@ -102,7 +101,7 @@
 
 		= javascript_include_tag 'application'
 
-		- if CONFIG['google_analytics_id']
+		- if CONFIG['google_analytics_id'] and not localhost?
 			/ Google Analytics
 			:javascript
 				var _gaq=[['_setAccount','#{ CONFIG['google_analytics_id'] }'],['_trackPageview']];

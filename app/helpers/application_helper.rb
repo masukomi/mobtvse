@@ -38,4 +38,7 @@ module ApplicationHelper
 		# it's the only valid url we can return without blowing up
 	end
   end
+  def localhost?
+    return request.url.match(/localhost|0\.0\.0\.0|127\.0\.0\.1/) ? true : false
+  end
 end
