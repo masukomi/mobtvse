@@ -6,27 +6,19 @@ body {
 /* FONTS */
 
 .post_heading,
-.header,
 .sans_serif {
-	/*font-family: 'DroidSansRegular';
-	font-family: 'CardoBold';*/
-	font-family: 'Cagliostro', sans-serif;
+    font-family: verdana, arial;
 }
 .serif{
-	/*font-family: 'PolyRegular';
-	font-family: 'CardoRegular';*/
-}
-.serif{
+	font-family: palatino, 'times new roman', serif
 }
 i.serif,
 em.serif {
-	/*font-family: 'PolyItalic';
-	font-family: 'CardoItalic';*/
+	/* nothing special */
 }
 body{
 	font-size: 16px;
-	/*font-family: 'PT Sans Caption', sans-serif;*/
-	font-family: 'Muli', sans-serif;
+	font-family: palatino, 'times new roman', serif
 }
 /* END FONTS */
 
@@ -44,9 +36,6 @@ h4,
 h5,
 h6 {
 	color: #2E3D4C;
-	/*font-family: 'CardoBold';*/
-	font-family: 'Cagliostro', sans-serif;
-
 }
 h1 a,
 h2 a,
@@ -80,6 +69,14 @@ h3 a:visited,
 h4 a:visited,
 h5 a:visited,
 h6 a:visited{
+	color: #333;
+}
+h1 a:visited:hover,
+h2 a:visited:hover,
+h3 a:visited:hover,
+h4 a:visited:hover,
+h5 a:visited:hover,
+h6 a:visited:hover{
 	color: #751590;
 }
 
@@ -231,7 +228,7 @@ h1#heading {
 	margin-bottom: 0.25em;
 }
 .header {
-	background-color: #8ca0ab;
+	background-color: #bbbbbb;
 	/*padding-bottom: 1em;*/
 	margin-bottom: 0.75rem;
 	padding-top: 0.5rem;
@@ -240,7 +237,7 @@ h1#heading {
 
 h3.tagline,
 .header a {
-	color: #DDD;
+	color: #777;
 	text-decoration: none;
 	-moz-transition:color 0.3s;
 	-webkit-transition:color 0.3s;
@@ -248,7 +245,7 @@ h3.tagline,
 	transition:color 0.3s;
 }
 .header a:visited {
-	color: #DDD;
+	color: #555;
 }
 .header a:hover {
 	color: #FFF;
