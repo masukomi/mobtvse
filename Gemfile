@@ -8,7 +8,7 @@ gem 'rake'
 gem 'mongo', '~>1.5.2'
 gem 'bson', '~>1.5.2'
 gem 'bson_ext', '~>1.5.2'
-gem "mongoid", "~> 2.3.4"
+gem "mongoid", "~> 2.4.11"
 gem 'mongoid_rails_migrations'
 gem "mongo_session_store-rails3"
 

@@ -24,7 +24,7 @@ class Post
   index({posted_at: 1})
 
   scope :reverse_chron, order_by(:posted_at => :desc) #.limit(100)
-  scope :loved, order_by(:kudos => :desc)
+  scope :loved, where(:kudos.gt=>0, :draft=>false).order_by(:kudos => :desc)
 
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true

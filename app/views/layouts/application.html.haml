@@ -11,7 +11,9 @@
 			=stylesheet_link_tag 'kudos'
 		=stylesheet_link_tag '1140'
 		=stylesheet_link_tag 'main'
+		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css")
 		=stylesheet_link_tag 'socialicons'
+		=stylesheet_link_tag 'entypo'
 		=stylesheet_link_tag 'screen'
 		=stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Cagliostro|Muli:400,400italic'
 		-if @meta_description || CONFIG['meta_description']
@@ -52,9 +54,11 @@
 							#main_nav_right.nobr
 								%span.emphasized
 									-if CONFIG['about_url']
-										=link_to CONFIG['name'], CONFIG['about_url']
+										=link_to CONFIG['name'], CONFIG['about_url'], {:class=>'name_link'}
 									-else
 										=CONFIG['name']
+								=link_to 'ó', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'entypo'}
+								/=link_to 'Archive', '/archive'
 								- if CONFIG['twitter']
 									=link_to '&#76;'.html_safe, 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"socialicon twitter_link"}
 								- if CONFIG['facebook_id']

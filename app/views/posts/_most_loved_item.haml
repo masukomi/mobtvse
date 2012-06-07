@@ -1,0 +1,6 @@
+/ BEGIN _most_loved_item.haml
+%li 
+	%span.love_count
+		= post.kudos
+	=link_to post.title, permalink_path_for(post)
+/ END _most_loved_item.haml

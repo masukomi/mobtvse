@@ -1,0 +1,39 @@
+div#content {
+	ul#most_loved{
+		list-style-type: none;
+		
+		li span.love_count{
+			display: inline-block;
+			-moz-border-radius: 100%;
+			-webkit-border-radius: 100%;
+			border-radius: 100%;
+			/*border: solid 1px black;*/
+			min-width: 1em;
+			text-align: center;
+			background-color: #BBB;
+			padding: 0.25rem;
+		}
+	}
+	.month{
+		display: inline-block;
+		float: left;
+		border: solid 1px #BBB;
+		margin-top: 0.25rem;
+		width: 100%;
+
+		span.month_name{
+			display: block;
+			background-color: #BBB; 
+				/* matches header */
+		}
+
+		ul.posts_in_month{
+			list-style-type: none;
+			
+			li {
+				padding: 0.15rem;
+			}
+		}
+	}
+}
+

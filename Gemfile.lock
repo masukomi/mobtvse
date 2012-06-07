@@ -113,9 +113,9 @@ GEM
     mongo_session_store-rails3 (3.0.6)
       actionpack (>= 3.0)
       mongo
-    mongoid (2.3.4)
+    mongoid (2.4.11)
       activemodel (~> 3.1)
-      mongo (~> 1.3)
+      mongo (<= 1.6.2)
       tzinfo (~> 0.3.22)
     mongoid_rails_migrations (0.0.14)
       activesupport (>= 3.0.0)
@@ -228,7 +228,7 @@ DEPENDENCIES
   minitest-firemock
   mongo (~> 1.5.2)
   mongo_session_store-rails3
-  mongoid (~> 2.3.4)
+  mongoid (~> 2.4.11)
   mongoid_rails_migrations
   mongoid_taggable!
   rails (~> 3)

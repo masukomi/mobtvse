@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   ## is a scope added to the model by the kaminari gem
   ##################
 
-  before_filter :authenticate, :except => [:index, :show, :update_kudo]
+  before_filter :authenticate, :except => [:index, :show, :update_kudo, :tag, :archive]
   layout :choose_layout
 
   def index
@@ -35,6 +35,27 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html
     end
+  end
+  def archive
+    #TODO
+    # - create a @months var where each entry has a list of posts
+    #   posts would be sorted by date (reverse, or forward chronological)
+    #   @months[0].posts = [<#Post>, <#Post>]
+
+    @published_tags_with_weight = Post.published_tags_with_weight()
+    @most_loved = Post.loved.limit(10)
+    #@tags_with_weight = Post.tags_with_weight
+    #TODO fix this so that it goes all the way back to the first post
+    @months = []
+    first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
+    (0..9).each do | x |
+      next_month =  Month.new(first_of_month.ago(x.month))
+      logger.debug("next_month: #{next_month}")
+      @months << next_month
+
+    end
+    
+    # http://apidock.com/rails/ActiveSupport/CoreExtensions/Date/Calculations
   end
 
   def preview

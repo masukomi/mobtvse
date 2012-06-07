@@ -214,6 +214,15 @@ ul.main-navigation li a {
 #main_nav_right:first-child{
 	border-left: none;
 }
+.header #main_nav_right a.entypo{
+	font-size: 240%;
+	position: relative;
+	top: 6px;
+	border-left: none;
+}
+.header .name_link{
+	border-left: none;
+}
 /* sidebar */
 .sidebar ul {
 	list-style-type: none;
