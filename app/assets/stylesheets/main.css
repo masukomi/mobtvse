@@ -35,15 +35,23 @@ h3,
 h4,
 h5,
 h6 {
-	color: #2E3D4C;
+	color: #333;
+	margin-top: 0.6rem;
 }
+.header,
+.header h1,
+.header h2,
+.header h3 {
+	margin-top: 0px;
+}
+
 h1 a,
 h2 a,
 h3 a,
 h4 a,
 h5 a,
 h6 a{
-	color: #2E3D4C;
+	color: #333;
 	text-decoration: underline;
 	line-height: inherit;
 	-moz-transition:color 0.3s;
