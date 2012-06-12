@@ -1,5 +1,10 @@
 
 $(window).keydown(function windowKeydown(e) {
+  return;
+  /* This functionality is not currently supported
+     but hopefully soon will be */
+
+
   fn.log(e.which);
 
   // Not editing
@@ -7,10 +12,21 @@ $(window).keydown(function windowKeydown(e) {
     switch (e.which) {
       // Enter
       case 13:
-        e.preventDefault();
-        if (el.curItem.length > 0) {
-          editSelectedItem();
-        }
+        // The goal here is to edit the currently selected element
+        // on the main admin page, but that's not bene ported yet 
+        // from Obtvse's refresh branch, and it is interfering 
+        // with submitting the new draft form,
+        // and on the editing page it prevents you from ever creating 
+        // a newline in your post, which sucks. 
+        // SO, commenting this out for now but leaving it 
+        // because we ultimately want it to work.
+        /*var active_element = document.activeElement;
+        if(! (active_element && active_element.id == 'post_title')){
+          e.preventDefault();
+          if (el.curItem.length > 0) {
+            editSelectedItem();
+          }
+        }*/ // else they just hit enter on the new draft field
         break;
       // Down, Tab
       case 40: case 9:
