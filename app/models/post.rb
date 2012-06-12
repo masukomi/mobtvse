@@ -39,7 +39,7 @@ class Post
     end
   end
   def update_posted_at()
-    if (! self.draft and ! self.posted_at)
+    if (! self.draft and not self.posted_at)
       self.posted_at = DateTime.now
     end
   end 
@@ -128,5 +128,9 @@ class Post
       end
     end
     return @@boolean_fields
+  end
+
+  def to_s
+    return "#<Post #{id}, \"#{title}\" #{slug} #{posted_at.nil? ? '' : posted_at}>"
   end
 end
