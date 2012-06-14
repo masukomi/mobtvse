@@ -26,6 +26,8 @@ gem 'kaminari', '~> 0.13'
 #gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
 gem 'mongoid_taggable', :git => 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
 
+gem 'aws-s3', '~>0.6.3', :require => 'aws/s3'
+
 gem 'thin', '~> 1'
 group :production do
   # gem 'newrelic_rpm', '~> 3'
