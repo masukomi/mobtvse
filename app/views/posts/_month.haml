@@ -1,10 +1,10 @@
 / BEGIN _month.haml
-- if month.posts.size > 0
+- posts = month.posts
+- if posts.size > 0
 	.month
 		%span.month_name
 			=month.start.strftime("%B %Y")
 		%ul.posts_in_month
-			-posts = month.posts
 			-if posts.size > 0
 				-posts.each do |post|
 					%li
