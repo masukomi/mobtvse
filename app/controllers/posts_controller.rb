@@ -47,15 +47,18 @@ class PostsController < ApplicationController
     #@tags_with_weight = Post.tags_with_weight
     #TODO fix this so that it goes all the way back to the first post
     @months = []
+    first_post_date = Post.where(:draft=>false).order_by(:posted_at=>:asc).first.posted_at
+    logger.debug("first_post_date: #{first_post_date}")
     first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
-    (0..9).each do | x |
-      next_month =  Month.new(first_of_month.ago(x.month))
-      logger.debug("next_month: #{next_month}")
-      @months << next_month
-
+    month = Month.new(first_of_month)
+    while (month.start >= first_post_date)
+      logger.debug("adding month #{month}")
+      @months << month
+      month = month.previous()
     end
-    
-    # http://apidock.com/rails/ActiveSupport/CoreExtensions/Date/Calculations
+    logger.debug("adding month #{month}")
+    @months << month.previous() # the month whose start isn't after the first post
+
   end
 
   def preview
