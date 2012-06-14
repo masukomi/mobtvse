@@ -67,4 +67,11 @@ Obtvse::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.after_initialize { AWS::S3::Base.establish_connection!(
+      :access_key_id     => CONFIG['s3']['access_key_id'],
+      :secret_access_key => CONFIG['s3']['secret_access_key']
+    )
+  }
+
 end

@@ -51,14 +51,17 @@ class PostsController < ApplicationController
     logger.debug("first_post_date: #{first_post_date}")
     first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
     month = Month.new(first_of_month)
-    while (month.start >= first_post_date)
-      logger.debug("adding month #{month}")
+    if (month.start <= first_post_date)
       @months << month
-      month = month.previous()
+    else
+      while (month.start >= first_post_date)
+        logger.debug("adding month #{month}")
+        @months << month
+        month = month.previous()
+      end
+      logger.debug("adding month #{month}")
+      @months << month # the month whose start isn't after the first post
     end
-    logger.debug("adding month #{month}")
-    @months << month.previous() # the month whose start isn't after the first post
-
   end
 
   def preview
@@ -126,6 +129,7 @@ class PostsController < ApplicationController
   def edit
     @no_header = true
     @post = Post.find(params[:id])
+    @current_month = Month.new(Date.today)
     respond_to do |format|
       format.html
       format.json { render :json => @post }

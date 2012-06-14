@@ -3,6 +3,16 @@
 class Timespan
   #include Mongoid::Document
 
+  class << self
+    def for_post(post)
+      if post.posted_at
+        return self.new(post.posted_at)
+      else
+        return nil
+      end
+    end
+  end
+
   def posts(include_drafts = false, include_future=false, reverse_chron=true)
     crit = posts_criteria(include_drafts, @start, @end)
     crit = crit.order(:posted_at=>(reverse_chron ? :desc : :asc))
@@ -15,6 +25,14 @@ class Timespan
     entries = crit.entries
     entries.collect!{|p| p unless p.future?} unless include_future
     return entries
+  end
+
+  def images
+    # we don't care if an images is from the future
+    # not that there's any non-hacky way for that to happen
+    # and there's no such thing as a draft image
+    crit = images_criteria(@start, @end)
+    return crit.entries
   end
 
   # Returns the number of kudos for posts in this timespan
@@ -40,6 +58,11 @@ class Timespan
         crit = crit.where(:draft => false)
       end
       return crit
+  end
+
+  def images_criteria(start_time, end_time)
+    crit = Image.where(:uploaded_on.gte => start_time, :uploaded_on.lte => end_time)
+    return crit
   end
 
 end

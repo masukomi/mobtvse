@@ -43,3 +43,8 @@ disqus_short_name:   disqus_short_name_here
 # Enter your disqus shortname
 disqus_developer: false
 # if you're testing disqus on localhost set this to true
+s3:
+  enabled: false
+  image_bucket_name: my_s3_bucket_name
+  access_key_id: ABCDEFGH12334GK1
+  secret_access_key: ABCDEFGHIJKLMNOPQRST132456789

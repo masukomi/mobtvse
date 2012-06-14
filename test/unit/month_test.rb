@@ -77,4 +77,17 @@ class MonthTest < ActiveSupport::TestCase
 		assert_equal 3, n.start.month, "next month was unexpected: #{n.start.month}"
 	end
 
+	test "for_post" do 
+		p = Post.new({:title => 'this is a title', :draft=>true})
+		assert_nil p.posted_at, "unexpectedly got a posted_at on a draft" # sanity check
+		month = Month.for_post(p)
+		assert_nil month, "unexpectedly got a month for an unposted post"
+		past_date = DateTime.new(2001,2,3,4,5,6, '-0500')
+		p.posted_at = past_date
+		month = Month.for_post(p)
+		expected_month_start = p.posted_at.at_beginning_of_month.at_beginning_of_day
+		assert_equal expected_month_start, month.start, "unexpected start of month"
+
+	end
+
 end

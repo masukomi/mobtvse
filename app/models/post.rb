@@ -72,7 +72,7 @@ class Post
   # then set it to a draft until the next day ( or later ) 
   # and then make it public again THE URL WILL CHANGE
   def draft=(new_draft_status)
-    if ((draft and not new_draft_status) or (draft and not posted_at) )
+    if ((draft and not new_draft_status) or (not new_draft_status and not posted_at) )
       #NOTE We'll have to change this in the future
       # when we allow people to set the post date
       # manually

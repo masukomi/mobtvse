@@ -12,6 +12,7 @@
 		=stylesheet_link_tag '1140'
 		=stylesheet_link_tag 'main'
 		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css")
+		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js")
 		=stylesheet_link_tag 'socialicons'
 		=stylesheet_link_tag 'entypo'
 		=stylesheet_link_tag 'screen'

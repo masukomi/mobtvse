@@ -13,6 +13,8 @@ Obtvse::Application.routes.draw do
   post '/preview', :to => 'posts#preview'
   put '/preview', :to => 'posts#preview'
   get '/archive', :to => 'posts#archive'
+  match '/images(/:action(/:id(.:format)))', :controller=>:images
+    # need to do that before the slug
   get "/:slug", :to => 'posts#show', :as => 'post'
   delete '/:slug', :to => 'posts#destroy', :as  => 'post'
   put '/:slug', :to => 'posts#update', :as  => 'post'
