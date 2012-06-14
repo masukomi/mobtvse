@@ -33,6 +33,23 @@ class Post
     # You can't call before_save on a field that is part of 
     # the validations
 
+  class << self
+    #TODO rewrite these when we switch to mongoid 3.x 
+    # and take advantage of the post_tags_index collection
+    def published_tags
+      non_draft_tags = []
+      Post.where(:draft=>false).entries.each{|p| non_draft_tags << p.tags_array if p.tags_array.size()  > 0}
+      return non_draft_tags.flatten.uniq
+    end
+
+    def published_tags_with_weight
+      non_draft_tags = []
+      Post.where(:draft=>false).entries.each{|p| non_draft_tags << p.tags_array if p.tags_array.size()  > 0}
+      non_draft_tags.flatten!
+      return non_draft_tags.uniq.map{|x| [x,non_draft_tags.select{|y| y == x}.length]}
+    end
+  end
+
   def slug_from_title()
     if (self.title and self.slug.blank?)
       self.slug= title.to_url
@@ -43,6 +60,8 @@ class Post
       self.posted_at = DateTime.now
     end
   end 
+
+
   # NOTE: 
   # when setting the post into non-draft mode
   # we also create the posted_at date.

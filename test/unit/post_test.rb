@@ -130,4 +130,27 @@ class PostTest < ActiveSupport::TestCase
 		assert_equal past_date, p.posted_at, "posted_at changed after save"
 
 	end
+
+	test "non_draft_tags" do
+		p1 = Post.new({:title => 'p1', :draft=>false})
+		p1.tags = "published,both"
+		p1.save()
+		p2 = Post.new({:title => 'p2', :draft=>false})
+		p2.tags = "published,both"
+		p2.save()
+		d1 = Post.new({:title => 'd1', :draft=>true})
+		d1.tags = "draft,both"
+		d1.save()
+		published_tags = Post.published_tags()
+		assert_equal 2, published_tags.size(), "unexpected number of tags returned"
+		assert_equal true, published_tags.include?('published'), "missing expected tag"
+		assert_equal true, published_tags.include?('both'), "missing expected tag"
+		assert_equal false, published_tags.include?('draft'), "missing expected tag" #sanity check
+
+		#going to piggy-back on the setup from testing published_tags
+		published_tags_with_weight = Post.published_tags_with_weight()
+		assert_equal 2, published_tags_with_weight.size(), "unexpected number of weighted tags"
+		assert_equal 2, published_tags_with_weight[0][1], "unexpected tag count" 
+			# it doesn't matter if 0 is published or both, they should both have a count of 2
+	end
 end
