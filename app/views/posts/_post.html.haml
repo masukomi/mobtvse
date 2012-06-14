@@ -3,7 +3,7 @@
 	%article.hentry{:id=>"post-#{post.id}", :role=>"article"}
 		.row
 			.ninecol
-				.row
+				%div
 					.twelvencol.last
 						.post_heading
 							-if post.external?
@@ -16,7 +16,7 @@
 									%h1= post.title
 								-else
 									%h1= link_to post.title, post.slug
-				.row
+				%div
 					.twelvecol.last
 						.entry-content
 							- if post.content

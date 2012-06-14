@@ -1,0 +1,3 @@
+/ BEGIN _tag_cloud_item.haml
+%li=link_to tag_with_weight[0], {:controller=>:posts, :action=>:tag, :id=>tag_with_weight[0].sub(' ', '%20')}
+/ END _tag_cloud_item.haml

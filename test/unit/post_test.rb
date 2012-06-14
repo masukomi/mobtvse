@@ -29,7 +29,7 @@ class PostTest < ActiveSupport::TestCase
 		assert p.save!, "save failed with title"
 		assert_nil p.url, "url was unexpectedly populated"
 		assert_equal 'this-is-a-title', p.slug, "Slug wasn't correctly generated" 
-		test_time = DateTime.new(2001,2,3,1,2,3)
+		test_time = DateTime.new(2001,2,3,1,2,3, '-0500')
 		Timecop.freeze(test_time) do
 			p.draft=false
 			p.save()
@@ -50,7 +50,7 @@ class PostTest < ActiveSupport::TestCase
 		end
 	end
 	test "previous next" do
-		previous_date = DateTime.new(2001,2,3,1,2,3)
+		previous_date = DateTime.new(2001,2,3,1,2,3, '-0500')
 		p = Post.new({:title=>'previous', :draft=>false})
 		p.save!
 		p.posted_at = previous_date
@@ -110,5 +110,47 @@ class PostTest < ActiveSupport::TestCase
 		assert_equal true, p.permalinkable?, "draft post with posted_at wasn't permalinkable"
 		p.draft = false
 		assert_equal true, p.permalinkable?, "published post with posted_at wasn't permalinkable"
+	end
+
+	test "update_posted_at" do
+		p = Post.new({:title => 'this is a title'})
+		assert_nil p.posted_at, "posted_at was unexpectedly populated"
+		p = Post.new({:title => 'this is a title', :draft=>false})
+		assert_not_nil p.posted_at, "posted_at was unexpectedly not populated" 
+			# if you set it to published and don't set a published_at it will use DateTime.now
+		past_date = DateTime.new(2001,2,3,4,5,6, '-0500') 
+			#Breaks due to mongoid bug if we set this to another time zone
+		p = Post.new({:title => 'this is a title', :draft=>false})
+		p.posted_at = past_date
+		assert_equal past_date, p.posted_at, "posted_at manually assigned didn't match expectations"
+
+		p = Post.new({:title => 'this is a title', :draft=>false, :posted_at=>past_date})
+		assert_equal past_date, p.posted_at, "posted_at from initialize didn't match expectations"
+		p.save!
+		assert_equal past_date, p.posted_at, "posted_at changed after save"
+
+	end
+
+	test "non_draft_tags" do
+		p1 = Post.new({:title => 'p1', :draft=>false})
+		p1.tags = "published,both"
+		p1.save()
+		p2 = Post.new({:title => 'p2', :draft=>false})
+		p2.tags = "published,both"
+		p2.save()
+		d1 = Post.new({:title => 'd1', :draft=>true})
+		d1.tags = "draft,both"
+		d1.save()
+		published_tags = Post.published_tags()
+		assert_equal 2, published_tags.size(), "unexpected number of tags returned"
+		assert_equal true, published_tags.include?('published'), "missing expected tag"
+		assert_equal true, published_tags.include?('both'), "missing expected tag"
+		assert_equal false, published_tags.include?('draft'), "missing expected tag" #sanity check
+
+		#going to piggy-back on the setup from testing published_tags
+		published_tags_with_weight = Post.published_tags_with_weight()
+		assert_equal 2, published_tags_with_weight.size(), "unexpected number of weighted tags"
+		assert_equal 2, published_tags_with_weight[0][1], "unexpected tag count" 
+			# it doesn't matter if 0 is published or both, they should both have a count of 2
 	end
 end
