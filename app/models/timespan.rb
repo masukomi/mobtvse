@@ -3,6 +3,16 @@
 class Timespan
   #include Mongoid::Document
 
+  class << self
+    def for_post(post)
+      if post.posted_at
+        return self.new(post.posted_at)
+      else
+        return nil
+      end
+    end
+  end
+
   def posts(include_drafts = false, include_future=false, reverse_chron=true)
     crit = posts_criteria(include_drafts, @start, @end)
     crit = crit.order(:posted_at=>(reverse_chron ? :desc : :asc))
