@@ -131,6 +131,22 @@ class PostTest < ActiveSupport::TestCase
 
 	end
 
+    test "posted_at_and_drafts" do
+		#assigning a draft status was incorrectly 
+		# setting the posted_at 
+		# this test guarantees it won't do that again
+		d1 = Post.new({:title => 'd1'})
+		assert_equal true, d1.draft
+		assert_nil d1.posted_at
+		d1 = Post.new({:title => 'd1', :draft=>true})
+		assert_equal true, d1.draft
+		assert_nil d1.posted_at
+		d1.draft = true
+		assert_nil d1.posted_at
+		d1.draft = false
+		assert_not_nil d1.posted_at
+    end
+
 	test "non_draft_tags" do
 		p1 = Post.new({:title => 'p1', :draft=>false})
 		p1.tags = "published,both"
