@@ -52,12 +52,12 @@ class PostsController < ApplicationController
     first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
     month = Month.new(first_of_month)
     while (month.start >= first_post_date)
-      logger.debug("adding month #{month}")
       @months << month
       month = month.previous()
     end
-    logger.debug("adding month #{month}")
-    @months << month.previous() # the month whose start isn't after the first post
+    @months << month
+      # it's already had .previous() called on it
+      # the month whose start isn't after the first post
 
   end
 
