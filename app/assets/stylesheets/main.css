@@ -1,7 +1,8 @@
 body {
 	background: #FFF ! important;
 }
-
+@-ms-viewport { width: device-width; }
+  /* Dear MS, please stop screwing us. */
 
 /* FONTS */
 
