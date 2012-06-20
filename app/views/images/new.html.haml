@@ -1,0 +1,23 @@
+/ BEGIN images/new.html.haml
+.row
+	.threecol
+		/empty
+	.sixcol
+		%h2 Upload an image
+		= render 'form'
+		-unless @s3_enabled
+			.s3_disabled_notice
+				/ TODO convert this block to markdown
+				MObtvse uses Amazon's S3 to store image files
+				but this install is not currently configured
+				for integration with S3.
+
+				You 
+				%i can
+				enter the URL for an image that is 
+				already uploaded somewhere else to help
+				track what images you've used in your posts
+				and when you used them.
+	.threecol.last
+		/empty
+/ END images/new.html.haml

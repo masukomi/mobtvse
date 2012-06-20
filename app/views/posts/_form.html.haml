@@ -12,14 +12,14 @@
 					= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
 					.middle
 						.menu#menu-date
-							= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar', :onClick=>"return false;"
+							= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"$('#date').toggle();"
 							%ul.sub-menu#date
 								%li
 									= f.label :posted_at, 'Published Date'
 									= f.datetime_select('posted_at', :order=>[:year, :month, :day], :include_blank=>true)
 
 						.menu#menu-info
-							= link_to 'Info', '#info', :class => 'icon-info-sign', :onClick=>"return false;"
+							= link_to 'Info', '#info', :class => 'icon-info-sign',  :onclick=>"$('#info').toggle();"
 							%ul.sub-menu#info
 								%li
 									= f.label :slug, 'Permalink'
@@ -36,9 +36,22 @@
 									%label
 										Wordcount
 									%span#wordcount
+						.menu#menu-images
+							=link_to 'Images', '#images', :class=>'icon-picture', :onclick=>"$('#images').toggle();"
+							%ul.sub-menu.images_in_month#images
+								- images = @current_month.images
+								- if images.size > 0
+									- images.each do |image|
+										%li.nobr
+											= "![#{image.title.nil? ? image.filename : image.title}](#{image.url.html_safe})".html_safe
+								- else
+									%li No images uploaded this month.
+								%li
+									%br
+									= link_to 'View All Images', "/images?#{@current_month.start.year}_#{@current_month.start.month}", :confirm=>"Navigate away? Unsaved changes will be lost."
 						/
 							.menu
-								= link_to 'History', '#history', :class => 'icon-list', :onClick=>"return false;"
+								= link_to 'History', '#history', :class => 'icon-list',  :onclick=>"$('#history').toggle();"
 								%ul.sub-menu#history
 									%li= f.label :url, 'History'
 									%li= link_to 'Version 3', '#'

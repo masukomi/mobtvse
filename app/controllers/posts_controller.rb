@@ -128,6 +128,7 @@ class PostsController < ApplicationController
   def edit
     @no_header = true
     @post = Post.find(params[:id])
+    @current_month = Month.new(Date.today)
     respond_to do |format|
       format.html
       format.json { render :json => @post }

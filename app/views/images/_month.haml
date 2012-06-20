@@ -1,0 +1,17 @@
+/ BEGIN images/_month.haml
+- images = month.images
+- if images.size > 0
+	.month
+		%span.month_name
+			%a{:name=>"#{month.start.year}_#{month.start.month}"}
+			=month.start.strftime("%B %Y")
+		%ul.images_in_month
+			-if images.size > 0
+				-images.each do |image|
+					%li
+						= link_to "X", "/images/destroy/#{image.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo delete_icon', :title=>'delete this image'
+						= "![#{image.title.nil? ? image.filename : image.title}](#{(link_to image.url, image.url, {:class=>'image_link'} ).html_safe})".html_safe
+			-else
+				%li.imageless_month
+					No posts this month
+/ END images/_month.haml

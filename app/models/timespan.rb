@@ -27,6 +27,14 @@ class Timespan
     return entries
   end
 
+  def images
+    # we don't care if an images is from the future
+    # not that there's any non-hacky way for that to happen
+    # and there's no such thing as a draft image
+    crit = images_criteria(@start, @end)
+    return crit.entries
+  end
+
   # Returns the number of kudos for posts in this timespan
   # NOTE this is NOT kudos GIVEN in this timespan. 
   def kudos_count(include_drafts = false, include_future=false)
@@ -50,6 +58,11 @@ class Timespan
         crit = crit.where(:draft => false)
       end
       return crit
+  end
+
+  def images_criteria(start_time, end_time)
+    crit = Image.where(:uploaded_on.gte => start_time, :uploaded_on.lte => end_time)
+    return crit
   end
 
 end

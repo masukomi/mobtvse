@@ -1,0 +1,18 @@
+/ BEGIN images/index.html.haml
+.row
+	.twocol
+		#image_preview
+	.eightcol
+		%h2 
+			= "#{@images_count} Image#{@images_count != 1 ? 's' : ''} Found"
+		.image_upload
+			=link_to 'Upload an image', :controller=>:images, :action=>:new
+		.images_by_month
+			-if @months.size() > 0
+				=render :partial=>'month', :collection=>@months, :as=>:month
+			- else
+				.no_images
+					No images uploaded yet. 
+	.twocol.last
+		/ empty
+/ END images/index.html.haml
