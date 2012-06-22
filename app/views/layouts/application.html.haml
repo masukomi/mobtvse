@@ -63,7 +63,7 @@
 								- if CONFIG['twitter']
 									=link_to '&#76;'.html_safe, 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"socialicon twitter_link"}
 								- if CONFIG['facebook_id']
-									=link_to '&#70;'.html_safe, "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Twitter", :alt=>"Facebook", :class=>"socialicon facebook_link"}
+									=link_to '&#70;'.html_safe, "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"socialicon facebook_link"}
 								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
