@@ -59,10 +59,12 @@
 									%li= link_to 'Version 1', '#'
 
 					.bottom
+						= link_to 'Page', '#', :id => 'page-button', :class => 'entypo-written-doc', :onClick=>"return false;"
 						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit', :onClick=>"return false;"
 						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
 				.hide
 					= f.check_box :draft
+					= f.check_box :page
 			/ begin middle section
 			.sixcol
 				.split-section#post-editor

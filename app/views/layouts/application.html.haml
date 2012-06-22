@@ -49,15 +49,11 @@
 							%h3.tagline=CONFIG['tagline']
 				/ END heading row
 				/ BEGIN navigation
-				.fourcol.last
+				.fourcol.last.last_main_nav_column
 					%ul.main-navigation
 						%li
 							#main_nav_right.nobr
 								%span.emphasized
-									-if CONFIG['about_url']
-										=link_to CONFIG['name'], CONFIG['about_url'], {:class=>'name_link'}
-									-else
-										=CONFIG['name']
 								=link_to 'ó', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'entypo'}
 								/=link_to 'Archive', '/archive'
 								- if CONFIG['twitter']
@@ -67,6 +63,10 @@
 								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
+			- if @pages.size() > 0
+				.row
+					.twelvecol.last
+						= render :partial => "pages_list"
 		.container
 			.row
 				.onecol

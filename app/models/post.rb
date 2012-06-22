@@ -14,6 +14,7 @@ class Post
   field :draft,           :type => Boolean,   default: true
   field :aside,           :type => Boolean,   default: true
   field :comments_enabled,:type => Boolean,   default: true
+  field :page,            :type => Boolean,   default: false
   field :url,             :type => String
   field :kudos,           :type => Integer,   default: 0
   field :updated_at,      :type => DateTime
@@ -21,10 +22,11 @@ class Post
   field :posted_at,       :type => DateTime
 
   index({draft: 1})
+  index({page: 1})
   index({posted_at: 1})
 
   scope :reverse_chron, order_by(:posted_at => :desc) #.limit(100)
-  scope :loved, where(:kudos.gt=>0, :draft=>false).order_by(:kudos => :desc)
+  scope :loved, where(:kudos.gt=>0, :draft=>false, :page=>false).order_by(:kudos => :desc)
 
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true

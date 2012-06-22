@@ -51,7 +51,7 @@ class Timespan
   def posts_criteria(include_drafts, start_time, end_time)
       #BUG include_drafts requires searching on created_at
       # because they don't have a posted_at
-      crit = Post.where(:posted_at.gte => start_time, :posted_at.lte => end_time)
+      crit = Post.where(:posted_at.gte => start_time, :posted_at.lte => end_time, :page=>false)
       #TODO .and(:posted_at.lte=>DateTime.now) just gets EVERYTHING before now
       # it doesn't seem to and correctly with the above
       if (not include_drafts)

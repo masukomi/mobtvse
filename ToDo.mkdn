@@ -1,8 +1,5 @@
 #MObtvse's ToDo list: 
 
-## Add support for Pages
-Pages would be created in a similar fashion to posts but live outside of the date hierarchy. For example an "About Page".
-
 ## Disqus Integration
 Because we're going to be generating static pages we need a comment system that can work on them. Also, it just isn't worth the effort to try and fight comment spam ourselves. Let the pros do it. 
 

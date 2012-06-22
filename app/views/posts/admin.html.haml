@@ -12,6 +12,10 @@
 					= f.text_field :title, :placeholder => 'Start typing your title here...' 
 				%ul
 					= render :partial => 'li', :collection => @drafts
+				%h1
+					Live Static Pages
+				%ul
+					= render :partial => 'li', :collection => @pages
 				-# = paginate @drafts, :param_name => "draft_page" 
 		.fivecol
 			#published

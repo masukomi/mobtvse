@@ -32,6 +32,7 @@ var el = fn.getjQueryElements({
   slug      : '#post_slug',
   url       : '#post_url',
   draft     : '#post_draft',
+  page_input     : '#post_page',
   save      : '#save-button',
   form      : '#new_post,.edit_post',
   bar       : '#bar',
@@ -40,6 +41,7 @@ var el = fn.getjQueryElements({
   curItem   : '.col li:first',
   blog      : '#blog-button',
   publish   : '#publish-button',
+  page      : '#page-button',
   preview   : '#post-preview'
 });
 
@@ -283,6 +285,7 @@ function updateMetaInfo() {
   el.slug.val(state.post.slug);
   el.url.val(state.post.url);
   setDraft(state.post.draft);
+  setPage(state.post.page);
 }
 
 function pushState(url) {
@@ -338,6 +341,35 @@ function updateDraftButton(draft) {
   if (draft) el.publish.html('Draft').addClass('icon-edit').removeClass('icon-check');
   else       el.publish.html('Published').removeClass('icon-edit').addClass('icon-check');
 }
+
+
+function setPage(page) {
+fn.log( page);
+  setPageInput(page);
+  updatePageButton(page);
+}
+
+function setPageInput(page) {
+  fn.log(page);
+  state.post.page = page
+  el.page_input.attr('value',(page ? 1 : 0));
+  if (page){
+    el.page_input.attr('checked', 'checked');
+  } else {
+    el.page_input.removeAttr('checked')
+  }
+  updatePageButton(page);
+}
+
+function updatePageButton(page) {
+  fn.log(page);
+  if (page) el.page.html('Static Page').addClass('entypo-empty-doc').removeClass('entypo-written-doc');
+  else       el.page.html('Blog Post').removeClass('entypo-empty-doc').addClass('entypo-written-doc');
+}
+
+
+
+
 
 // Preview
 function updatePreviewPosition() {

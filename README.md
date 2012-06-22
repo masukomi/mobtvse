@@ -5,12 +5,13 @@ A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and b
 ## Notable differences from Obvtse
 ### Current
 
-* Image uploads via Amazon's S3 service
-* MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
+* Image uploads via Amazon's S3 service (requires an S3 account)
+* Pages support (additional info pages like "About" that exist outside of your timeline)
 * Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
 * [Disqus](http://disqus.com) integration for great comment functionality.
 * [Haml](http://haml-lang.com/) (partially implemented)
 * Svbtle-style Kudos
+* MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
 
 ### Planned
 The goal is to add support for:

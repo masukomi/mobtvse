@@ -11,9 +11,6 @@ canonical_url:       http://example.com
 me_link:             http://www.google.com/profiles/my_google_username
 # OPTIONAL I can't find the docs anymore but google uses this 
 # to associate the owner of the blog up to their g+ and other assets.
-about_url:           http://example.com/about.html
-# OPTIONAL Got an about page that isn't part of your blog? 
-# Use this to link to it.
 use_kudos: true
 # set this to false if you don't want 
 # to give people the ability to tell you how awesome 

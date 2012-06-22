@@ -179,6 +179,8 @@ $(function() {
     savePost();
   })
 */
+
+  // Publish button
   el.publish.click(function publishClick(e) {
     el.publish.html('...')
     setDraftInput(!state.post.draft);
@@ -192,6 +194,21 @@ $(function() {
     if (state.post.draft) el.publish.html('Draft');
     else el.publish.html('Published');
   });
+
+  // Page Button
+  el.page.click(function pageClick(e){
+    el.page.html('...')
+    setPageInput(!state.post.page);
+  })
+  // Page.hover
+  .hover(function(){
+    if (state.post.page) el.page.html('Blog Post?');
+    else el.post.html('Static Page?');
+  }, function(){
+    if (state.post.page) el.page.html('Static Page');
+    else el.page.html('Blog Post');
+  });
+
 /*
   // Save.click
   $('#save-button').click(function saveButtonClick(e){

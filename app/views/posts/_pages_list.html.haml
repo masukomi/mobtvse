@@ -1,0 +1,6 @@
+.pages_list_container_container
+	.pages_list_container
+		%ul.pages_list
+			-@pages.each do |p|
+				%li
+					=link_to p.title, permalink_path_for(p)
