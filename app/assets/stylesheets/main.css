@@ -30,6 +30,16 @@ body{
 .right {
 	float:right;
 }
+.center_container{
+	float: left;
+	position: relative;
+	left: 50%;
+}
+.center{
+	float: left;
+	position: relative;
+	left: -50%;
+}
 h1,
 h2,
 h3,
@@ -188,13 +198,18 @@ ul.tagged_post_list > li {
 }
 
 
-
+.last_main_nav_column{
+	height: 71px;
+	/* the line height of the social icons 
+	throws off the height of the row */
+}
 /* main navigation */
 ul.main-navigation {
 	padding-top: 0.5em;
 	padding-bottom: 0.35em;
 }
-ul.main-navigation li {
+ul.main-navigation li,
+ul.pages_list li{
 	margin: 0;
 	display: inline;
 	list-style-type: none;
@@ -223,6 +238,20 @@ ul.main-navigation li a {
 }
 .header .name_link{
 	border-left: none;
+}
+/* pages list */
+.pages_list {
+	color: #777;
+}
+.pages_list_container_container{
+	margin-right: 88px;
+}
+.pages_list_container{
+	float: right;
+}
+ul.pages_list{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 /* sidebar */
 .sidebar ul {
