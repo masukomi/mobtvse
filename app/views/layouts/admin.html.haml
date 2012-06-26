@@ -33,7 +33,15 @@
 						= link_to 'Admin', '/admin'
 					%li
 						= link_to 'Images', '/images'
-					
+		-if flash[:error] or flash[:notice]
+			.row
+				.twelvecol.last
+					-if flash[:error]
+						.error
+							=flash[:error]
+					-if flash[:notice]
+						.notice
+							=flash[:notice]
 		#admin
 			%a#blog-button{:href=>root_url, :target=>"_blank"}
 				Go to blog

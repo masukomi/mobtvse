@@ -35,6 +35,13 @@ class Timespan
     return crit.entries
   end
 
+  # files includes images and non-images that 
+  # have been uploaded
+  def files
+    crit = files_criteria(@start, @end)
+    return crit.entries
+  end
+
   # Returns the number of kudos for posts in this timespan
   # NOTE this is NOT kudos GIVEN in this timespan. 
   def kudos_count(include_drafts = false, include_future=false)
@@ -62,6 +69,11 @@ class Timespan
 
   def images_criteria(start_time, end_time)
     crit = Image.where(:uploaded_on.gte => start_time, :uploaded_on.lte => end_time)
+    return crit
+  end
+
+  def files_criteria(start_time, end_time)
+    crit = BinaryFile.where(:uploaded_on.gte => start_time, :uploaded_on.lte => end_time)
     return crit
   end
 

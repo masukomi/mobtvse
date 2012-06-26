@@ -7,7 +7,7 @@ before_filter :setup_s3
 layout 'admin'
 
 def index
-	@images_count = Image.count
+	@file_count = BinaryFile.count
 	logger.debug("#{@images_count} images found")
 	@months = []
 	first_image = Image.order_by(:uploaded_on=>:asc).first
@@ -38,9 +38,30 @@ def create
 	file_up = params[:image]
 	filename = nil
 	url = nil
+	content_type = nil
+	if s3_enabled? and file_up[:datafile]
+		# if they don't upload anything there will be a file_up
+		# with an empty title and nothing else
+		content_type = file_up[:datafile].headers.gsub(/\r\n|\n/, ' ').sub(/.*?Content-Type: (\S+).*?/, '\1')
+	elsif ! s3_enabled? and file_up[:url]
+		content_type = file_up[:url].match(/\.(jpg|png|gif|jpeg)$/i) ? 'image' : 'application/octet-stream'
+		# technically that should return a real content-type for images but I don't need it 
+		# in the test below and don't feel it's worth bothering
+	end
+	if (! s3_enabled? and ! file_up[:url]) or (s3_enabled? and ! file_up[:datafile])
+		# they didn't enter an url
+		if s3_enabled?
+			flash[:error] = "You must enter a file"
+		else
+			flash[:error] = "You must upload an url"
+		end
+		render :action => :new
+		return
+	end
+
 	today = Date.today
 	if s3_enabled?
-		orig_filename = file_up['datafile'].original_filename
+		orig_filename = file_up[:datafile].original_filename
 		filename = "#{today.year}_#{today.month}_#{today.day}_#{sanitize_filename(orig_filename)}"
 		logger.debug("filename: #{filename}")
 		AWS::S3::S3Object.store(filename, file_up['datafile'].read, @@BUCKET, :access => :public_read)
@@ -49,11 +70,17 @@ def create
 	else
 		url = file_up[:url]
 	end
-	@image = Image.new(:title=>file_up[:title], :filename=>filename, :url=>url, :uploaded_on => today)
-	if @image.save
+	
+	@file = nil
+	if content_type.match(/^image\//i)
+		@file = Image.new(:title=>file_up[:title], :filename=>filename, :url=>url, :uploaded_on => today)
+	else
+		@file = BinaryFile.new(:title=>file_up[:title], :filename=>filename, :url=>url, :uploaded_on => today)
+	end
+	if @file.save
 		redirect_to '/images/index'
 	else
-		flash[:error] = "Unable to save image!"
+		flash[:error] = "Unable to save file!"
 	end
 end
 
