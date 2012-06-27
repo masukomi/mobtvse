@@ -4,23 +4,29 @@
 		-if @post.created_at
 			%input{:type=>"hidden", :name=>"id", :value=>@post.id}
 		.row
-			/begin left section
-			.threecol
-				#bar
-					= link_to 'Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
-					/= link_to 'Preview', '#', :id => 'preview-button', :target => "_blank", :class => 'icon-eye-open'
-					= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
-					.middle
-						.menu#menu-date
-							= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"$('#date').toggle();"
-							%ul.sub-menu#date
+			.onecol
+				/ empty
+			.elevencol.last
+				.button_bar
+					.buttons
+						= link_to 'Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
+						/= link_to 'Preview', '#', :id => 'preview-button', :target => "_blank", :class => 'icon-eye-open'
+						= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
+						= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
+						= link_to 'Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
+						= link_to 'Images', '#', :class=>'icon-picture', :onclick=>"toggleSubMenus('#menu-images'); return false;"
+						= link_to 'Tags', '#', :class=>'entypo-tag', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
+						= link_to 'Page', '#', :id => 'page-button', :class => 'entypo-written-doc wide_button', :onClick=>"return false; return false;"
+						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit medium_button', :onClick=>"return false;"
+						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
+					.sub_menus.transparent_to_admin_bar_color
+						.sub_menu.transparent_to_admin_bar_color#menu-date
+							%ul#date
 								%li
 									= f.label :posted_at, 'Published Date'
 									= f.datetime_select('posted_at', :order=>[:year, :month, :day], :include_blank=>true)
-
-						.menu#menu-info
-							= link_to 'Info', '#info', :class => 'icon-info-sign',  :onclick=>"$('#info').toggle();"
-							%ul.sub-menu#info
+						.sub_menu#menu-info
+							%ul#info
 								%li
 									= f.label :slug, 'Permalink'
 									= f.text_field :slug, :placeholder => 'Leave blank to automatically generate'
@@ -36,9 +42,8 @@
 									%label
 										Wordcount
 									%span#wordcount
-						.menu#menu-images
-							=link_to 'Images', '#images', :class=>'icon-picture', :onclick=>"$('#images').toggle();"
-							%ul.sub-menu.images_in_month#images
+						.sub_menu#menu-images
+							%ul.images_in_month#images
 								- images = @current_month.images
 								- if images.size > 0
 									- images.each do |image|
@@ -49,23 +54,26 @@
 								%li
 									%br
 									= link_to 'View All Images', "/images?#{@current_month.start.year}_#{@current_month.start.month}", :confirm=>"Navigate away? Unsaved changes will be lost."
+						.sub_menu#menu-tags
+							#tag_container
+								%label Tags:
+								%fieldset.tags
+									#tags
+										= f.text_area :tags, :placeholder => 'Add comma separated tags here'
 						/
-							.menu
+							.sub_menu#menu-history
 								= link_to 'History', '#history', :class => 'icon-list',  :onclick=>"$('#history').toggle();"
-								%ul.sub-menu#history
+								%ul#history
 									%li= f.label :url, 'History'
 									%li= link_to 'Version 3', '#'
 									%li= link_to 'Version 2', '#'
 									%li= link_to 'Version 1', '#'
-
-					.bottom
-						= link_to 'Page', '#', :id => 'page-button', :class => 'entypo-written-doc', :onClick=>"return false;"
-						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit', :onClick=>"return false;"
-						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
-				.hide
-					= f.check_box :draft
-					= f.check_box :page
-			/ begin middle section
+						.hide
+							= f.check_box :draft
+							= f.check_box :page
+		.row
+			.threecol
+				/ empty
 			.sixcol
 				.split-section#post-editor
 					.inner
@@ -93,11 +101,6 @@
 
 			/ begin right section
 			.threecol.last
-				#tag_container
-					Tags:
-					%fieldset.tags
-						#tags
-							= f.text_area :tags, :placeholder => 'Add comma separated tags here'
 
 %button.animated#save-button
 

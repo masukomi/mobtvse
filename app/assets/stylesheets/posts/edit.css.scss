@@ -1,5 +1,87 @@
 @import "bourbon";
 $admin-bar-bg: #f4f4f4;
+.left {
+  float: left;
+}
+.button_bar {
+  .buttons {
+    width: 100%;
+    a {
+      display: inline-block;
+      min-width: 40px;
+      margin-right: 1%;
+      color: #72674C;
+    }
+      .wide_button{
+        min-width: 90px;
+        margin-right: 0.5%;
+      }
+      .medium_button{
+        min-width: 65px;
+        margin-right: 0.5%;
+      }
+    a::before {
+      text-align: left;
+    }
+  }
+  .sub_menus{
+    position: absolute;
+    left: 0px;
+    border: 1px solid #e8e8e8;
+    z-index: 100;
+    width: 100%;
+    background: $admin-bar-bg;
+
+    .sub_menu{
+      display:none;
+      width: 100%;
+      padding-left: 4em;
+
+      li {
+        list-style: none;
+        line-height: 1em;
+        margin: 0;
+        padding: 3px 0;
+
+        a {
+          display: block;
+          width: 200px;
+          text-align: left;
+        }
+
+        span {
+          font-size: 12px;
+          display: block;
+          margin: 6px 0 8px;
+        }
+      }
+      li.meta_description textarea{
+          height: 5em;
+          line-height: 20px;
+          border-bottom: 1px solid #ddd;
+        }
+      label {
+        font-size: 11px;
+        font-weight: bold;
+        color: #999;
+        display: block;
+        margin: 0 0 4px 0;
+        text-transform: uppercase;
+      }
+
+      input[type=text] {
+        border: none;
+        padding: 2px 0;
+        margin: 0 0 8px 0;
+        font-size: 13px;
+        width: 220px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+
+}
+
 #bar #images > li {
   white-space:nowrap;
   margin-bottom: 0.5em;

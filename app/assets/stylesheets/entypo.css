@@ -71,3 +71,4 @@ li[class^="entypo-"].entypo-large:before, li[class*=" entypo-"].entypo-large:bef
 
 .entypo-written-doc:before{content: "l";}
 .entypo-empty-doc:before{content: "m";}
+.entypo-tag:before{content: "C";}
