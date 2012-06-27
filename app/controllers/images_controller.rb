@@ -44,9 +44,17 @@ def create
 		# with an empty title and nothing else
 		content_type = file_up[:datafile].headers.gsub(/\r\n|\n/, ' ').sub(/.*?Content-Type: (\S+).*?/, '\1')
 	elsif ! s3_enabled? and file_up[:url]
-		content_type = file_up[:url].match(/\.(jpg|png|gif|jpeg)$/i) ? 'image' : 'application/octet-stream'
-		# technically that should return a real content-type for images but I don't need it 
-		# in the test below and don't feel it's worth bothering
+		extension =  file_up[:url].downcase.sub(/.*\.(jpg|png|gif|jpeg)$/, '\1')
+			#downcasing so that we don't have to bother with case-insensitivity later
+		is_image = extension.match(/\.(jpg|png|gif|jpeg)$/)
+		is_text = is_image ? false : extension.match(/\.(txt|text|html|htm)$/)
+		if (is_image)
+			content_type = "image/#{extension}"
+		elsif (is_text)
+			content_type = extension.start_with?('txt', 'text') ? 'text/plain' : 'text/html'
+		else
+			content_type = 'application/octet-stream'
+		end
 	end
 	if (! s3_enabled? and ! file_up[:url]) or (s3_enabled? and ! file_up[:datafile])
 		# they didn't enter an url
@@ -73,9 +81,9 @@ def create
 	
 	@file = nil
 	if content_type.match(/^image\//i)
-		@file = Image.new(:title=>file_up[:title], :filename=>filename, :url=>url, :uploaded_on => today)
+		@file = Image.new(:title=>file_up[:title], :filename=>filename, :url=>url, :content_type=>content_type, :uploaded_on => today)
 	else
-		@file = BinaryFile.new(:title=>file_up[:title], :filename=>filename, :url=>url, :uploaded_on => today)
+		@file = BinaryFile.new(:title=>file_up[:title], :filename=>filename, :url=>url, :content_type=>content_type, :uploaded_on => today)
 	end
 	if @file.save
 		redirect_to '/images/index'
