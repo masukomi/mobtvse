@@ -4,6 +4,7 @@ class BinaryFile
   field :filename,           :type => String
   field :title,              :type => String
   field :url,                :type => String
+  field :content_type,       :type => String
   field :uploaded_on,        :type => Date, default: Date.today
 
   validates :url, :presence => true
