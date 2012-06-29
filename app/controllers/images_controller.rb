@@ -44,17 +44,21 @@ def create
 		# with an empty title and nothing else
 		content_type = file_up[:datafile].headers.gsub(/\r\n|\n/, ' ').sub(/.*?Content-Type: (\S+).*?/, '\1')
 	elsif ! s3_enabled? and file_up[:url]
-		extension =  file_up[:url].downcase.sub(/.*\.(jpg|png|gif|jpeg)$/, '\1')
+		extension =  file_up[:url].downcase.sub(/.*\.(\w+)$/, '\1')
 			#downcasing so that we don't have to bother with case-insensitivity later
-		is_image = extension.match(/\.(jpg|png|gif|jpeg)$/)
-		is_text = is_image ? false : extension.match(/\.(txt|text|html|htm)$/)
-		if (is_image)
+		content_type = nil
+		if (extension.match(/swf$/))
+			content_type = "application/x-shockwave-flash"
+		elsif (extension.match(/(jpg|png|gif|jpeg|bmp|ico)$/))
 			content_type = "image/#{extension}"
-		elsif (is_text)
+		elsif (extension.match(/^xml$/))
+			content_type = 'text/xml'
+		elsif (extension.match(/(txt|text|html|htm|xhtml)$/))
 			content_type = extension.start_with?('txt', 'text') ? 'text/plain' : 'text/html'
 		else
 			content_type = 'application/octet-stream'
 		end
+
 	end
 	if (! s3_enabled? and ! file_up[:url]) or (s3_enabled? and ! file_up[:datafile])
 		# they didn't enter an url
