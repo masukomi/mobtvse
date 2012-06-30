@@ -21,7 +21,11 @@
 			/ no posts with kudos! Get writing!
 		.posts_by_month
 			%h3 Posts By Month...
-			=render :partial => 'month', :collection=>@months, :as => :month
+			- if @months.size() > 0
+				=render :partial => 'month', :collection=>@months, :as => :month
+			- else
+				%p
+					There are no public posts yet.
 	.threecol.last
 		/ empty
 / END archive.haml
