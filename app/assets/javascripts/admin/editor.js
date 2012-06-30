@@ -1,5 +1,20 @@
 curPath = window.location.pathname.split('/');
 
+
+function toggleSubMenus(desired){
+  var desired_element = $(desired)
+  if (! desired_element.is(":visible") ){
+    $('#menu-date').hide();
+    $('#menu-info').hide();
+    $('#menu-images').hide();
+    $('#menu-tags').hide();
+    desired_element.show();
+  } else {
+    desired_element.hide();
+  }
+
+}
+
 $(function() {
   //
   // DEBUG
@@ -203,7 +218,7 @@ $(function() {
   // Page.hover
   .hover(function(){
     if (state.post.page) el.page.html('Blog Post?');
-    else el.post.html('Static Page?');
+    else el.page.html('Static Page?');
   }, function(){
     if (state.post.page) el.page.html('Static Page');
     else el.page.html('Blog Post');

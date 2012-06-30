@@ -1,7 +1,7 @@
 / BEGIN images/_form.html.haml
-=form_for :image, :url=>'/images/create', :html=>{:multipart => (@s3_enabled ? true : false), :accept => "image/gif,image/png,image/jpg"} do |f|
+=form_for :image, :url=>'/images/create', :html=>{:multipart => (@s3_enabled ? true : false),} do |f|
 	%div
-		%label Image
+		%label Image / File
 	%div
 		%span.image_field_name Title: 
 		= f.text_field 'title'
@@ -13,5 +13,5 @@
 			%span.image_field_name Url:
 			= f.text_field 'url'
 	%div
-		= f.submit (@s3_enabled ? 'Upload Image' : 'Create Image Link'), :class=>'button'
+		= f.submit (@s3_enabled ? 'Upload File' : 'Create File Link'), :class=>'button'
 / END images/_form.html.haml

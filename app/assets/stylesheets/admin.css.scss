@@ -8,3 +8,25 @@ ul.admin_header_nav li{
 .nobr  { white-space:nowrap; }
 .default_cursor { cursor:default;}
 a.default_cursor { cursor:default;}
+.center_container{
+	float: left;
+	position: relative;
+	left: 50%;
+}
+.center{
+	float: left;
+	position: relative;
+	left: -50%; 
+}
+.error,
+.notice{
+	width: 100%;
+	padding: 0.5em;
+	text-align: center;
+}
+.error{
+	background-color: #DA6348;
+}
+.notice{
+	background-color: #DAA448;
+}
