@@ -20,6 +20,8 @@ class Post
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime
   field :posted_at,       :type => DateTime
+  #NOTE field :tags, :type => String 
+  # tags (comes in via Mongoid::Taggable don't uncomment)
 
   index({draft: 1})
   index({page: 1})
