@@ -12,7 +12,7 @@
 			=stylesheet_link_tag 'kudos' 
 		= stylesheet_link_tag 'normalize' 
 		= stylesheet_link_tag 'embed' 
-		= stylesheet_link_tag 'posts' 
+		/= stylesheet_link_tag 'posts' 
 		= stylesheet_link_tag 'entypo' 
 		= stylesheet_link_tag 'fonts/font-awesome' 
 		= stylesheet_link_tag 'admin'
@@ -43,8 +43,6 @@
 						.notice
 							=flash[:notice]
 		#admin
-			%a#blog-button{:href=>root_url, :target=>"_blank"}
-				Go to blog
 			#fade
 			= yield 
 		.modal#modal

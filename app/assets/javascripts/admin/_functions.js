@@ -87,7 +87,7 @@ function makeExpandingArea(container) {
 }
 
 function makeExpandingAreas() {
-  makeExpandingArea(text_title);
+  //makeExpandingArea(text_title);
   makeExpandingArea(text_content);
 }
 
