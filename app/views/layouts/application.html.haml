@@ -63,7 +63,7 @@
 								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
-			- if @pages.size() > 0
+			- if @pages and @pages.size() > 0
 				.row
 					.twelvecol.last
 						= render :partial => "pages_list"
