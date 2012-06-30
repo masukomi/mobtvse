@@ -48,19 +48,21 @@ class PostsController < ApplicationController
     #@tags_with_weight = Post.tags_with_weight
     #TODO fix this so that it goes all the way back to the first post
     @months = []
-    first_post_date = Post.where(:draft=>false, :page=>false).order_by(:posted_at=>:asc).first.posted_at
-    first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
-    month = Month.new(first_of_month)
-    if (month.start <= first_post_date)
-      @months << month
-    else
-      while (month.start >= first_post_date)
+    if (Post.count > 0)
+      first_post_date = Post.where(:draft=>false, :page=>false).order_by(:posted_at=>:asc).first.posted_at
+      first_of_month=Date.today.at_beginning_of_month.at_beginning_of_day
+      month = Month.new(first_of_month)
+      if (month.start <= first_post_date)
         @months << month
-        month = month.previous()
+      else
+        while (month.start >= first_post_date)
+          @months << month
+          month = month.previous()
+        end
+        @months << month
+          # it's already had .previous() called on it
+          # the month whose start isn't after the first post
       end
-      @months << month
-        # it's already had .previous() called on it
-        # the month whose start isn't after the first post
     end
   end
 
