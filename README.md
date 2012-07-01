@@ -21,7 +21,7 @@ The goal is to add support for:
 * Static File generation
 * Great features that HTML based blogging platforms like Wordpress have had for years.
 
-See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/master/ToDo.mkdn).
+See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/experimental/ToDo.mkdn).
 
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
@@ -74,6 +74,12 @@ In production you will want to set the following environment variables:
 * `MONGOID_DATABASE`
 
 You can set these up in your `.bashrc` file or just copy, and edit, the relevant section of `script/heroku_env.sh`
+
+Importing from Octopress or Jekyll
+==================================
+MObtvse can import your posts from Octopress and Jekyll. If you've configured S3 
+support it can also upload all of your images to it, and rewrite the image urls in 
+your posts when appropriate. See [the migration doc](https://github.com/masukomi/mobtvse/blob/experimental/migrating.mkdn) for details. 
 
 Support:
 ==========================
