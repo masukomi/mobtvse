@@ -40,6 +40,10 @@ disqus_short_name:   disqus_short_name_here
 # Enter your disqus shortname
 disqus_developer: false
 # if you're testing disqus on localhost set this to true
+
+#### OPTIONAL Amazon S3
+# Currently required for image uploading
+# but not for linking to images already uploaded somewhere
 s3:
   enabled: false
   image_bucket_name: my_s3_bucket_name
