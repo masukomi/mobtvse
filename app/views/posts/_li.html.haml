@@ -16,7 +16,10 @@
 					%span.entypo.admin-view{:title=>"This post is scheduled for the future"} N
 			-if li.page?
 				= link_to 'm', '#', {:class=>'entypo admin-view default_cursor', :title=>"This is a static page, not a blog entry", :onClick=>"return false;"}
-			= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view', :title=>"view this post"}
+			-if ! li.draft?
+				= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view', :title=>"view this post"}
+			-else
+				= link_to 'i', "/posts/#{li.id}", {:class => 'entypo admin-view', :title=>"view this post"}
 			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete', :title=>'delete this post'
 			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
 		= link_to li.title, edit_post_path(li.id)
