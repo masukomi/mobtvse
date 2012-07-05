@@ -19,7 +19,7 @@ On the command line, run the following from the root of the MObtvse directory.
 
     bundle exec rake jekyll:migrate_files[:images_dir, :absolute_posts_dir, :old_domain_name]
     
-Example: `bundle exec rake jekyll:migrate_files['/path/to/images/','/Users/me/octopress_blog/source/_posts']`
+Example: `bundle exec rake jekyll:migrate_files['/path/to/images/','/Users/me/octopress_blog/source/_posts','blog.example.com']`
 
 `:images_dir` is the directory containing all of the images and files uploaded to your jekyll / Octopress site. It is assumed that this directory is served from the root of your blog. So, /path/to/images is assumed to be equivalent to http://example.com/images
 
