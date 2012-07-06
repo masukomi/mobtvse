@@ -11,6 +11,8 @@ canonical_url:       http://example.com
 me_link:             http://www.google.com/profiles/my_google_username
 # OPTIONAL I can't find the docs anymore but google uses this 
 # to associate the owner of the blog up to their g+ and other assets.
+posts_on_index:      5
+# The number of posts to display on your front page
 use_kudos: true
 # set this to false if you don't want 
 # to give people the ability to tell you how awesome 
