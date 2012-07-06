@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   ## is a scope added to the model by the kaminari gem
   ##################
 
-  before_filter :authenticate, :except => [:index, :show, :update_kudo, :tag, :archive]
+  before_filter :authenticate, :except => [:index, :show, :update_kudo, :tag, :archive, :atom]
   layout :choose_layout
 
   def index
@@ -24,6 +24,17 @@ class PostsController < ApplicationController
       format.html
       format.xml { render :xml => @posts }
       format.rss { render :layout => false }
+      format.atom { render :layout => false }
+    end
+  end
+
+  def atom
+    all_posts = nil
+    now = DateTime.now
+    all_posts = Post.all(conditions: {:draft=>false, :page=>false, :posted_at=>{"$lte"=>now}},:sort=> [[ :posted_at, :desc ]]).entries
+    @posts = all_posts[0..20]
+    respond_to do | format |
+      format.atom{render :layout => false} 
     end
   end
   def tag
