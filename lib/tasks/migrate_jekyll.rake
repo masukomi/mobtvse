@@ -39,7 +39,7 @@ class String
 end
 
 namespace :jekyll do
-		task :migrate_files, [:images_dir, :posts_dir, :old_domain_name] => :environment do |cmd, args|
+		task :migrate_files, [:images_dir, :absolute_posts_dir, :old_domain_name] => :environment do |cmd, args|
 			BUCKET = CONFIG['s3']['image_bucket_name']
 
 			def s3_enabled?
@@ -75,11 +75,14 @@ namespace :jekyll do
 				end_dir = directory_name.sub(/.*\/(\w+)\/?/, '\1')
 				old_domain = args[:old_domain_name].gsub('.', '\.')
 				
-				Dir["#{end_dir}/**/*"].each do |filename|
+				files_to_test = Dir["#{end_dir}/**/*"]
+				puts "#{files_to_test.size()} files and directories were found"
+				files_to_test.each_with_index do |filename, idx|
+					puts "#{idx}) considering #{filename}"
 					end_file = filename.sub(/.*\/(\S+?)$/, '\1')
 					#puts "end_file: #{end_file}"
 					unless File.directory? filename
-						used_in = `grep #{end_file} #{args[:posts_dir]}/* | grep -v ':0'`
+						used_in = `grep #{end_file} #{args[:absolute_posts_dir]}/* | grep -v ':0'`
 						if (used_in.length() > 0) # S3 costs money, so only upload the ones that are used
 							content_type = get_content_type(filename)
 #							puts "uploading: #{filename} w/ content-type: #{content_type} | #{File.ctime(filename)}"
@@ -98,8 +101,8 @@ namespace :jekyll do
 								used_in = used_in.split(/\n/).map{|path| path.sub(/(.*?):.*$/, '\1')}
 								
 								used_in.each do |path|
-									puts "replacing (https?://|/)#{filename.gsub('/', '\\/')} with #{url}"
-									puts "in        #{path}"
+									puts "\treplacing (https?://|/)#{filename.gsub('/', '\\/')} with #{url}"
+									puts "\tin        #{path}"
 									new_file_content= []
 									File.open(path, 'r') do |f|
 										f.each_line{|line| 
@@ -107,18 +110,24 @@ namespace :jekyll do
 										}
 									end
 									File.open(path, "w") {|file| file.puts new_file_content.join('')}
-exit(0)
 								end
 							else
+								unless(@attempted_download)
+									begin
+										# there's a bug in Amazon's .exists? test.
+										# if your credentials are bad it'll tell you exists no matter what.
+										# You must attempt to access the file to be sure it's correct.
+										file = AWS::S3::S3Object.find filename, BUCKET
+									rescue => e
+										puts "PROBLEM WITH S3: #{e}"
+										exit(1)
+									end
+									@attempted_download = true
+								end
 								puts "SKIPPING #{filename}: it's already in S3's #{BUCKET} bucket: #{AWS::S3::S3Object.exists?( filename, BUCKET).inspect }"
-file = AWS::S3::S3Object.find filename, BUCKET
-puts "file: #{file.inspect}"
-puts "content-type: #{file.content_type}"
-
-exit(0)
 							end
 						else
-							#puts "SKIPPING unused file: #{filename}"
+							puts "\tSKIPPING unused file: #{filename}"
 						end
 					end
 				end

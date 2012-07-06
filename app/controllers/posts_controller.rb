@@ -110,7 +110,16 @@ class PostsController < ApplicationController
   def show
     @pages = Post.reverse_chron.where(:draft=>false, :page=>true).entries
     @single_post = true
-    @post = admin? ? Post.first(conditions: {slug: params[:slug]}) : Post.first(conditions: {slug: params[:slug],  draft: false})
+    @post = nil
+    if (params[:slug])
+      @post = admin? ? Post.first(conditions: {slug: params[:slug]}) : Post.first(conditions: {slug: params[:slug],  draft: false})
+    elsif admin?
+logger.debug("NO SLUG + ADMIN")
+      @post = Post.find(params[:id]) #must be a draft
+    end
+
+    render_404 and return if @post.nil?
+
     unless @post.meta_description.blank?
       @meta_description = @post.meta_description
     end
@@ -229,4 +238,13 @@ logger.debug(" failed to save")
       'application'
     end
   end
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
+  end
+  
 end
