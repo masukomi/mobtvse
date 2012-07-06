@@ -245,9 +245,9 @@ logger.debug(" failed to save")
 
   def render_404
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found }
-      format.xml  { head :not_found }
-      format.any  { head :not_found }
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout=>false }
+      format.xml  { head :not_found , :layout=>false}
+      format.any  { head :not_found , :layout=>false}
     end
   end
   
