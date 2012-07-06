@@ -28,7 +28,7 @@
 									%ul.tags_list
 										-post.tags_array.each do |t|
 											%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
-							- if CONFIG['disqus_enabled'] and @single_post and post.comments_enabled?
+							- if CONFIG['disqus_enabled'] and @single_post and post.comments_enabled? and not post.draft?
 								.comments_section
 									%h1
 										Comments
