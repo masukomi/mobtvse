@@ -13,6 +13,8 @@ me_link:             http://www.google.com/profiles/my_google_username
 # to associate the owner of the blog up to their g+ and other assets.
 posts_on_index:      5
 # The number of posts to display on your front page
+posts_in_feed:       20
+# The number of posts to include in your Atom feed
 use_kudos: true
 # set this to false if you don't want 
 # to give people the ability to tell you how awesome 
