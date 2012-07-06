@@ -90,8 +90,13 @@ class PostsController < ApplicationController
     @placeholder_post = Post.new
     #todo re-implement the paging mongoid style
     all_published = nil
+    booleanify_params(params)
     unless params[:tag]
-      all_published = Post.where(:draft=>false, :page=>false).order_by(:posted_at=>:desc).entries
+      if (not params[:by_kudos])
+        all_published = Post.where(:draft=>false, :page=>false).order_by(:posted_at=>:desc).entries
+      else
+        all_published = Post.loved.entries
+      end
     else
       all_published = Post.any_in({:tags_array => [params[:tag]]}).descending(:posted_at).entries
       #BUG, this will currently include static pages

@@ -21,7 +21,11 @@
 			#published
 				%h1
 					Published 
-					= link_to 'Home', root_url, :class => 'button'
+				%div
+					Show 
+					=link_to("the loved", '/admin/?by_kudos=true')
+					\/
+					=link_to("all", '/admin/')
 				.tags_list
 					-if @tags.size > 0
 						%ul.tags_list
