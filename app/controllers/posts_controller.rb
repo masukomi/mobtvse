@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     else
       all_posts = Post.any_in(:tags_array => [params[:tag]]).where(:posted_at=>{"$lte"=>now}, :page=>false).desc(:posted_at).entries
     end
-    @posts = Kaminari.paginate_array(all_posts).page(params[:page]).per(10)
+    @posts = Kaminari.paginate_array(all_posts).page(params[:page]).per(CONFIG['posts_on_index'] ? CONFIG['posts_on_index'] : 5 )
     @pages = Post.reverse_chron.where(:draft=>false, :page=>true).entries
     respond_to do |format|
       format.html
