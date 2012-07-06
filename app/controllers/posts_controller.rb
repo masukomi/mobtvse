@@ -31,8 +31,8 @@ class PostsController < ApplicationController
   def atom
     all_posts = nil
     now = DateTime.now
-    all_posts = Post.all(conditions: {:draft=>false, :page=>false, :posted_at=>{"$lte"=>now}},:sort=> [[ :posted_at, :desc ]]).entries
-    @posts = all_posts[0..20]
+    max = CONFIG['posts_in_feed'] || 20
+    @posts = Post.all(conditions: {:draft=>false, :page=>false, :posted_at=>{"$lte"=>now}},:sort=> [[ :posted_at, :desc ]]).limit(max).entries
     respond_to do | format |
       format.atom{render :layout => false} 
     end
