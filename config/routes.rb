@@ -14,6 +14,7 @@ Obtvse::Application.routes.draw do
   put '/preview', :to => 'posts#preview'
   get '/archive', :to => 'posts#archive'
   get '/atom.xml', :to => 'posts#atom', :defaults => { :format => 'atom' }
+  match '/feed' => 'posts#atom', :defaults => { :format => 'atom' }
   match '/images(/:action(/:id(.:format)))', :controller=>:images
     # need to do that before the slug
   get "/:slug", :to => 'posts#show', :as => 'post'
