@@ -7,15 +7,9 @@
 					.twelvencol.last
 						.post_heading
 							-if post.external?
-								-if @single_post
-									%h1= link_to post.title, post.url
-								-else
-									%h1= link_to post.title, post.url
+								%h1= link_to post.title, permalink_path_for(post, true)
 							-else
-								-if @single_post
-									%h1= post.title
-								-else
-									%h1= link_to post.title, post.slug
+								%h1= link_to post.title, permalink_path_for(post, false)
 				%div
 					.twelvecol.last
 						.entry-content
