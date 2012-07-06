@@ -113,7 +113,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @pages = Post.reverse_chron.where(:draft=>false, :page=>true).entries
     @single_post = true
     @post = nil
     if (params[:slug])
