@@ -10,7 +10,7 @@
 				.button_bar
 					.buttons
 						= link_to 'Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
-						/= link_to 'Preview', '#', :id => 'preview-button', :target => "_blank", :class => 'icon-eye-open'
+						= link_to 'Preview', "/posts/#{@post.id}", :id => 'preview-button', :class => 'icon-eye-open', :target=>"#{@post.id}_preview"
 						= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
 						= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
 						= link_to 'Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
