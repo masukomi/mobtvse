@@ -31,7 +31,7 @@
 		-if CONFIG['me_link']
 			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
 		
-		%link{ :href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+		%link{ :href=>"/atom.xml", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
