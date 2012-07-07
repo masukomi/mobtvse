@@ -47,7 +47,12 @@ function sendKudo(element_id) {
 		element.parent("figure").removeClass("filling");
 		$.cookie(element.article, true);
 		var count = $('#'+element_id+'-count');
-		newnum = parseInt(count.text()) + 1;
+		var newnum = 0;
+		try {
+			newnum = parseInt(count.text()) + 1;
+		} catch (e){
+			newnum = 1;
+		}
 		count.html(newnum);
 		//element.children("p.notice").hide().remove();
 		element.children("p.count").show();
@@ -57,7 +62,28 @@ function sendKudo(element_id) {
 
 
 $(function() {
+	// GET ALL KUDOS
+	// for posts on this page
+	// -> ajax call
+	var kudo_count_spans = $('span[id^="kudo-"]');
+	var post_ids = []
+	$.each(kudo_count_spans, function(index, element){
+		var element_id=element.getAttribute('id');
+		var post_id = element_id.replace(/^kudo-/, '').replace(/-count$/, '')
+		post_ids.push(post_id)
+	});
+	// request a list of the current counts for those posts
+	var kudos_hash = {};
+	var url = "/kudos/count/" + post_ids.join(',') + '.json';
+	$.getJSON(url, function(data) {
+		var items = [];
+		$.each(data, function(key, value) {
+			kudos_hash[key] = value;
+			$('#kudo-'+key+'-count')[0].innerText = value;
+		});
 
+	});
+	
 
 	$("a.kudos").each(function(e) {
 		// test if they've already left a kudo for each article by 
