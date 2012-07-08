@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   layout :choose_layout
 
   def index
+    response.headers['Cache-Control'] = 'public, max-age=300'
     #TODO reimplement paging mongo style
     all_posts = nil
     now = DateTime.now
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
   end
 
   def atom
+    response.headers['Cache-Control'] = 'public, max-age=600'
     all_posts = nil
     now = DateTime.now
     max = CONFIG['posts_in_feed'] || 20
@@ -38,6 +40,7 @@ class PostsController < ApplicationController
     end
   end
   def tag
+    response.headers['Cache-Control'] = 'public, max-age=300'
     @tag = params[:id]
     now = DateTime.now
     @posts = Post.any_in(:tags_array => [@tag]).where(:posted_at=>{"$lte"=>now}, :page=>false).desc(:posted_at).entries
@@ -48,6 +51,7 @@ class PostsController < ApplicationController
     end
   end
   def archive
+    response.headers['Cache-Control'] = 'public, max-age=300'
     #TODO
     # - create a @months var where each entry has a list of posts
     #   posts would be sorted by date (reverse, or forward chronological)
@@ -86,6 +90,7 @@ class PostsController < ApplicationController
   end
 
   def admin
+    response.headers['Cache-Control'] = 'no-cache'
     @no_header = true
     @placeholder_post = Post.new
     #todo re-implement the paging mongoid style
@@ -113,6 +118,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    response.headers['Cache-Control'] = 'public, max-age=300'
     @single_post = true
     @post = nil
     if (params[:slug])
@@ -156,6 +162,7 @@ logger.debug("NO SLUG + ADMIN")
   end
 
   def edit
+    response.headers['Cache-Control'] = 'no-cache'
     @no_header = true
     @post = Post.find(params[:id])
     @current_month = Month.new(Date.today)
@@ -166,17 +173,14 @@ logger.debug("NO SLUG + ADMIN")
   end
 
   def create
-logger.debug("XXX in PostsController#create")
     @post = Post.new(params[:post])
 
     respond_to do |format|
       if @post.save
-logger.debug(" saved")
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post created successfully" }
         format.xml { render :xml => @post, :status => :created, location: @post }
         format.text { render :text => @post.to_json }
       else
-logger.debug(" failed to save")
         format.html { render :action => 'new' }
         format.xml { render :xml => @post.errors, :status => :unprocessable_entity}
         format.text { head :bad_request }
