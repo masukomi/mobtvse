@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require fitvids.js
-//= require posts.js
-//= require showdown.js
+//= require jquery.cookie
+//= require css3-mediaqueries
+//= require kudos
