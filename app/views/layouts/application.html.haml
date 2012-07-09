@@ -13,10 +13,8 @@
 		=stylesheet_link_tag 'main'
 		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css")
 		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js")
-		=stylesheet_link_tag 'socialicons'
-		=stylesheet_link_tag 'entypo'
+		= stylesheet_link_tag 'fonts/font-awesome'
 		=stylesheet_link_tag 'screen'
-		=stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Cagliostro|Muli:400,400italic'
 		-if @meta_description || CONFIG['meta_description']
 			%meta{:name=>'description', :content=>"#{@meta_description || CONFIG['meta_description']}"}
 		%meta{ :name=>"author", :content=>"#{CONFIG['name'] }"}
@@ -54,13 +52,13 @@
 						%li
 							#main_nav_right.nobr
 								%span.emphasized
-								=link_to 'ó', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'entypo'}
+								=link_to '', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'icon-calendar icon-large'}
 								/=link_to 'Archive', '/archive'
 								- if CONFIG['twitter']
-									=link_to '&#76;'.html_safe, 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"socialicon twitter_link"}
+									=link_to '', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"icon-twitter icon-large"}
 								- if CONFIG['facebook_id']
-									=link_to '&#70;'.html_safe, "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"socialicon facebook_link"}
-								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
+									=link_to '', "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"icon-facebook icon-large"}
+								=link_to '', "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"icon-rss icon-large", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
 			- if @pages and @pages.size() > 0
