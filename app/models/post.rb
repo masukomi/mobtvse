@@ -91,7 +91,7 @@ class Post
   end
 
   def external?
-    !url.blank? and ! draft
+    ! draft and posted_at and posted_at <= DateTime.now()
   end
 
   def future?
