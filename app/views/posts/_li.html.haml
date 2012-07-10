@@ -11,16 +11,15 @@
 				%span.mini_kudo.mini_kudos_many{:title=>'kudos received'}
 					=li.kudos
 		%span.links
-			- if li.external?
-				-if li.future?
-					%span.entypo.admin-view{:title=>"This post is scheduled for the future"} N
+			-if li.future?
+				%span.icon-time{:title=>"This post is scheduled for the future"}
 			-if li.page?
-				= link_to 'm', '#', {:class=>'entypo admin-view default_cursor', :title=>"This is a static page, not a blog entry", :onClick=>"return false;"}
+				%span.icon-file{:title=>"This is a static page, not a blog entry", :alt=>"This is a static page, not a blog entry"}
 			-if ! li.draft?
-				= link_to 'i', permalink_path_for(li, false), {:class => 'entypo admin-view', :title=>"view this post"}
+				= link_to '', permalink_path_for(li, false), {:class => 'icon-eye-open', :title=>"view this post"}
 			-else
-				= link_to 'i', "/posts/#{li.id}", {:class => 'entypo admin-view', :title=>"view this post"}
-			= link_to "X", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'entypo admin-delete', :title=>'delete this post'
+				= link_to '', "/posts/#{li.id}", {:class => 'icon-eye-open', :title=>"view this post"}
+			= link_to "", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-minus-sign', :title=>'delete this post'
 			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
 		= link_to li.title, edit_post_path(li.id)
 / END _li.html.erb 
