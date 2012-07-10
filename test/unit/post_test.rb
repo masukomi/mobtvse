@@ -82,6 +82,15 @@ class PostTest < ActiveSupport::TestCase
 		p.posted_at = 4.day.from_now
 		assert_equal false, p.external?, "future posts should not be 'external'"
 	end
+	test "ensure_url" do
+		#I'm not entirely sure HOW this situtation arises but 
+		# ensure_url guarantees it doesn't persist
+		p = Post.new({:title => 'this is a title', :draft=>false})
+		#it's going to have an url.
+		p.url = nil
+		p.save()
+		assert_equal false, p.url.nil?, "saved posted post doesn't have url"
+	end
 	test "future" do 
 		p = Post.new({:title => 'this is a title'})
 		assert_equal false, p.future?, "A post with no posted_at was incorrectly marked as future" 

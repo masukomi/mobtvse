@@ -33,7 +33,7 @@ class Post
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true
   #acts_as_url :title, :url_attribute => :slug
-  before_validation :slug_from_title, :update_posted_at
+  before_validation :slug_from_title, :update_posted_at, :ensure_url
     # You can't call before_save on a field that is part of 
     # the validations
 
@@ -64,6 +64,11 @@ class Post
       self.posted_at = DateTime.now
     end
   end 
+  def ensure_url()
+    if (! draft and ! url)
+      self.url =  self.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
+    end
+  end
 
 
   # NOTE: 
