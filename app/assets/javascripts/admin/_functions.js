@@ -363,8 +363,8 @@ function setPageInput(page) {
 
 function updatePageButton(page) {
   fn.log(page);
-  if (page) el.page.html('Static Page').addClass('entypo-empty-doc').removeClass('entypo-written-doc');
-  else       el.page.html('Blog Post').removeClass('entypo-empty-doc').addClass('entypo-written-doc');
+  if (page) el.page.html('Static Page').addClass('icon-file').removeClass('icon-comment-alt');
+  else       el.page.html('Blog Post').removeClass('icon-file').addClass('icon-comment-alt');
 }
 
 

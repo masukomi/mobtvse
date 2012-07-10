@@ -15,8 +15,8 @@
 						= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
 						= link_to 'Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
 						= link_to 'Images', '#', :class=>'icon-picture', :onclick=>"toggleSubMenus('#menu-images'); return false;"
-						= link_to 'Tags', '#', :class=>'entypo-tag', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
-						= link_to 'Page', '#', :id => 'page-button', :class => 'entypo-written-doc wide_button', :onClick=>"return false; return false;"
+						= link_to 'Tags', '#', :class=>'icon-tag', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
+						= link_to 'Page', '#', :id => 'page-button', :class => 'icon-comment-alt wide_button', :onClick=>"return false; return false;"
 						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit medium_button', :onClick=>"return false;"
 						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
 					.sub_menus.transparent_to_admin_bar_color
