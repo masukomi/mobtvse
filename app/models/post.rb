@@ -36,6 +36,7 @@ class Post
   before_validation :slug_from_title, :update_posted_at, :ensure_url
     # You can't call before_save on a field that is part of 
     # the validations
+  after_destroy :update_tags_index
 
   class << self
     #TODO rewrite these when we switch to mongoid 3.x 
@@ -68,6 +69,10 @@ class Post
     if (! draft and ! url)
       self.url =  self.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', slug.to_url)
     end
+  end
+
+  def update_tags_index
+    Post.save_tags_index!
   end
 
 
