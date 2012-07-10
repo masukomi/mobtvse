@@ -106,7 +106,7 @@ class PostsController < ApplicationController
       all_published = Post.any_in({:tags_array => [params[:tag]]}).descending(:posted_at).entries
       #BUG, this will currently include static pages
     end
-    @tags = Post.tags #Post.tags_with_weight returns [['foo', 2],['bar', 1],['baz', 3]]
+    @tags = Post.published_tags #Post.tags_with_weight returns [['foo', 2],['bar', 1],['baz', 3]]
     @published = Kaminari.paginate_array(all_published).page(params[:post_page]).per(20)
     @drafts = Kaminari.paginate_array(Post.where(:draft=>true).entries).page(params[:draft_page]).per(20)
       # @drafts includes unpublished pages
@@ -214,8 +214,12 @@ logger.debug("NO SLUG + ADMIN")
   end
 
   def destroy
-    @post = Post.first(conditions: {id: params[:id]})
-    @post.destroy
+    @post = Post.first(conditions: {_id: params[:id]})
+    if (@post)
+      @post.destroy
+    else
+      logger.warn("couldn't find post '#{params[:id]}' for deletion")
+    end
 
     respond_to do |format|
       format.html { redirect_to '/admin' }
