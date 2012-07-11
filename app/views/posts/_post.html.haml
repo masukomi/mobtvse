@@ -43,7 +43,12 @@
 								Posted 
 								= post.posted_at.to_formatted_s(:day_month_year)
 								-if is_admin? and @single_post and not @preview
-									.admin_action.sans_serif= link_to 'Edit', '/edit/' + post.id.to_s
+									.admin_action.sans_serif
+										- if post.external?
+											= link_to 'Tweet it', "http://twitter.com/home?status=New%20blog%20post:%20#{permalink_path_for(post, true)}", {:class => 'icon-twitter', :alt=>"tweet a link to this post", :title=>"tweet a link to this post", :target=>'twitter'}
+										%br
+										= link_to 'Edit', '/edit/' + post.id.to_s
+
 							- if CONFIG['use_kudos'] and not post.page
 								= render :partial => "kudos", :locals=>{:post => post}
 						-#
