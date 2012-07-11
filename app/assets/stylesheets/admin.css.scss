@@ -9,9 +9,18 @@ ul.admin_header_nav li{
 }
 
 /* these need to be moved to a common file */
-.nobr  { white-space:nowrap; }
 .default_cursor { cursor:default;}
 a.default_cursor { cursor:default;}
+.nobr  { white-space:nowrap; }
+.block{
+	display: inline-block;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
 .center_container{
 	float: left;
 	position: relative;

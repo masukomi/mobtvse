@@ -66,6 +66,9 @@ ul.tags_list li:last-child:after{
   width: 100%;
   /*overflow: hidden;*/
 
+  .sharing{
+    margin-left: 2em;
+  }
   #fade {
     pointer-events: none;
     position: fixed;
