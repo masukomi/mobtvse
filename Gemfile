@@ -8,7 +8,7 @@ gem 'rake'
 gem 'mongo', '~>1.5.2'
 gem 'bson', '~>1.5.2'
 gem 'bson_ext', '~>1.5.2'
-gem "mongoid", "~> 2.3.4"
+gem "mongoid", "~> 2.4.11"
 gem 'mongoid_rails_migrations'
 gem "mongo_session_store-rails3"
 
@@ -19,11 +19,16 @@ gem "haml-rails", '~> 0.3.4'
 
 # Misc libraries
 # gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
+gem 'bourbon', '~> 2.0.0.rc1'
 gem 'stringex', '~> 1', :git => 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
 
 #gem 'mongoid_taggable', git: 'git://github.com/ches/mongoid_taggable.git'
 gem 'mongoid_taggable', :git => 'git://github.com/wilkerlucio/mongoid_taggable.git', :ref => '1cbdd5cb22ab3e75626677bac64e3b3c7ceca553'
+
+gem 'aws-s3', '~>0.6.3', :require => 'aws/s3'
+
+gem "unidecode", "~> 1.0.0"
 
 gem 'thin', '~> 1'
 group :production do

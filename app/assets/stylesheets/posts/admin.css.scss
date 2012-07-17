@@ -1,0 +1,293 @@
+@import "bourbon";
+
+/*    COLORS    */
+
+$body-bg: #fff;
+$body-inner-shadow: #eee;
+$text-color: #222;
+$a-color: #000;
+$theme: #b92c2c;
+$selection-color: #fff;
+
+
+/*    ADMIN COLORS    */
+
+::selection, ::-moz-selection {
+  background: $theme;
+  color: $selection-color;
+}
+
+
+div.tags_list{
+	/*margin-top: 1rem;*/
+}
+dl,
+menu,
+ol,
+ul {
+    margin: 0 0 0 0;
+}
+ul.tags_list {
+	display: inline-block;
+	list-style: none;
+	margin-left: 0.5em;
+}
+ul.tags_list li {
+	display: inline-block;
+}
+ul.tags_list li:before{
+	content:"#";
+}
+ul.tags_list li:after{
+	content:",";
+}
+ul.tags_list li:last-child:after{
+	display:none;
+}
+
+#admin h1 {
+	margin-bottom: 0px;
+}
+
+#drafts > ul > li > h3,
+#published > ul > li > h3 {
+	margin: 0 0 0 0 ;
+}
+
+.entypo {
+	display: inline-block;
+}
+
+
+
+#admin {
+  background: #fff;
+  position: absolute;
+  width: 100%;
+  /*overflow: hidden;*/
+
+  .sharing{
+    margin-left: 2em;
+  }
+  #fade {
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+
+  /* fade to white */
+  #fade:before,
+  #fade:after {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    height: 1.5em;
+    width: 100%;
+    pointer-events: none;
+    background-image: -webkit-gradient( linear, left top, left bottom, from(
+        rgba(255, 255, 255, 1)), to(
+        rgba(255, 255, 255, 0))
+      );
+    background-image: -moz-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+  }
+
+  #fade:after {
+    top: auto;
+    bottom: 0 ;
+    background-image: -webkit-gradient( linear, left bottom, left top, from(
+        rgba(255, 255, 255, 1)), to(
+        rgba(255, 255, 255, 0))
+      );
+    background-image: -moz-linear-gradient(
+        to top,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+  }
+
+  fieldset.markdown {
+    position: relative;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /*#save-button {display:none;}*/
+  #tags textarea{
+    width: 100%;
+    height: 4rem;
+  }
+  #posts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 86px;
+  }
+
+  &.editing {
+    #content-fieldset {
+      visibility: visible;
+    }
+
+    #posts {
+      visibility: hidden;
+      position: fixed;
+    }
+
+    #bar {
+      visibility: visible;
+    }
+
+    #save-button {
+      background: #fff;
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      border: none;
+      @include border-radius(8px);
+
+      &.dirty, &:hover {background:#efb66c;}
+      &.saving {background:#ccc;}
+      &.saved {background:#76be6a;}
+    }
+  }
+
+  .contain {
+    margin: 0 auto;
+  }
+
+  .col {
+    width: 50%;
+    float: left;
+    padding: 0;
+    @include box-sizing(border-box);
+
+    &.active {
+    }
+
+    h2 {
+      font-size: 16px;
+      padding: 5px 0;
+      margin: 0 0 10px 0;
+      color: #999;
+      text-transform: uppercase;
+      display: inline-block;
+      border-bottom: 1px solid #eee;
+    }
+
+    ul {
+      margin: 0 16px 0 0;
+      padding: 0 0 20px 0;
+      list-style: none;
+      /*overflow: scroll;*/
+      @include box-sizing(border-box);
+
+      li {
+        position: relative;
+        line-height: 1.2em;
+        text-overflow: ellipsis;
+        max-height: 3em;
+        @include transition(max-height .3s);
+
+        &#post-0 {
+          font-style: italic;
+        }
+
+        &.hidden {
+          max-height: 0;
+
+          a {
+            opacity: 0;
+            @include transition-delay(0s);
+          }
+        }
+
+        &.selected a {
+          font-weight: bold;
+          position: relative;
+          color: #000;
+        }
+
+        &:hover .links {
+          visibility: visible;
+        }
+
+        a {
+          margin: 0;
+          font-size: 13px;
+          max-width: 100%;
+          text-overflow: ellipsis;
+          border: none;
+          display: block;
+          color: #999;
+          padding: 8px 0;
+          @include transition(opacity .2s);
+          @include transition-delay(.03s);
+
+          &:hover {color: $theme;}
+        }
+      }
+    }
+  }
+
+  textarea,pre {
+    margin: -3px 0; /* not sure why but prevents a slight scroll on multiline titles */
+    padding: 3px 0;
+    outline: 0;
+    border: 0;
+  }
+
+  .expandingArea {
+    position: relative;
+  }
+
+  .expandingArea > textarea,
+  .expandingArea > pre {
+    background: transparent;
+    white-space: pre-wrap;
+  }
+
+  .expandingArea > textarea {
+    /* The border-box box model is used to allow
+     * padding whilst still keeping the overall width
+     * at exactly that of the containing element.
+     */
+    @include box-sizing(border-box);
+    width: 100%;
+    pointer-events: auto;
+  }
+
+  .expandingArea.active > textarea {
+    /* Hide any scrollbars */
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* for some reason a height of 100% gives to much extra below */
+    height: 80%; 
+    /* Remove WebKit user-resize widget */
+    resize: none;
+  }
+
+  .expandingArea > pre {
+    display: none;
+  }
+
+  .expandingArea.active > pre {
+    display: block;
+    /* Hide the text; just using it for sizing */
+    visibility: hidden;
+  }
+}
+

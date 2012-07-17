@@ -1,10 +1,5 @@
 #MObtvse's ToDo list: 
 
-## Add support for Pages
-Pages would be created in a similar fashion to posts but live outside of the date hierarchy. For example, an "About Page".
-
-## Add an Archives Page
-Add a page that provides a nice starting point for accessing your past posts. More than a simple listing of titles by date, this should be broken down into discreen sections, with a tag cloud, and the ability to highlight posts that have received the most Kudos.
 
 ## Mixpanel Integration
 Let's go beyond just tagging the pages with a simple Mixpanel tracking code. When viewing a page in the admin section each post should  have pre-generated links with query strings that will allow users to track things like how many people came from posting about an article on Twitter vs. Facebook vs. Google+. This will require not only a custom link, generation but custom JS to convert those links into the appropriate Mixpanel calls. 
@@ -12,10 +7,6 @@ Let's go beyond just tagging the pages with a simple Mixpanel tracking code. Whe
 ## Static HTML Generation Support
 Let's face it. Nothing beats the speed or scalability of raw HTML when it comes to hosting a web site. It's good for SEO and it's better when you get linked to by sites like Reddit and HackerNews. MObtvse should either generate static HTML or have an easy API that would allow a chron script on a remote server to easily pull down the changed files. In the latter scenario MObtvse would be acting in an admin only capacity and probably should allow admins to disable the public facing pages. We may come up with better solutions. 
 
-## Image uploader / linker
-It's almost as if the existing Markdown blogging tools *hate* images. We should be able to upload an image that is associated with a post. If stored locally it should be placed in a dated directory hierarchy (e.g. 2012/04/30/great_cat_pic.jpg). Similarly we should offer simple integration with the various image hosting services like Flickr and SmugMug.  When you view a post in the admin screen you should see a list of the images associated with it and be able to drag those images into the post. Upon doing so the appropriate Markdown image tag would be generated for you in that location. 
-
-Notes: Uploading of images to S3 is in development in Obtvse. As soon as this feature is ready we'll be porting it over.
 
 ## That great idea of yours
 Got some cool functionality you'd like to see in a Markdown based blog? Fork this project on Github and start hacking. There are tons of great, and useful features that have been around for years in tools like WordPress. Markdown users shouldn't have to live without good features too.

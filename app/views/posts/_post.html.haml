@@ -1,26 +1,16 @@
 / BEGIN _post.html.haml
 %div
 	%article.hentry{:id=>"post-#{post.id}", :role=>"article"}
-		-unless @no_header
-
-		-else
-			/ no_header
 		.row
 			.ninecol
-				.row
+				%div
 					.twelvencol.last
 						.post_heading
 							-if post.external?
-								-if @single_post
-									%h1= link_to post.title, post.url
-								-else
-									%h1= link_to post.title, post.url
+								%h1= link_to post.title, permalink_path_for(post, true)
 							-else
-								-if @single_post
-									%h1= post.title
-								-else
-									%h1= link_to post.title, post.slug
-				.row
+								%h1= link_to post.title, permalink_path_for(post, false)
+				%div
 					.twelvecol.last
 						.entry-content
 							- if post.content
@@ -31,8 +21,8 @@
 									Tags:
 									%ul.tags_list
 										-post.tags_array.each do |t|
-											%li=link_to t, {:controller=>:posts, :action=>:index, :tag=>t}
-							- if CONFIG['disqus_enabled'] and post.comments_enabled?
+											%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
+							- if CONFIG['disqus_enabled'] and not localhost? and @single_post and post.comments_enabled? and not post.draft?
 								.comments_section
 									%h1
 										Comments
@@ -53,8 +43,13 @@
 								Posted 
 								= post.posted_at.to_formatted_s(:day_month_year)
 								-if is_admin? and @single_post and not @preview
-									.admin_action.sans_serif= link_to 'Edit', '/edit/' + post.id.to_s
-							- if CONFIG['use_kudos']
+									.admin_action.sans_serif
+										- if post.external?
+											= link_to 'Tweet it', "http://twitter.com/home?status=New%20blog%20post:%20#{permalink_path_for(post, true)}", {:class => 'icon-twitter', :alt=>"tweet a link to this post", :title=>"tweet a link to this post", :target=>'twitter'}
+										%br
+										= link_to 'Edit', '/edit/' + post.id.to_s
+
+							- if CONFIG['use_kudos'] and not post.page
 								= render :partial => "kudos", :locals=>{:post => post}
 						-#
 							Otherwise something is just damn weird

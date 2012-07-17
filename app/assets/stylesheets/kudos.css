@@ -209,10 +209,10 @@ a.kudos.completed div.circle div.filled{
 	margin-right: 0.5em;
 }
 .mini_kudos_many{
-	border-bottom: solid 2px #33CC33;
+	/*border-bottom: solid 2px #33CC33;*/
 }
 .mini_kudos_few{
-	border-bottom: solid 2px #9999FF;
+	/*border-bottom: solid 2px #9999FF;*/
 }
 .mini_kudos_circular{
 	/* not quite ready for prime time */

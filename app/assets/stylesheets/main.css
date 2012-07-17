@@ -1,32 +1,28 @@
 body {
 	background: #FFF ! important;
 }
-
+@-ms-viewport { width: device-width; }
+  /* Dear MS, please stop screwing us. */
 
 /* FONTS */
 
 .post_heading,
-.header,
 .sans_serif {
-	/*font-family: 'DroidSansRegular';
-	font-family: 'CardoBold';*/
-	font-family: 'Cagliostro', sans-serif;
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 .serif{
-	/*font-family: 'PolyRegular';
-	font-family: 'CardoRegular';*/
-}
-.serif{
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 i.serif,
 em.serif {
-	/*font-family: 'PolyItalic';
-	font-family: 'CardoItalic';*/
+	/* nothing special */
 }
 body{
 	font-size: 16px;
-	/*font-family: 'PT Sans Caption', sans-serif;*/
-	font-family: 'Muli', sans-serif;
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 /* END FONTS */
 
@@ -37,24 +33,40 @@ body{
 .right {
 	float:right;
 }
+.center_container{
+	float: left;
+	position: relative;
+	left: 50%;
+}
+.center{
+	float: left;
+	position: relative;
+	left: -50%;
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	color: #2E3D4C;
-	/*font-family: 'CardoBold';*/
-	font-family: 'Cagliostro', sans-serif;
-
+	color: #333;
+	margin-top: 0.6rem;
+	font-weight: normal;
 }
+.header,
+.header h1,
+.header h2,
+.header h3 {
+	margin-top: 0px;
+}
+
 h1 a,
 h2 a,
 h3 a,
 h4 a,
 h5 a,
 h6 a{
-	color: #2E3D4C;
+	color: #333;
 	text-decoration: underline;
 	line-height: inherit;
 	-moz-transition:color 0.3s;
@@ -80,7 +92,19 @@ h3 a:visited,
 h4 a:visited,
 h5 a:visited,
 h6 a:visited{
+	color: #333;
+}
+h1 a:visited:hover,
+h2 a:visited:hover,
+h3 a:visited:hover,
+h4 a:visited:hover,
+h5 a:visited:hover,
+h6 a:visited:hover{
 	color: #751590;
+}
+.header a:visited:hover,
+.header a:hover {
+    color: #FFF;
 }
 
 .callout {
@@ -172,14 +196,24 @@ div#content ul.tags_list li:last-child:after{
 	display:none;
 }
 
+ul.tagged_post_list > li {
+  list-style-type: none;
+  border-bottom: solid 1px #DDD;
+}
 
 
+.last_main_nav_column{
+	height: 71px;
+	/* the line height of the social icons 
+	throws off the height of the row */
+}
 /* main navigation */
 ul.main-navigation {
 	padding-top: 0.5em;
 	padding-bottom: 0.35em;
 }
-ul.main-navigation li {
+ul.main-navigation li,
+ul.pages_list li{
 	margin: 0;
 	display: inline;
 	list-style-type: none;
@@ -199,6 +233,29 @@ ul.main-navigation li a {
 }
 #main_nav_right:first-child{
 	border-left: none;
+}
+.header #main_nav_right a.entypo{
+	font-size: 240%;
+	position: relative;
+	top: 6px;
+	border-left: none;
+}
+.header .name_link{
+	border-left: none;
+}
+/* pages list */
+.pages_list {
+	color: #777;
+}
+.pages_list_container_container{
+	margin-right: 88px;
+}
+.pages_list_container{
+	float: right;
+}
+ul.pages_list{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 /* sidebar */
 .sidebar ul {
@@ -226,16 +283,16 @@ h1#heading {
 	margin-bottom: 0.25em;
 }
 .header {
-	background-color: #8ca0ab;
-	/*padding-bottom: 1em;*/
-	margin-bottom: 0.75rem;
+	background: #556270; /* Old browsers */
+
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 h3.tagline,
 .header a {
-	color: #DDD;
+	color: #e5e6e8;
 	text-decoration: none;
 	-moz-transition:color 0.3s;
 	-webkit-transition:color 0.3s;
@@ -243,7 +300,7 @@ h3.tagline,
 	transition:color 0.3s;
 }
 .header a:visited {
-	color: #DDD;
+	color: #e5e6e8;
 }
 .header a:hover {
 	color: #FFF;

@@ -34,4 +34,10 @@ Obtvse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.after_initialize { AWS::S3::Base.establish_connection!(
+      :access_key_id     => CONFIG['s3']['access_key_id'],
+      :secret_access_key => CONFIG['s3']['secret_access_key']
+    )
+  }
 end

@@ -1,21 +1,31 @@
 / BEGIN admin.html.haml
 .content
 	.row.admin_content
-		.sixcol
+		.onecol
+			// just a gutter
+		.fivecol
 			#drafts
 				%h1 
 					Drafts 
 					= link_to 'New Draft', '/new', :class => 'button'
-				= form_for @post do |f| 
+				= form_for @placeholder_post do |f| 
 					= f.text_field :title, :placeholder => 'Start typing your title here...' 
 				%ul
 					= render :partial => 'li', :collection => @drafts
+				%h1
+					Live Static Pages
+				%ul
+					= render :partial => 'li', :collection => @pages
 				-# = paginate @drafts, :param_name => "draft_page" 
-		.sixcol.last
+		.fivecol
 			#published
-				%h2
+				%h1
 					Published 
-					= link_to 'Home', root_url, :class => 'button'
+				%div
+					Show 
+					=link_to("the loved", '/admin/?by_kudos=true')
+					\/
+					=link_to("all", '/admin/')
 				.tags_list
 					-if @tags.size > 0
 						%ul.tags_list
@@ -25,10 +35,11 @@
 								%li=link_to('All Tags', {:controller=>:posts, :action=>:admin})
 							-@tags.each do |t|
 								-if params[:tag] == t
-									%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
+									%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t.sub(' ', '%20')}
 								-else
 									%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
 				%ul
 					= render :partial => 'li', :collection => @published
 				= paginate @published , :param_name => "post_page" 
+		.onecol.last
 / END admin.html.haml

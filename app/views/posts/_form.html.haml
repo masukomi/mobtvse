@@ -1,68 +1,109 @@
 / BEGIN _form.html.haml
 .content
-	= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts} do |f|
+	= form_for @post, :url =>  {:action=> (@post.created_at ? :update : :create), :controller=>:posts}, :html => {:id => "post_form"} do |f|
 		-if @post.created_at
 			%input{:type=>"hidden", :name=>"id", :value=>@post.id}
 		.row
+			.onecol
+				/ empty
+			.elevencol.last
+				.button_bar
+					.buttons
+
+						= link_to ' Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
+						= link_to ' Preview', "/posts/#{@post.id}", :id => 'preview-button', :class => 'icon-eye-open', :target=>"#{@post.id}_preview"
+						= link_to ' Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
+						= link_to ' Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
+						= link_to ' Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
+						= link_to ' Images', '#', :class=>'icon-picture', :onclick=>"toggleSubMenus('#menu-images'); return false;"
+						= link_to ' Tags', '#', :class=>'entypo-tag', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
+						= link_to ' Page', '#', :id => 'page-button', :class => 'entypo-written-doc wide_button', :onClick=>"return false; return false;"
+						= link_to ' Draft', '#', :id => 'publish-button', :class => 'icon-edit medium_button', :onClick=>"return false;"
+						= link_to ' Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
+					.sub_menus.transparent_to_admin_bar_color
+						.sub_menu.transparent_to_admin_bar_color#menu-date
+							%ul#date
+								%li
+									= f.label :posted_at, 'Published Date'
+									= f.datetime_select('posted_at', :order=>[:year, :month, :day], :include_blank=>true)
+						.sub_menu#menu-info
+							%ul#info
+								%li
+									= f.label :slug, 'Permalink'
+									= f.text_field :slug, :placeholder => 'Leave blank to automatically generate'
+								%li
+									= f.label :url, 'External URL'
+									= f.text_field :url, :placeholder => 'Optional'
+								%li.meta_description
+									= f.label :meta_description, 'meta-description'
+									%div#description_counter 156
+									%br
+									= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
+								%li
+									%label
+										Wordcount
+									%span#wordcount
+						.sub_menu#menu-images
+							%ul.images_in_month#images
+								- images = @current_month.images
+								- if images.size > 0
+									- images.each do |image|
+										%li.nobr
+											= "![#{image.title.nil? ? image.filename : image.title}](#{image.url.html_safe})".html_safe
+								- else
+									%li No images uploaded this month.
+								%li
+									%br
+									= link_to 'View All Images', "/images?#{@current_month.start.year}_#{@current_month.start.month}", :confirm=>"Navigate away? Unsaved changes will be lost."
+						.sub_menu#menu-tags
+							#tag_container
+								%label Tags:
+								%fieldset.tags
+									#tags
+										= f.text_area :tags, :placeholder => 'Add comma separated tags here'
+						/
+							.sub_menu#menu-history
+								= link_to 'History', '#history', :class => 'icon-list',  :onclick=>"$('#history').toggle();"
+								%ul#history
+									%li= f.label :url, 'History'
+									%li= link_to 'Version 3', '#'
+									%li= link_to 'Version 2', '#'
+									%li= link_to 'Version 1', '#'
+						.hide
+							= f.check_box :draft
+							= f.check_box :page
+		.row
 			.threecol
-				/nothing here for now
+				/ empty
 			.sixcol
-				#split
-					.split-section#post-editor
+				.split-section#post-editor
+					.inner
 						- if @post.errors.any?
 							.notice
 								- @post.errors.full_messages.each do |msg|
 									= msg
-						-if @post.slug and @post.permalinkable?
-							%a.permalink{:href=>"#{permalink_path_for(@post)}", :target=>'_blank'}⚓
-						.expandingArea#text-title
-							%pre
-								%span
-								%br
-							= f.text_area :title, :rows => 1, :placeholder => 'Title here'
-						%fieldset.markdown
-							.expandingArea#text-content
+						#text-title.expandingArea
+							/
 								%pre
 									%span
 									%br
-								= f.text_area :content, :placeholder => 'Write post here'
-					.split-section#post-preview
+							=f.text_area :title, :rows => 2, :placeholder => 'Enter your idea...'
+						%fieldset#content-fieldset.markdown
+							#text-content.expandingArea
+								%pre
+									%span
+									%br
+								= f.text_area :content, :placeholder => 'Write post here', :class => 'faded'
+							%pre#line-height.goaway
+								Test text
+				
+
+				#post-preview.split-section
+					.inner
+
+			/ begin right section
 			.threecol.last
-				#tag_container
-					Tags:
-					%fieldset.tags
-						.expandingArea#tags
-							%pre
-								%span
-								%br
-							= f.text_area :tags, :placeholder => 'Add comma separated tags here'
-		.row
-			.twelvecol.last
-				#publish-bar-hover
-					#publish-bar
-						.row
-							.sixcol
-								.left
-									=link_to('Admin', '/admin')
-									= link_to 'Delete',  "/posts/#{@post.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'delete-bar'
-									= link_to 'Options', '#options', :class => 'menu'
-									%ul.sub-menu#options
-										%li
-											= f.label :url, 'Slug'
-											= f.text_field :slug, :placeholder => 'Leave blank to automatically generate' 
-										%li
-											= f.label :url, 'URL'
-											= f.text_field :url, :placeholder => 'Optional external link'
-										%li.meta_description
-											= f.label :meta_description, 'meta-description'
-											%div#description_counter 156
-											%br
-											= f.text_area :meta_description, :placeholder => 'Optional meta-description content', :onkeyup=>"countChar(this)"
-											
-							.sixcol.last
-								.nobr
-									= f.label :draft
-									= f.check_box :draft
-									= f.submit 'Preview', :id => 'preview-button', :preview => true, :target => "_blank"
-									= f.submit 'Save', :id => 'save-button'
+
+%button.animated#save-button
+
 / END _form.html.haml

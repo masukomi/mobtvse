@@ -14,5 +14,61 @@
 .entypo{
 	font-family: 'EntypoRegular';
 	font-size: 320%;
+	text-transform: none;
+	cursor: default;
+}
+a.entypo{
+	cursor: pointer;
+	cursor: hand;
 }
 
+a.entypo_admin{
+	font-size: 320%;
+}
+[class^="entypo-"]:before, [class*=" entypo-"]:before {
+  font-family: EntypoRegular;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  text-decoration: inherit;
+  font-size: 54px;
+  position: relative;
+  bottom: 10px;
+}
+a [class^="entypo-"], a [class*=" entypo-"] {
+  display: inline-block;
+  text-decoration: inherit;
+}
+/* makes the font 33% larger relative to the icon container */
+.entypo-large:before {
+  vertical-align: top;
+  font-size: 1.3333333333333333em;
+}
+.btn [class^="entypo-"], .btn [class*=" entypo-"] {
+  /* keeps button heights with and without icons the same */
+  line-height: .9em;
+}
+li [class^="entypo-"], li [class*=" entypo-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+li .entypo-large[class^="entypo-"], li .entypo-large[class*=" entypo-"] {
+  /* 1.5 increased font size for entypo-large * 1.25 width */
+  width: 1.875em;
+}
+li[class^="entypo-"], li[class*=" entypo-"] {
+  margin-left: 0;
+  list-style-type: none;
+}
+[class^="entypo-"]:before, [class*=" entypo-"]:before {
+  text-align: center;
+}
+li[class^="entypo-"].entypo-large:before, li[class*=" entypo-"].entypo-large:before {
+  text-indent: -1.3333333333333333em;
+}
+
+
+.entypo-written-doc:before{content: "l";}
+.entypo-empty-doc:before{content: "m";}
+.entypo-tag:before{content: "C";}

@@ -1,0 +1,19 @@
+#image_preview image{
+	width: 75%;
+	height: auto;
+	border: solid 2px #BBB;
+	margin-left: auto;
+	margin-right: auto;
+}
+.image_upload{
+	margin-bottom: 1em;
+	border-bottom: solid 1px #BBB;
+}
+ul.images_in_month li{
+	list-style-type: none;
+}
+.delete_icon{
+	position: relative;
+	top: 6px;
+	margin-right: 10px;
+}

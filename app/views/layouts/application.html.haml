@@ -4,17 +4,10 @@
 	%head
 		%title= html_title yield(:title)
 		= csrf_meta_tag
-		=javascript_include_tag 'jquery-1.7.2.min'
-		=javascript_include_tag 'jquery.cookie'
-		=javascript_include_tag 'css3-mediaqueries'
-		- if CONFIG['use_kudos']
-			=stylesheet_link_tag 'kudos'
-		=stylesheet_link_tag '1140'
-		=stylesheet_link_tag 'ie'
-		=stylesheet_link_tag 'main'
-		=stylesheet_link_tag 'socialicons'
-		=stylesheet_link_tag 'screen'
-		=stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Cagliostro|Muli:400,400italic'
+		=javascript_include_tag "application"
+		=stylesheet_link_tag "application"
+		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css")
+		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js")
 		-if @meta_description || CONFIG['meta_description']
 			%meta{:name=>'description', :content=>"#{@meta_description || CONFIG['meta_description']}"}
 		%meta{ :name=>"author", :content=>"#{CONFIG['name'] }"}
@@ -29,7 +22,7 @@
 		-if CONFIG['me_link']
 			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
 		
-		%link{ :href=>"/posts.rss", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+		%link{ :href=>"/atom.xml", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
@@ -47,20 +40,21 @@
 							%h3.tagline=CONFIG['tagline']
 				/ END heading row
 				/ BEGIN navigation
-				.fourcol.last
+				.fourcol.last.last_main_nav_column
 					%ul.main-navigation
 						%li
 							#main_nav_right.nobr
+								- if @pages and @pages.size() > 0
+									-@pages.each do |p|
+										=link_to p.title, permalink_path_for(p)
 								%span.emphasized
-									-if CONFIG['about_url']
-										=link_to CONFIG['name'], CONFIG['about_url']
-									-else
-										=CONFIG['name']
+								=link_to '', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'icon-calendar icon-large'}
+								/=link_to 'Archive', '/archive'
 								- if CONFIG['twitter']
-									=link_to '&#76;'.html_safe, 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"socialicon twitter_link"}
+									=link_to '', 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"icon-twitter icon-large"}
 								- if CONFIG['facebook_id']
-									=link_to '&#70;'.html_safe, "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Twitter", :alt=>"Facebook", :class=>"socialicon facebook_link"}
-								=link_to '&#82;'.html_safe, '/posts.rss', {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
+									=link_to '', "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"icon-facebook icon-large"}
+								=link_to '', "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"icon-rss icon-large", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
 		.container
@@ -100,17 +94,12 @@
 							%br
 							#mobtvse_icon
 
-		= javascript_include_tag 'application'
 
-		- if CONFIG['google_analytics_id']
+		- if CONFIG['google_analytics_id'] and not localhost?
 			/ Google Analytics
 			:javascript
 				var _gaq=[['_setAccount','#{ CONFIG['google_analytics_id'] }'],['_trackPageview']];
 				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g,s)}(document,'script'));
-		=javascript_include_tag 'jquery.cookie'
-		=javascript_include_tag 'css3-mediaqueries'
-		- if CONFIG['use_kudos']
-			=javascript_include_tag 'kudos'
 / END application.html.haml

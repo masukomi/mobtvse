@@ -5,11 +5,13 @@ A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and b
 ## Notable differences from Obvtse
 ### Current
 
-* MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
+* Image uploads via Amazon's S3 service (requires an S3 account)
+* Pages support (additional info pages like "About" that exist outside of your timeline)
 * Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
 * [Disqus](http://disqus.com) integration for great comment functionality.
 * [Haml](http://haml-lang.com/) (partially implemented)
 * Svbtle-style Kudos
+* MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
 
 ### Planned
 The goal is to add support for:
@@ -17,10 +19,9 @@ The goal is to add support for:
 * Generation of static html files for fast serving, or tools for making that easily implementable.
 * [Mixpanel](http://mixpanel.com/)
 * Static File generation
-* Image Uploads
 * Great features that HTML based blogging platforms like Wordpress have had for years.
 
-See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/master/ToDo.mkdn).
+See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/experimental/ToDo.mkdn).
 
 Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse, MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
 
@@ -43,7 +44,7 @@ Installation
 If you are new to Rails development, check out guides for getting your development environment set up for [Mac](http://astonj.com/tech/setting-up-a-ruby-dev-enviroment-on-lion/) and [Windows](http://jelaniharris.com/2011/installing-ruby-on-rails-3-in-windows/).
 
     git clone git://github.com/masukomi/mobtvse.git
-    cd obtvse
+    cd mobtvse
     bundle install
 
 Edit `config/config.yml` to set up your site information.  To set up your admin username and password you will need to set your environment variables (see below) or store them in the config.yml. 
@@ -76,6 +77,12 @@ In production you will want to set the following environment variables:
 * `MONGOID_DATABASE`
 
 You can set these up in your `.bashrc` file or just copy, and edit, the relevant section of `script/heroku_env.sh`
+
+Importing from Octopress or Jekyll
+==================================
+MObtvse can import your posts from Octopress and Jekyll. If you've configured S3 
+support it can also upload all of your images to it, and rewrite the image urls in 
+your posts when appropriate. See [the migration doc](https://github.com/masukomi/mobtvse/blob/experimental/migrating.mkdn) for details. 
 
 Support:
 ==========================

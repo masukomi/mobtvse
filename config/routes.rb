@@ -7,10 +7,16 @@ Obtvse::Application.routes.draw do
   calculate_posts_view_route(CONFIG['post_url_style'])
   resources :posts
   match '/admin', :to => 'posts#admin'
+  match '/get/:id', :to => 'posts#get'
   match '/new', :to => 'posts#new'
   match '/edit/:id', :to => 'posts#edit'
   post '/preview', :to => 'posts#preview'
   put '/preview', :to => 'posts#preview'
+  get '/archive', :to => 'posts#archive'
+  get '/atom.xml', :to => 'posts#atom', :defaults => { :format => 'atom' }
+  match '/feed' => 'posts#atom', :defaults => { :format => 'atom' }
+  match '/images(/:action(/:id(.:format)))', :controller=>:images
+    # need to do that before the slug
   get "/:slug", :to => 'posts#show', :as => 'post'
   delete '/:slug', :to => 'posts#destroy', :as  => 'post'
   put '/:slug', :to => 'posts#update', :as  => 'post'

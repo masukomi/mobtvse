@@ -1,0 +1,65 @@
+/ BEGIN admin.html.haml
+%html
+	%head
+		%title
+			= yield(:title)
+			\- Admin
+		= csrf_meta_tag 
+		=javascript_include_tag 'css3-mediaqueries' 
+		= #stylesheet_link_tag 'application' 
+		=stylesheet_link_tag '1140' 
+		-if CONFIG['use_kudos'] 
+			=stylesheet_link_tag 'kudos' 
+		= stylesheet_link_tag 'normalize' 
+		= stylesheet_link_tag 'embed' 
+		/= stylesheet_link_tag 'posts' 
+		= stylesheet_link_tag 'fonts/font-awesome' 
+		= stylesheet_link_tag 'admin'
+		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css") 
+		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js") 
+		- if @post or @placeholder_post 
+			:javascript
+				var post_data = #{(@post.nil? ? @placeholder_post : @post).to_json.html_safe} ;
+		%link{:href=>'http://fonts.googleapis.com/css?family=Lato:300,900', :rel=>'stylesheet', :type=>'text/css'}
+
+	%body.admin
+		.row
+			.twelvecol.last
+				%ul.admin_header_nav
+					%li
+						= link_to CONFIG['title'], root_url
+					%li
+						= link_to 'Admin', '/admin'
+					%li
+						= link_to 'Images', '/images'
+		-if flash[:error] or flash[:notice]
+			.row
+				.twelvecol.last
+					-if flash[:error]
+						.error
+							=flash[:error]
+					-if flash[:notice]
+						.notice
+							=flash[:notice]
+		#admin
+			= yield 
+		.modal#modal
+			.modal-header
+				.close{"data-dismiss".to_sym=>"modal"}
+					×
+				#modal-title
+			.modal-body
+				%p#modal-content
+			.modal-footer
+				%a.btn#btn-primary{:href=>"#"}
+					Close
+				%a.btn.btn-primary#btn-seconday{:href=>"#"}
+					Save changes
+		= javascript_include_tag 'admin' 
+		-if @post and params[:action]=='edit' 
+			:javascript
+				$(document).ready(function(){
+					setDraftInput(#{@post.draft});
+					setPageInput(#{@post.page});
+				})
+/ END admin.html.haml

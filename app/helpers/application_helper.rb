@@ -28,9 +28,21 @@ module ApplicationHelper
   	output.join
   end
 
-  def permalink_path_for(post)
-    raise "Can't permalink to drafts" unless post.permalinkable?
-    date_plus_slug = post.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', post.slug)
-    return "#{CONFIG['canonical_url']}#{date_plus_slug}"
+  def permalink_path_for(post, include_domain=true)
+	if post.permalinkable?
+		if not post.page?
+			date_plus_slug = post.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', post.slug)
+			return "#{ include_domain ? CONFIG['canonical_url'] : ''}#{date_plus_slug}"
+		else
+			return post.slug
+		end
+	else
+    	logger.error("Can't permalink to drafts (post #{post.id})")
+		return "#" 
+		# it's the only valid url we can return without blowing up
+	end
+  end
+  def localhost?
+    return request.url.match(/localhost|0\.0\.0\.0|127\.0\.0\.1/) ? true : false
   end
 end

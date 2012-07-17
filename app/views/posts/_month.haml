@@ -1,0 +1,15 @@
+/ BEGIN _month.haml
+- posts = month.posts
+- if posts.size > 0
+	.month
+		%span.month_name
+			=month.start.strftime("%B %Y")
+		%ul.posts_in_month
+			-if posts.size > 0
+				-posts.each do |post|
+					%li
+						= link_to post.title, permalink_path_for(post)
+			-else
+				%li.postless_month
+					No posts this month
+/ END _month.haml

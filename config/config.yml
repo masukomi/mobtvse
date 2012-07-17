@@ -11,9 +11,10 @@ canonical_url:       http://example.com
 me_link:             http://www.google.com/profiles/my_google_username
 # OPTIONAL I can't find the docs anymore but google uses this 
 # to associate the owner of the blog up to their g+ and other assets.
-about_url:           http://example.com/about.html
-# OPTIONAL Got an about page that isn't part of your blog? 
-# Use this to link to it.
+posts_on_index:      5
+# The number of posts to display on your front page
+posts_in_feed:       20
+# The number of posts to include in your Atom feed
 use_kudos: true
 # set this to false if you don't want 
 # to give people the ability to tell you how awesome 
@@ -43,3 +44,12 @@ disqus_short_name:   disqus_short_name_here
 # Enter your disqus shortname
 disqus_developer: false
 # if you're testing disqus on localhost set this to true
+
+#### OPTIONAL Amazon S3
+# Currently required for image uploading
+# but not for linking to images already uploaded somewhere
+s3:
+  enabled: false
+  image_bucket_name: my_s3_bucket_name
+  access_key_id: ABCDEFGH12334GK1
+  secret_access_key: ABCDEFGHIJKLMNOPQRST132456789

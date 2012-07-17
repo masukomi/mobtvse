@@ -2,10 +2,12 @@
 - content_for(:title) { @post.title }
 - content_for(:page_title) { linked_title }
 
-= render @post
-- if @post.comments_enabled? 
-	%noscript
-		Please enable JavaScript to view the 
-		%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
-
+- if ! @post.future? or is_admin?
+	= render @post
+	- if @post.comments_enabled? 
+		%noscript
+			Please enable JavaScript to view the 
+			%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
+- else
+	=render 'denied_future'
 / END show.html.haml
