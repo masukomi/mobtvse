@@ -207,10 +207,15 @@ logger.debug("NO SLUG + ADMIN")
   end
 
   def update_kudo
-     @post = Post.find(params[:id])
-     @post.kudos +=1
-     @post.save()
-     render :nothing=>true
+    # if an admin futzes with the kudos on the page
+    # it will trigger the animation but not 
+    # actually update the count.
+    unless session[:admin] == true
+      @post = Post.find(params[:id])
+      @post.kudos +=1
+      @post.save()
+    end
+    render :nothing=>true
   end
 
   def destroy
