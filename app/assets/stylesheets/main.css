@@ -8,10 +8,12 @@ body {
 
 .post_heading,
 .sans_serif {
-    font-family: verdana, arial;
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 .serif{
-	font-family: palatino, 'times new roman', serif
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 i.serif,
 em.serif {
@@ -19,7 +21,8 @@ em.serif {
 }
 body{
 	font-size: 16px;
-	font-family: palatino, 'times new roman', serif
+    font-weight: normal;
+    font-family: 'Open Sans Condensed', Times New Roman, serif;
 }
 /* END FONTS */
 
@@ -48,6 +51,7 @@ h5,
 h6 {
 	color: #333;
 	margin-top: 0.6rem;
+	font-weight: normal;
 }
 .header,
 .header h1,
@@ -279,16 +283,16 @@ h1#heading {
 	margin-bottom: 0.25em;
 }
 .header {
-	background-color: #bbbbbb;
-	/*padding-bottom: 1em;*/
-	margin-bottom: 0.75rem;
+	background: #556270; /* Old browsers */
+
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 h3.tagline,
 .header a {
-	color: #777;
+	color: #e5e6e8;
 	text-decoration: none;
 	-moz-transition:color 0.3s;
 	-webkit-transition:color 0.3s;
@@ -296,7 +300,7 @@ h3.tagline,
 	transition:color 0.3s;
 }
 .header a:visited {
-	color: #555;
+	color: #e5e6e8;
 }
 .header a:hover {
 	color: #FFF;
