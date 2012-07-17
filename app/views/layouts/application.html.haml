@@ -44,6 +44,9 @@
 					%ul.main-navigation
 						%li
 							#main_nav_right.nobr
+								- if @pages and @pages.size() > 0
+									-@pages.each do |p|
+										=link_to p.title, permalink_path_for(p)
 								%span.emphasized
 								=link_to '', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'icon-calendar icon-large'}
 								/=link_to 'Archive', '/archive'
@@ -54,10 +57,6 @@
 								=link_to '', "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"icon-rss icon-large", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 			/ END navigation
 			/ BEGIN main content block
-			- if @pages and @pages.size() > 0
-				.row
-					.twelvecol.last
-						= render :partial => "pages_list"
 		.container
 			.row
 				.onecol
