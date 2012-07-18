@@ -45,4 +45,30 @@ module ApplicationHelper
   def localhost?
     return request.url.match(/localhost|0\.0\.0\.0|127\.0\.0\.1/) ? true : false
   end
+  def graph_kudos(posts, options = {:width=>'380px', :height=>'50px'})
+    options = {:include_internal=>true, :edit_link=>false}.merge(options) #override defaults
+    flexgraph_data = []
+    max_kudos = posts.max_by {|p| p.kudos }
+logger.debug("max_kudos.kudos: #{max_kudos.kudos}")
+    one_pct = max_kudos.kudos / 100
+    one_pct = 1 if one_pct < 1
+    posts.each do | post |
+      p_kudo_pct = ( post.kudos / one_pct)
+      link = nil
+      if (options[:edit_link])
+        link=edit_post_path(post.id)
+      else
+        if post.external? or options[:include_internal]
+          if ! post.draft?
+            link = permalink_path_for(post, false)
+          else
+            link = "/posts/#{post.id}"
+          end
+        end
+      end
+      flexgraph_data << [p_kudo_pct, link, post.title]
+    end
+    logger.debug("flexgraph_data: #{flexgraph_data.inspect}")
+    render :partial => 'shared/flexgraph', :locals=>{:bars=>flexgraph_data, :width=>options[:width], :height=>options[:height]}
+  end
 end

@@ -1,0 +1,5 @@
+#graph_container{:style=>"width: #{width}; height: #{height}"}
+	-bars.each do |bar_data|
+		.bar
+			%div{:class=>"bar_top_space h_#{100 - bar_data[0]}_pct", :onClick=>"javascript:document.location='#{bar_data[1]}';", :title=>bar_data[2]}
+			%div{:class=>"data h_#{bar_data[0]}_pct", :onClick=>"javascript:document.location='#{bar_data[1]}';", :title=>bar_data[2]}

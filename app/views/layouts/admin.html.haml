@@ -15,6 +15,7 @@
 		/= stylesheet_link_tag 'posts' 
 		= stylesheet_link_tag 'fonts/font-awesome' 
 		= stylesheet_link_tag 'admin'
+		= stylesheet_link_tag 'flexgraph'
 		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css") 
 		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js") 
 		- if @post or @placeholder_post 
