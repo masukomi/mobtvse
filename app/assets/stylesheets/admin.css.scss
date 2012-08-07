@@ -1,6 +1,12 @@
 @import "bourbon";
 
-
+.content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+ul.admin_header_nav {
+  margin: 0px;
+}
 ul.admin_header_nav li{
   display:inline;
   list-style-type: none;

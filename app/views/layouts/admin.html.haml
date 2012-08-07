@@ -6,18 +6,33 @@
 			\- Admin
 		= csrf_meta_tag 
 		=javascript_include_tag 'css3-mediaqueries' 
+		=javascript_include_tag 'jquery-1.7.2.min'
 		= #stylesheet_link_tag 'application' 
 		=stylesheet_link_tag '1140' 
 		-if CONFIG['use_kudos'] 
 			=stylesheet_link_tag 'kudos' 
-		= stylesheet_link_tag 'normalize' 
+		/= stylesheet_link_tag 'normalize' 
 		= stylesheet_link_tag 'embed' 
-		/= stylesheet_link_tag 'posts' 
+		= stylesheet_link_tag 'posts' 
 		= stylesheet_link_tag 'fonts/font-awesome' 
 		= stylesheet_link_tag 'admin'
 		= stylesheet_link_tag 'flexgraph'
 		= stylesheet_link_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.css") 
 		= javascript_include_tag "#{controller.controller_name}/#{params[:action]}" if Obtvse::Application.assets.find_asset("#{controller.controller_name}/#{params[:action]}.js") 
+		-if @post and params[:action]=='edit'
+			/ special case for supporting markpad
+			= stylesheet_link_tag 'bootstrap_buttons'
+			/= stylesheet_link_tag 'markpad/bootstrap.css' 
+			/= stylesheet_link_tag 'markpad/bootstrap-responsive.css' 
+			= stylesheet_link_tag 'markpad/style.css' 
+
+			=javascript_include_tag 'markpad/showdown.js' 
+			=javascript_include_tag 'markpad/jquery.ba-resize.js' 
+			=javascript_include_tag 'markpad/jquery.caret.1.02' 
+			=javascript_include_tag 'markpad/bootstrap.js' 
+			=javascript_include_tag 'http://api.filepicker.io/v0/filepicker.js'
+			=javascript_include_tag 'markpad/markdowneditor.js' 
+
 		- if @post or @placeholder_post 
 			:javascript
 				var post_data = #{(@post.nil? ? @placeholder_post : @post).to_json.html_safe} ;
@@ -44,18 +59,20 @@
 							=flash[:notice]
 		#admin
 			= yield 
-		.modal#modal
-			.modal-header
-				.close{"data-dismiss".to_sym=>"modal"}
-					×
-				#modal-title
-			.modal-body
-				%p#modal-content
-			.modal-footer
-				%a.btn#btn-primary{:href=>"#"}
-					Close
-				%a.btn.btn-primary#btn-seconday{:href=>"#"}
-					Save changes
+		/
+			COMMENTED OUT MODAL SAVE
+			.modal#modal
+				.modal-header
+					.close{"data-dismiss".to_sym=>"modal"}
+						×
+					#modal-title
+				.modal-body
+					%p#modal-content
+				.modal-footer
+					%a.btn#btn-primary{:href=>"#"}
+						Close
+					%a.btn.btn-primary#btn-seconday{:href=>"#"}
+						Save changes
 		= javascript_include_tag 'admin' 
 		-if @post and params[:action]=='edit' 
 			:javascript
@@ -63,4 +80,30 @@
 					setDraftInput(#{@post.draft});
 					setPageInput(#{@post.page});
 				})
+
+				$(function () {
+					$('#editor').markdownEditor({
+						toolbarLoc: $('#toolbar'),
+						toolbar: 'default',
+						preview: $('#preview')
+					});
+					
+					$("#editor").resize( function() {
+						var windowsize = $(window).width();
+						var newsize = windowsize - $("#editor").width() - 80;
+						if (windowsize < 768){
+							$('#preview').show();
+							$('#preview').width(windowsize);
+						} else {
+							if (newsize > 150){
+							$('#preview').width(newsize);
+							$('#preview').show();
+							} else {
+							$('#preview').hide();
+							}
+						}
+					});
+				});
+
+
 / END admin.html.haml

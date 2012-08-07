@@ -127,7 +127,6 @@ function savePost(callback) {
     data: el.form.serialize(),
     dataType: 'text',
     success: function savingSuccess(data) {
-    	console.log(data)
       var data = JSON.parse(data),
           li   = $('#post-'+data.id),
           list = (data.draft == 'true') ? $('#drafts ul') : $('#published ul');
@@ -198,8 +197,6 @@ function loadCache(id, callback) {
     callback.call(this, cache);
   } else {
     $.getJSON('/get/'+id, function loadCacheCallback(data) {
-      console.log("getJSON...")
-      console.log(data)
       setCache(id, data);
       callback.call(this, data);
     });

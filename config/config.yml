@@ -53,3 +53,8 @@ s3:
   image_bucket_name: my_s3_bucket_name
   access_key_id: ABCDEFGH12334GK1
   secret_access_key: ABCDEFGHIJKLMNOPQRST132456789
+
+#########################################
+## Leave anything belowe here alone unless 
+## you know what you're doing.
+filepicker_io_key: A5ISNG13WS9-zDdAiKJn5z
