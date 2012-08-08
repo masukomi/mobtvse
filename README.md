@@ -22,6 +22,11 @@ posts down by month and allows for easy filtering via tags.
 Geeks will be happy to know about its  [Haml](http://haml-lang.com/) 
 based markup (partially implemented) and [MongoDB](www.mongodb.org) 
 
+Everyone will be happy to know that there are screenshots available at 
+the bottom of this document, and a demo server is set up for you to kick 
+the tires on before you try your own installation. Just scroll down to the 
+"Test Drive" section below. 
+
 ## Before you download...
 WordPress has had years to make its installation process almost 
 completely painless. Being a relatively new platform MObtvse 
@@ -32,15 +37,25 @@ and a step-by-step installation walk-through is in the works.
 ### Planned
 The goal is to add support for:
 
-* Generation of static html files for fast serving, or tools for making that easily implementable.
+* Generation of static html files for fast serving, or tools 
+  for making that easily implementable.
 * [Mixpanel](http://mixpanel.com/)
 * The MetaWeblog API
-* Great features that HTML based blogging platforms like Wordpress have had for years.
+* Great features that HTML based blogging platforms like Wordpress 
+  have had for years.
 
 See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/experimental/ToDo.mkdn).
 
 ## The New Hotness
 Want the *latest* tweaks, the *bleeding edge* functionality? Check out the "experimental" branch. New changes are pushed to experimental where they are allowed to percolate for a little while to increase stability, and catch any wayward bugs before they're pushed to the "master" branch. This also helps to minimize the churn in the "master" branch. 
+
+## Take it for a test drive!
+You can try out the recent changes from the "experimental" branch on our demo box, but **Please Note:** The demo is running on a free Heroku instance and may take a few seconds to boot up. For real-world performance you can see [the author's blog](http://weblog.masukomi.org).  
+
+The home page is [here](http://blazing-rain-3059.herokuapp.com/) and the admin page is [here](http://blazing-rain-3059.herokuapp.com/admin)
+
+* username: username
+* password: password 
 
 Free MongoDB hosts
 ==================
