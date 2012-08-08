@@ -57,6 +57,14 @@ The home page is [here](http://blazing-rain-3059.herokuapp.com/) and the admin p
 * username: username
 * password: password 
 
+## Take it for a test drive!
+You can try out the recent changes from the "experimental" branch on our demo box. 
+
+The home page is [here](http://blazing-rain-3059.herokuapp.com/) and the admin page is [here](http://blazing-rain-3059.herokuapp.com/admin)
+
+* username: username
+* password: password 
+
 Free MongoDB hosts
 ==================
 If you want to run this on Heroku you're going to need somewhere to put your MongoDB install. Fortunately [MongoLab](https://mongolab.com/home) and [MongoHQ](https://mongohq.com/home) both have free plans. We'd recommend going with MongoHQ simply because they offer fifteen times more free storage than MongoLab (240Mb vs 16Mb). MObtvse can, of course, point to your own MongoDB install if you have one. 
