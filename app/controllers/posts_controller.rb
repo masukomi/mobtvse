@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   layout :choose_layout
 
   def index
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     #TODO reimplement paging mongo style
     all_posts = nil
     now = DateTime.now
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def atom
-    response.headers['Cache-Control'] = 'public, max-age=600'
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     all_posts = nil
     now = DateTime.now
     max = CONFIG['posts_in_feed'] || 20
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     end
   end
   def tag
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     @tag = params[:id]
     now = DateTime.now
     @posts = Post.any_in(:tags_array => [@tag]).where(:posted_at=>{"$lte"=>now}, :page=>false).desc(:posted_at).entries
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
     end
   end
   def archive
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     #TODO
     # - create a @months var where each entry has a list of posts
     #   posts would be sorted by date (reverse, or forward chronological)
@@ -118,7 +118,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     @single_post = true
     @post = nil
     if (params[:slug])
@@ -128,6 +128,8 @@ logger.debug("NO SLUG + ADMIN")
       @post = Post.find(params[:id]) #must be a draft
     end
 
+    @pages = Post.reverse_chron.where(:draft=>false, :page=>true).entries
+    # we want pages before the 404 because it's in the header
     render_404 and return if @post.nil?
 
     unless @post.meta_description.blank?
@@ -257,6 +259,7 @@ logger.debug("NO SLUG + ADMIN")
   end
 
   def render_404
+    response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 600}"
     respond_to do |format|
       format.html { render 'shared/404', :status => :not_found, :layout=>'status_pages' }
       format.xml  { head :not_found , :layout=>false}

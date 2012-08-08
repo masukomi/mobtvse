@@ -26,20 +26,24 @@
 					=link_to("the loved", '/admin/?by_kudos=true')
 					\/
 					=link_to("all", '/admin/')
-				.tags_list
-					-if @tags.size > 0
-						%ul.tags_list
-							-unless params[:tag]
-								%li.current_tag=link_to('All Tags', {:controller=>:posts, :action=>:admin})
-							-else
-								%li=link_to('All Tags', {:controller=>:posts, :action=>:admin})
-							-@tags.each do |t|
-								-if params[:tag] == t
-									%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t.sub(' ', '%20')}
+				- if ! params[:by_kudos]
+					.tags_list
+						-if @tags.size > 0
+							%ul.tags_list
+								-unless params[:tag]
+									%li.current_tag=link_to('All Tags', {:controller=>:posts, :action=>:admin})
 								-else
-									%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
+									%li=link_to('All Tags', {:controller=>:posts, :action=>:admin})
+								-@tags.each do |t|
+									-if params[:tag] == t
+										%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t.sub(' ', '%20')}
+									-else
+										%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
+				- else
+					=graph_kudos(@published)
 				%ul
 					= render :partial => 'li', :collection => @published
-				= paginate @published , :param_name => "post_page" 
+				= paginate @published , :param_name => "post_page"
 		.onecol.last
+			// gutter
 / END admin.html.haml

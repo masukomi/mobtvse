@@ -23,13 +23,13 @@ $selection-color: #fff;
 
 
 
-#admin.preview {
+/*#admin.preview {
   #post_content:before {top: 0;}
   #post_content:before,
   #post_content:after {
     width: 100%;
   }
-}
+}*/
 
 
 #post-editor {
@@ -46,7 +46,7 @@ $selection-color: #fff;
   }
 }
 
-#post-preview {
+/*#post-preview {
   background: #f0f4fc;
   border-left: 1px solid #dbe3f1;
   right: -50%;
@@ -81,7 +81,7 @@ $selection-color: #fff;
     background: #ccc;
   }
 }
-
+*/
 
 #text-title textarea#post_title {
   width: 100%;
