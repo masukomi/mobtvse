@@ -86,7 +86,8 @@
 			.sixcol.last
 				%h1
 					Preview:
-				#preview-container
+				#preview-container{:style=>"overflow:auto;"}
+					/ overflow:auto seemed to be occasionally ignored. Forcing the issue.
 					#preview
 
 :javascript
