@@ -1,0 +1,56 @@
+/ BEGIN _post.html.haml
+%div
+	%article.hentry{:id=>"post-#{post.id}", :role=>"article"}
+		.row
+			.ninecol
+				%div
+					.twelvencol.last
+						.post_heading
+							-if post.external?
+								%h1= link_to post.title, permalink_path_for(post, true)
+							-else
+								%h1= link_to post.title, permalink_path_for(post, false)
+				%div
+					.twelvecol.last
+						.entry-content
+							- if post.content
+								= markdown(post.content).to_html.html_safe
+								
+							- if post.tags_array.size > 0
+								.tags_list
+									Tags:
+									%ul.tags_list
+										-post.tags_array.each do |t|
+											%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
+							- if CONFIG['disqus_enabled'] and not localhost? and @single_post and post.comments_enabled? and not post.draft?
+								.comments_section
+									%h1
+										Comments
+									#disqus_thread{'aria-live'=>"polite"}
+										%noscript
+											Please enable JavaScript to view the 
+											%a{:href=>"http://disqus.com/?ref_noscript"}comments powered by Disqus.
+							/
+								-if @single_post
+									%a.sans_serif.button.space-top#back_button{:href=>"#{ root_url }"}
+										Home
+						%hr.style-two
+			.threecol.last
+				%time.post_date.sans_serif
+					.meta
+						-if post and post.posted_at
+							%div
+								Posted 
+								= post.posted_at.to_formatted_s(:day_month_year)
+								-if is_admin? and @single_post and not @preview
+									.admin_action.sans_serif
+										- if post.external?
+											= link_to 'Tweet it', "http://twitter.com/home?status=New%20blog%20post:%20#{permalink_path_for(post, true)}", {:class => 'icon-twitter', :alt=>"tweet a link to this post", :title=>"tweet a link to this post", :target=>'twitter'}
+										%br
+										= link_to 'Edit', '/edit/' + post.id.to_s
+
+							- if CONFIG['use_kudos'] and not post.page
+								= render :partial => "kudos", :locals=>{:post => post}
+						-#
+							Otherwise something is just damn weird
+/ END _post.html.haml

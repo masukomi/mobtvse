@@ -1,0 +1,4 @@
+class Image < BinaryFile
+
+
+end

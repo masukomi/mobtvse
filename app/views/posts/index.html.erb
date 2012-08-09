@@ -1,0 +1,8 @@
+<!-- BEGIN index.html.erb -->
+<%= session[:text] %>
+<!-- BEGIN render @posts block -->
+<%= render @posts %>
+<!-- END render @posts block -->
+<%= paginate @posts 
+%>
+<!-- END index.html.erb -->

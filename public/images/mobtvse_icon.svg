@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="/assets/mobtvse_logo_style.css" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="400" height="400" viewBox="0, 0, 400, 400">
+  <g id="Layer 2">
+    <path class="mobtvse_logo_border" d="M31.694,12.694 L367.694,12.694 C378.74,12.694 387.694,21.649 387.694,32.694 L387.694,368.694 C387.694,379.74 378.74,388.694 367.694,388.694 L31.694,388.694 C20.649,388.694 11.694,379.74 11.694,368.694 L11.694,32.694 C11.694,21.649 20.649,12.694 31.694,12.694 z" stroke="#000000" stroke-width="20" fill="#000000" fill-opacity="0"/>
+    <path class="mobtvse_logo_m" d="M268.807,360.653 L185.882,269.436 L241.166,269.436 L241.166,156.105 L185.882,225.209 L130.599,156.105 L130.599,263.908 L75.316,263.908 L75.316,75.945 L130.599,75.945 L185.882,145.049 L241.166,75.945 L296.449,75.945 L296.449,269.436 L351.732,269.436 z" stroke="#000000" stroke-width="1" stroke-opacity="0" fill="#000000"/>
+  </g>
+  <defs/>
+</svg>

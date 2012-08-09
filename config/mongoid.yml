@@ -1,0 +1,26 @@
+development:
+  host: localhost
+  database: mobtvse_development
+  use_utc: false
+  use_activesupport_time_zone: true
+
+test:
+  host: localhost
+  database: mobtvse_test
+  use_utc: false
+  use_activesupport_time_zone: true
+
+# set these environment variables on your prod server
+production:
+  host: <%= ENV['MONGOID_HOST'] %>
+  port: <%= ENV['MONGOID_PORT'] %>
+  username: <%= ENV['MONGOID_USERNAME'] %>
+  password: <%= ENV['MONGOID_PASSWORD'] %>
+  database: <%= ENV['MONGOID_DATABASE'] %>
+  use_utc: false
+  use_activesupport_time_zone: true
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

@@ -1,0 +1,16 @@
+.row
+	.threecol
+		/ empty
+	.sixcol
+		%h2
+			Posts tagged with 
+			="\"#{@tag}\""
+		%ul.tagged_post_list
+			-@posts.each do |p|
+				%li
+					%a{:href=>permalink_path_for(p)}
+						=p.title
+					.right
+						=p.posted_at.to_formatted_s(:day_month_year)
+	.threecol.last
+		/ empty

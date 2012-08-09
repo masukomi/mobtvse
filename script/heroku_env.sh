@@ -1,0 +1,15 @@
+#!/bin/sh
+
+export MOBTVSE_LOGIN=my_admin_username
+export MOBTVSE_PASSWORD=my_admin_password
+export MONGOID_HOST=domain.name.of.mongoid.host
+export MONGOID_PORT=29317
+export MONGOID_DATABASE=mongodb_database_name
+export MONGOID_USERNAME=mongodb_database_username
+export MONGOID_PASSWORD=mongodb_database_password
+
+heroku config:add MOBTVSE_LOGIN=$MOBTVSE_LOGIN MOBTVSE_PASSWORD=$MOBTVSE_PASSWORD \
+MONGOID_HOST=$MONGOID_HOST MONGOID_PORT=$MONGOID_PORT \
+MONGOID_DATABASE=$MONGOID_DATABASE \
+MONGOID_USERNAME=$MONGOID_USERNAME MONGOID_PASSWORD=$MONGOID_PASSWORD
+

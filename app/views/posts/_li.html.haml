@@ -1,0 +1,28 @@
+/ BEGIN _li.html.erb
+%li{:id=>"post-#{li.id}"}
+	%h3
+		-#= link_to li.title, '/edit/' + li.id.to_s , :controller=>:posts, :action=>:edit, :id=>li.id 
+		- if CONFIG['use_kudos'] and (not li.draft or li.kudos > 0)
+			-# someone could have created a post, gotten kudos, then made it a draft again
+			-if li.kudos < 100
+				%span.mini_kudo.mini_kudos_few{:title=>'kudos received'}
+					=li.kudos
+			-else
+				%span.mini_kudo.mini_kudos_many{:title=>'kudos received'}
+					=li.kudos
+		%span.links
+			-if li.future?
+				%span.icon-time{:title=>"This post is scheduled for the future"}
+			-if li.page?
+				%span.icon-file{:title=>"This is a static page, not a blog entry", :alt=>"This is a static page, not a blog entry"}
+			-if ! li.draft?
+				= link_to '', permalink_path_for(li, false), {:class => 'icon-eye-open', :title=>"view this post"}
+			-else
+				= link_to '', "/posts/#{li.id}", {:class => 'icon-eye-open', :title=>"view this post"}
+			= link_to "", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-minus-sign', :title=>'delete this post'
+			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
+		= link_to li.title, edit_post_path(li.id)
+		-if li.external? and ! li.page?
+			%span.sharing.inline_block.nobr.right
+				= link_to '', "http://twitter.com/home?status=New%20blog%20post:%20#{permalink_path_for(li, true)}", {:class => 'icon-twitter', :alt=>"tweet a link to this post", :title=>"tweet a link to this post", :target=>'twitter'}
+/ END _li.html.erb 

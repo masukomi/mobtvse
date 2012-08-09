@@ -1,0 +1,31 @@
+/ BEGIN archive.haml
+.row
+	.threecol
+		/ empty
+	.sixcol
+		%h2 Archives
+		
+		- if @published_tags_with_weight.size() > 0
+			%h3 Tags by usage...
+			%ul#top_tags.tags_list
+				/ most common tags
+				- sorted_tags_ww = @published_tags_with_weight.sort{|a,b| a[1] <=> b[1]}
+				=render :partial=> 'tag_cloud_item', :collection=>sorted_tags_ww, :as=>:tag_with_weight
+				
+		- if @most_loved.size() > 0
+			%h3 Most Loved Posts...
+			%ul#most_loved
+				/ posts with the most kudos
+				=render :partial=> 'most_loved_item', :collection=>@most_loved, :as=>:post
+		- else
+			/ no posts with kudos! Get writing!
+		.posts_by_month
+			%h3 Posts By Month...
+			- if @months.size() > 0
+				=render :partial => 'month', :collection=>@months, :as => :month
+			- else
+				%p
+					There are no public posts yet.
+	.threecol.last
+		/ empty
+/ END archive.haml

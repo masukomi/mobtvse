@@ -1,0 +1,60 @@
+---
+title:               MObtvse Demo
+tagline:             Clever tagline.
+meta_description:    A Clever blog by a clever person
+# OPTIONAL Used for the meta description tag
+# keep it less than 156 characters. 
+canonical_url:       http://example.com
+# for the meta canonical tag
+# this is typically the same as the root url of your blog
+# This should not end in a slash
+me_link:             http://www.google.com/profiles/my_google_username
+# OPTIONAL I can't find the docs anymore but google uses this 
+# to associate the owner of the blog up to their g+ and other assets.
+posts_on_index:      5
+# The number of posts to display on your front page
+posts_in_feed:       20
+# The number of posts to include in your Atom feed
+use_kudos: true
+# set this to false if you don't want 
+# to give people the ability to tell you how awesome 
+# your posts are.
+
+login:               <%= ENV["MOBTVSE_LOGIN"] ? ENV["MOBTVSE_LOGIN"] : "username" %>
+password:            <%= ENV["MOBTVSE_PASSWORD"] ? ENV["MOBTVSE_PASSWORD"] : "password" %>
+name:                Your name
+twitter:             your_twitter_handle
+#OPTIONAL
+github:              your_github_handle
+#OPTIONAL
+facebook_id:         1234567890
+#OPTIONAL
+# go to facebook. click on your profile. The link should look like this:
+# http://www.facebook.com/profile.php?id=1041015448
+# You want the ID number from the end
+email:               address@example.com
+#OPTIONAL
+google_analytics_id: YOUR_GA_ID
+#OPTIONAL
+post_url_style:          /%Y/%m/%d/:slug
+### DISQUS SECTION (OPTIONAL)
+disqus_enabled:      false
+# Set that to true to enable disqus comments
+disqus_short_name:   disqus_short_name_here
+# Enter your disqus shortname
+disqus_developer: false
+# if you're testing disqus on localhost set this to true
+
+#### OPTIONAL Amazon S3
+# Currently required for image uploading
+# but not for linking to images already uploaded somewhere
+s3:
+  enabled: false
+  image_bucket_name: my_s3_bucket_name
+  access_key_id: ABCDEFGH12334GK1
+  secret_access_key: ABCDEFGHIJKLMNOPQRST132456789
+
+#########################################
+## Leave anything belowe here alone unless 
+## you know what you're doing.
+filepicker_io_key: A5ISNG13WS9-zDdAiKJn5z

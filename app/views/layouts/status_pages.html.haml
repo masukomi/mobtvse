@@ -1,0 +1,80 @@
+<!doctype html>
+/ BEGIN status_pages.html.haml
+%html{ :lang=>"en-US"}
+	%head
+		%title= html_title yield(:title)
+		= csrf_meta_tag
+		=javascript_include_tag 'css3-mediaqueries'
+		=stylesheet_link_tag '1140'
+		=stylesheet_link_tag 'main'
+		=stylesheet_link_tag 'socialicons'
+		=stylesheet_link_tag 'entypo'
+		=stylesheet_link_tag 'screen'
+		=stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Cagliostro|Muli:400,400italic'
+		%meta{ :name=>"HandheldFriendly", :content=>"True"}
+		%meta{ :name=>'mobileOptimized', :content=>"320"}
+		%link{:rel=>"shortcut icon",:href=>"/favicon.ico"}
+		%link{ :href=>"/atom.xml", :rel=>"alternate", :title=>"RSS", :type=>"application/rss+xml" }
+	%body
+		.container.header
+			/ BEGIN heading row
+			.row
+				.eightcol
+					%h1#heading
+						= link_to CONFIG['title'], root_url
+						- if CONFIG['tagline']
+							%h3.tagline=CONFIG['tagline']
+				/ END heading row
+				/ BEGIN navigation
+				.fourcol.last.last_main_nav_column
+					%ul.main-navigation
+						%li
+							#main_nav_right.nobr
+								%span.emphasized
+								=link_to 'ó', '/archive', {:title=>'Archive', :alt=>'Archive', :class=>'entypo'}
+								/=link_to 'Archive', '/archive'
+								- if CONFIG['twitter']
+									=link_to '&#76;'.html_safe, 'http://twitter.com/#!/' + CONFIG['twitter'], {:title=>"Twitter", :alt=>"Twitter", :class=>"socialicon twitter_link"}
+								- if CONFIG['facebook_id']
+									=link_to '&#70;'.html_safe, "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"socialicon facebook_link"}
+								=link_to '&#82;'.html_safe, "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"socialicon rss_link", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
+			/ END navigation
+			/ BEGIN main content block
+		.container
+			.row
+				.onecol
+					/ left gutter
+				.tencol
+					#main
+						#content
+							= yield
+				.onecol.last
+					.sidebar
+						/TODO swap to 2 columns and dynamically load a sidebar here
+		.row
+			.twelvecol.last
+				%footer{:role=>'contentinfo'}
+					#powered-by.sans_serif.emphasized
+						Powered by 
+						%a{:href=>"http://github.com/masukomi/mobtvse.git"}
+							MObtvse
+						-if is_admin? 
+							&nbsp;&middot;&nbsp; 
+							%a{:href=>"/admin"}
+								Admin
+						/
+							%br
+							#mobtvse_icon
+
+		= javascript_include_tag 'application'
+
+		- if CONFIG['google_analytics_id'] and not localhost?
+			/ Google Analytics
+			:javascript
+				var _gaq=[['_setAccount','#{ CONFIG['google_analytics_id'] }'],['_trackPageview']];
+				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g,s)}(document,'script'));
+			%script{:src=>"http://www.masukomi.org/mint/?js", :type=>"text/javascript"}
+
+/ END status_pages.html.haml

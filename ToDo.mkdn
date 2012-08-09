@@ -1,0 +1,12 @@
+#MObtvse's ToDo list: 
+
+
+## Mixpanel Integration
+Let's go beyond just tagging the pages with a simple Mixpanel tracking code. When viewing a page in the admin section each post should  have pre-generated links with query strings that will allow users to track things like how many people came from posting about an article on Twitter vs. Facebook vs. Google+. This will require not only a custom link, generation but custom JS to convert those links into the appropriate Mixpanel calls. 
+
+## Static HTML Generation Support
+Let's face it. Nothing beats the speed or scalability of raw HTML when it comes to hosting a web site. It's good for SEO and it's better when you get linked to by sites like Reddit and HackerNews. MObtvse should either generate static HTML or have an easy API that would allow a chron script on a remote server to easily pull down the changed files. In the latter scenario MObtvse would be acting in an admin only capacity and probably should allow admins to disable the public facing pages. We may come up with better solutions. 
+
+
+## That great idea of yours
+Got some cool functionality you'd like to see in a Markdown based blog? Fork this project on Github and start hacking. There are tons of great, and useful features that have been around for years in tools like WordPress. Markdown users shouldn't have to live without good features too.

@@ -1,0 +1,18 @@
+<!-- BEGIN _disqus.html.erb -->
+<% if @post.comments_enabled and CONFIG['disqus_short_name'] %>
+  <script type="text/javascript">
+      (function () {
+          var disqus_shortname = '<%= CONFIG['disqus_short_name']  %>';
+          // var disqus_developer = 1;
+          var disqus_identifier = '<%= CONFIG['canonical_url'] %>/<%= @post.slug %>';
+          var disqus_url = '<%= CONFIG['canonical_url'] %>/<%= @post.slug %>';
+          var disqus_script = 'embed.js'
+
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());
+  </script>
+<% end %>
+<!-- END _disqus.html.erb -->
+

@@ -1,0 +1,45 @@
+@for $i from 1 through 100{
+	.h_#{$i}_pct {
+		height: 0% + $i
+	}
+}
+.bar_top_space {
+	background: #FFF;
+}
+.data{
+	background: #ffcc33;
+}
+#graph_container{
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-orient: horizontal;
+
+	-webkit-box-align: stretch;
+	-moz-box-align: stretch;
+	box-align: stretch;
+
+	border: 1px solid #ccc;
+	padding: 0.5em;
+	height: 300px;
+}
+
+.bar{
+	-webkit-box-flex: 1;
+	-mox-box-flex: 1;
+	box-flex: 1;
+	
+
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	box-orient: vertical;
+
+	-webkit-box-align: stretch;
+	-moz-box-align: stretch;
+	box-align: stretch;
+	margin: 0 0.25em 0 0.25em;
+
+}
