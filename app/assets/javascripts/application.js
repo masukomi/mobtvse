@@ -15,3 +15,4 @@
 //= require jquery.cookie
 //= require css3-mediaqueries
 //= require kudos
+//= require posts

@@ -43,6 +43,9 @@ body{
 	position: relative;
 	left: -50%;
 }
+.no_decoration {
+	text-decoration: none;
+}
 h1,
 h2,
 h3,
@@ -126,7 +129,6 @@ h6 a:visited:hover{
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 }
-
 div#content ul {
 	list-style: disc; 
 	margin-left: 2em;
@@ -282,6 +284,28 @@ h1#heading {
 .post_heading{
 	margin-bottom: 0.25em;
 }
+.post_details{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	/*padding: 0.25em;*/
+	padding-left: 0.6em;
+	border-style: dashed;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-color: #CCC;
+	border-width: 1px;
+	border-top: none;
+	border-right: none;
+	font-size: 70%;
+}
+.details_toggler{
+	font-size: 60%;
+	margin-right: 1em;
+}
+
+
 .header {
 	background: #556270; /* Old browsers */
 

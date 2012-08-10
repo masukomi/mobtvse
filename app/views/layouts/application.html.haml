@@ -26,7 +26,7 @@
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
-		- if CONFIG['disqus_enabled'] and @single_post and @post.comments_enabled?
+		- if CONFIG['disqus_enabled'] and not localhost? and @single_post and @post.comments_enabled? and not @post.draft?
 			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}
@@ -59,24 +59,17 @@
 			/ BEGIN main content block
 		.container
 			.row
-				.onecol
+				.twocol
+					-# it's onecol instead of two becaues 1140 has a brain tumor. 
 					/ left gutter
-				.tencol
+				.eightcol
 					#main
-						-#
-							-unless @no_header
-								/ TODO move this into _post.html.haml
-								%time
-									- if @post && @post.created_at
-										Posted 
-										= @post.created_at.to_formatted_s(:day_month_year)
-									- else 
-										= Time.now.to_formatted_s(:day_month_year)
 						#content
 							- if notice
 								%span.notice= notice
 							= yield
-				.onecol.last
+				.twocol.last
+					-# it's onecol instead of two becaues 1140 has a brain tumor. 
 					.sidebar
 						/TODO swap to 2 columns and dynamically load a sidebar here
 		.row
