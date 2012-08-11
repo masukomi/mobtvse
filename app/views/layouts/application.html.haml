@@ -56,7 +56,7 @@
 									=link_to '', "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"icon-facebook icon-large"}
 								=link_to '', "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"icon-rss icon-large", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
 								-if is_admin?
-									=link_to '', '/admin', {:class=>'icon-wrench icon-large'}
+									=link_to '', '/admin', {:title=>"Admin", :class=>'icon-wrench icon-large'}
 			/ END navigation
 			/ BEGIN main content block
 		.container
@@ -89,7 +89,8 @@
 							%br
 							#mobtvse_icon
 
-
+		:javascript
+			$("a.tooltipped[title]").tooltips();
 		- if CONFIG['google_analytics_id'] and not localhost?
 			/ Google Analytics
 			:javascript

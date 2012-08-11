@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 
   $(".kudo_heart").hover(
       function() {
@@ -11,6 +11,7 @@ $(function() {
 
 
 });
+*/
 
 function toggleDetails(post_id){
   $("#post_details_" +post_id).slideToggle( 230, 'swing');

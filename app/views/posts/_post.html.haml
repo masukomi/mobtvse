@@ -10,7 +10,7 @@
 						- if CONFIG['use_kudos'] and not post.page
 							%span.kudo_count{:id=>"kudo-#{post.id}-count"}
 								Kudos
-							= link_to '', '#', {:title=>"Give it a Kudo", :alt=>"Give it a kudo", :class=>"icon-heart-empty  kudo_heart kudos kudoable", :id=>"kudo-#{post.id}", :onclick=>"javascript:sendKudo('kudo-#{post.id}');return false;"}
+							= link_to '', '#', {:title=>"Like it? Give it a Kudo.", :alt=>"Give it a kudo", :class=>"icon-heart-empty  kudo_heart kudos kudoable tooltipped", :id=>"kudo-#{post.id}", :onclick=>"javascript:sendKudo('kudo-#{post.id}');return false;"}
 			-else
 				%h1
 					= link_to post.title, permalink_path_for(post, false)

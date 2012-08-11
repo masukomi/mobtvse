@@ -16,3 +16,4 @@
 //= require css3-mediaqueries
 //= require kudos
 //= require posts
+//= require tooltips

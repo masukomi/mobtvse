@@ -3,6 +3,10 @@
 	text-decoration: none;
 	font-size: 80%;
 }
+a.kudo_heart:visited:hover,
+a.kudo_heart:hover {
+    color: #56AAFF;
+}
 .kudo_count{
 	font-size: 60%;
 }
