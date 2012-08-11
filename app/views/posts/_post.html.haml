@@ -24,6 +24,12 @@
 		.post_details{:id=>"post_details_#{post.id}"}
 			-if post and post.posted_at
 				= post.posted_at.to_formatted_s(:day_month_year)
+			- if post.tags_array.size > 0
+				.tags_list
+					%span.icon-tags
+					%ul.tags_list
+						-post.tags_array.each do |t|
+							%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
 			-if is_admin? and @single_post and not @preview
 				.right
 					.admin_action.sans_serif
@@ -34,12 +40,6 @@
 			- if post.content
 				= markdown(post.content).to_html.html_safe
 				
-			- if post.tags_array.size > 0
-				.tags_list
-					Tags:
-					%ul.tags_list
-						-post.tags_array.each do |t|
-							%li=link_to t, {:controller=>:posts, :action=>:tag, :id=>t.sub(' ', '%20')}
 			- if CONFIG['disqus_enabled'] and not localhost? and @single_post and post.comments_enabled? and not post.draft?
 				.comments_section
 					%h1

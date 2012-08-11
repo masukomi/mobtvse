@@ -178,12 +178,14 @@ hr.style-two {
 #back_button {
 }
 div.tags_list{
-	margin-top: 1rem;
+	display:inline;
+	margin-left: 1em;
 }
 div#content ul.tags_list {
-	display: inline-block;
+	display: inline;
 	list-style: none;
-	margin-left: 0.5em;
+	margin-left: 0px;
+	padding-left: 0px;
 }
 div#content ul.tags_list li {
 	display: inline-block;
