@@ -2,7 +2,7 @@
 %html
 	%head
 		%title
-			= yield(:title)
+			= html_title yield(:title)
 			\- Admin
 		= csrf_meta_tag 
 		=javascript_include_tag 'css3-mediaqueries' 
