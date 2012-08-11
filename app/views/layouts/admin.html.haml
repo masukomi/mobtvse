@@ -4,6 +4,7 @@
 		%title
 			= yield(:title)
 			\- Admin
+		%meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
 		= csrf_meta_tag 
 		=javascript_include_tag 'css3-mediaqueries' 
 		=javascript_include_tag 'jquery-1.7.2.min'
