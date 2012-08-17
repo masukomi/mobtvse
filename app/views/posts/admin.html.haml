@@ -23,9 +23,9 @@
 					Published 
 				%div
 					Show 
-					=link_to("the loved", '/admin/?by_kudos=true')
-					\/
-					=link_to("all", '/admin/')
+					=link_to('', '/admin/?by_kudos=true', {:title=>'The Loved', :alt=>'The Loved', :class=>'icon-heart admin_toggle'})
+					or 
+					=link_to('', '/admin/', {:title=>'Admin', :alt=>'Admin', :class=>'icon-list admin_toggle'})
 				- if ! params[:by_kudos]
 					.tags_list
 						-if @tags.size > 0
