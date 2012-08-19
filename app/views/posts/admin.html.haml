@@ -23,9 +23,9 @@
 					Published 
 				%div
 					Show 
-					=link_to('', '/admin/?by_kudos=true', {:title=>'The Loved', :alt=>'The Loved', :class=>'icon-heart admin_toggle'})
+					=link_to('', '/admin/?by_kudos=true', {:title=>'The Loved', :alt=>'The Loved', :class=>'icon-heart admin_toggle' + (params[:by_kudos] ? ' admin_toggle_highlighted' :  '')})
 					or 
-					=link_to('', '/admin/', {:title=>'Admin', :alt=>'Admin', :class=>'icon-list admin_toggle'})
+					=link_to('', '/admin/', {:title=>'Admin', :alt=>'Admin', :class=>'icon-list admin_toggle' + (params[:by_kudos] ? '' : ' admin_toggle_highlighted')})
 				- if ! params[:by_kudos]
 					.tags_list
 						-if @tags.size > 0
