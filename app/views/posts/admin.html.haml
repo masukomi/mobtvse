@@ -5,21 +5,21 @@
 			// just a gutter
 		.fivecol
 			#drafts
-				%h1 
+				%h1.admin_title
 					Drafts 
-					= link_to 'New Draft', '/new', :class => 'button'
+					/= link_to 'New Draft', '/new', :class => 'button'
 				= form_for @placeholder_post do |f| 
 					= f.text_field :title, :placeholder => 'Start typing your title here...' 
 				%ul
 					= render :partial => 'li', :collection => @drafts
-				%h1
+				%h1.admin_title
 					Live Static Pages
 				%ul
 					= render :partial => 'li', :collection => @pages
 				-# = paginate @drafts, :param_name => "draft_page" 
 		.fivecol
 			#published
-				%h1
+				%h1.admin_title
 					Published 
 				%div
 					Show 

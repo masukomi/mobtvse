@@ -1,30 +1,39 @@
 @import "bourbon";
 
+#admin h1.admin_title{
+	display: block;
+	border-bottom: solid 1px #BBB;
+	margin-bottom: 0.5em;
+}
 .admin_toggle{
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
 }
 .admin_toggle_highlighted{
-  color: #0181eb;
+	color: #0181eb;
 }
 .content {
-  padding-left: 1em;
-  padding-right: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
 }
-ul.admin_header_nav {
-  margin: 0px;
+h1.admin_header_nav {
+	margin: 0px;
+	a {
+		padding-left: 0.4em;
+		padding-right: 0.4em;
+	}
 }
 ul.admin_header_nav li{
-  display:inline;
-  list-style-type: none;
-  border-left: solid 1px #BBB;
-  padding: 0px 1em 0px 1em;
+	display:inline;
+	list-style-type: none;
+	border-left: solid 1px #BBB;
+	padding: 0px 1em 0px 1em;
 }
 
 /* these need to be moved to a common file */
 .default_cursor { cursor:default;}
 a.default_cursor { cursor:default;}
-.nobr  { white-space:nowrap; }
+.nobr	{ white-space:nowrap; }
 .block{
 	display: inline-block;
 }
@@ -64,17 +73,17 @@ aside {position:relative; display:block;}
 input, textarea {outline:none; background:none;}
 
 #footer {
-  display: block;
-  font-size: 11px;
-  margin: 60px 0 30px 0;
-  text-align: center;
+	display: block;
+	font-size: 11px;
+	margin: 60px 0 30px 0;
+	text-align: center;
 }
 
 
 
 /** DUPLICATED CODE FROM posts.css.scss - REFACTOR ME */
 
-/*    COLORS    */
+/*		COLORS		*/
 
 $body-bg: #fff;
 $body-inner-shadow: #eee;
@@ -84,68 +93,68 @@ $theme: #b92c2c;
 $selection-color: #fff;
 
 
-/*    ADMIN COLORS    */
+/*		ADMIN COLORS		*/
 
 ::selection, ::-moz-selection {
-  background: $theme;
-  color: $selection-color;
+	background: $theme;
+	color: $selection-color;
 }
 
 body, textarea, pre, input, li {
-  /* These are overwritten if you include one of the /fonts css files */
-  font: 15px/1.8em 'Helvetica Nueue', Helvetica, Arial, sans-serif;
+	/* These are overwritten if you include one of the /fonts css files */
+	font: 15px/1.8em 'Helvetica Nueue', Helvetica, Arial, sans-serif;
 }
 
 a,
 a:visited
 a:active {
-  color: $a-color;
-  text-decoration: none;
-  @include transition(color .1s linear);
+	color: $a-color;
+	text-decoration: none;
+	@include transition(color .1s linear);
 }
 
 a:hover,
 #admin #published h3 a:hover {
-  color: $theme !important;
+	color: $theme !important;
 }
 
 
-/*    H1-H6    */
+/*		H1-H6		*/
 
 h1,h2,h3,h4,h5,#text-title * {
-  font-weight: normal;
-  font-family: 'Open Sans Condensed', Times New Roman, serif;
-  line-height: 1.3em;
+	font-weight: normal;
+	font-family: 'Open Sans Condensed', Times New Roman, serif;
+	line-height: 1.3em;
 }
 
 #text-title,
 #text-title pre,
 #text-title textarea,
 h1 {
-  font-size: 26px;
-  line-height: 1.3em;
+	font-size: 26px;
+	line-height: 1.3em;
 }
 
 h1, #text-title {
-  margin: 0.67em 0;
+	margin: 0.67em 0;
 }
 
 h1.external {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 h2 {
-  font-size: 18px;
-  text-transform: uppercase;
+	font-size: 18px;
+	text-transform: uppercase;
 }
 
 h3 {font-size: 16px;
-  text-transform: uppercase;
-  color: #666;
+	text-transform: uppercase;
+	color: #666;
 }
 
 h2, h3, h4 {
-  margin: 2em 0;
+	margin: 2em 0;
 }
 
 
