@@ -21,5 +21,4 @@
 deploy.rb
 .DS_Store
 .rvmrc
-.sass_cache
 rake_routes.txt

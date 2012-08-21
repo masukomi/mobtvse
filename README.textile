@@ -1,0 +1,110 @@
+h1. Mongoid Taggable
+
+Mongoid Taggable provides some helpers to create taggable documents.
+
+h2. Installation
+
+You can simple install from rubygems:
+
+bc. gem install mongoid_taggable
+
+or in Gemfile:
+
+bc. gem 'mongoid_taggable'
+
+or as a Rails Plugin:
+
+bc. script/plugin install git://github.com/wilkerlucio/mongoid_taggable.git
+
+h2. Basic Usage
+
+To make a document taggable you need to include @Mongoid::Taggable@ into your document:
+
+bc.. class Post
+  include Mongoid::Document
+  include Mongoid::Taggable
+
+  field :title
+  field :content
+end
+
+p. And in your form:
+
+bc.. <% form_for @post do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.label :tags %><br />
+    <%= f.text_field :tags %>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+<% end %>
+
+p. In this case, the text fields for tags should receive the list of tags separated by comma (See below for how to change the separator).
+
+p. Then your document will have the @tags@ and @tags_array@ getter and setter. @tags@ is as a plain string with tags separated by comma, and @tags_array@ an array representation.
+
+h2. Finding Objects by Tag
+
+p. Tagged models get a scope called @tagged_with@, @tagged_with_all@, and @tagged_with_any@:
+
+bc.. MyModel.tagged_with('foo')
+MyModel.published.tagged_with('foo').count
+MyModel.tagged_with_all('foo', 'bar')
+MyModel.tagged_with_all(['foo', 'bar'])
+MyModel.tagged_with_any('foo', 'bar')
+MyModel.tagged_with_any(['foo', 'bar'])
+
+h2. Tags Indexing
+
+This module will automatically create an index of tags and their counts for you after saving the document. This can be used for a tag cloud. See the following example to understand how to use it:
+
+bc.. Post.create!(:tags => "food,ant,bee")
+Post.create!(:tags => "juice,food,bee,zip")
+Post.create!(:tags => "honey,strip,food")
+
+Post.tags # will retrieve ["ant", "bee", "food", "honey", "juice", "strip", "zip"]
+Post.tags_with_weight # will retrieve:
+# [
+#   ['ant', 1],
+#   ['bee', 2],
+#   ['food', 3],
+#   ['honey', 1],
+#   ['juice', 1],
+#   ['strip', 1],
+#   ['zip', 1]
+# ]
+
+p. If you don't want to use this feature, it is good to disable it to improve performance:
+
+bc.. class Post
+  include Mongoid::Document
+  include Mongoid::Taggable
+
+  disable_tags_index! # will disable index creation
+
+  field :title
+  field :content
+end
+
+h2. Changing default separator
+
+To change the default separator you may call the @tags_separator@ class method:
+
+bc.. class Post
+  include Mongoid::Document
+  include Mongoid::Taggable
+
+  tags_separator ';' # will change tags separator to ;
+
+  field :title
+  field :content
+end
