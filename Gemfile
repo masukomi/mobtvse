@@ -54,6 +54,9 @@ group :test do
   gem 'minitest'
   gem 'minitest-firemock'
   gem 'timecop'
+  # Pretty printed test output
+  gem 'turn', :require => false
+
 end
 
 group :development, :test do
