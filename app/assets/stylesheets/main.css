@@ -1,6 +1,3 @@
-body {
-	background: #FFF ! important;
-}
 @-ms-viewport { width: device-width; }
   /* Dear MS, please stop screwing us. */
 
@@ -9,20 +6,25 @@ body {
 .post_heading,
 .sans_serif {
     font-weight: normal;
-    font-family: 'Open Sans Condensed', Times New Roman, serif;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    color: #262626;
 }
 .serif{
     font-weight: normal;
-    font-family: 'Open Sans Condensed', Times New Roman, serif;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    color: #262626;
 }
 i.serif,
 em.serif {
 	/* nothing special */
 }
 body{
-	font-size: 16px;
+	font-size: 20px;
     font-weight: normal;
-    font-family: 'Open Sans Condensed', Times New Roman, serif;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    color: #262626;
+    background-color: #EEEEEC;
+    line-height: 28px;
 }
 /* END FONTS */
 
@@ -79,7 +81,7 @@ h6 a{
 }
 h1 a{
 	text-decoration: none;
-	font-size: 120%;
+	/*font-size: 120%;*/
 }
 h1 a:hover,
 h2 a:hover,
