@@ -29,6 +29,13 @@ ul.admin_header_nav li{
 	border-left: solid 1px #BBB;
 	padding: 0px 1em 0px 1em;
 }
+a.limited_post_title{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 60%;
+	display: inline-block;
+}
 
 /* these need to be moved to a common file */
 .default_cursor { cursor:default;}
