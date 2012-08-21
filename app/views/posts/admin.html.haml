@@ -5,27 +5,27 @@
 			// just a gutter
 		.fivecol
 			#drafts
-				%h1 
+				%h1.admin_title
 					Drafts 
-					= link_to 'New Draft', '/new', :class => 'button'
+					/= link_to 'New Draft', '/new', :class => 'button'
 				= form_for @placeholder_post do |f| 
 					= f.text_field :title, :placeholder => 'Start typing your title here...' 
 				%ul
 					= render :partial => 'li', :collection => @drafts
-				%h1
+				%h1.admin_title
 					Live Static Pages
 				%ul
 					= render :partial => 'li', :collection => @pages
 				-# = paginate @drafts, :param_name => "draft_page" 
 		.fivecol
 			#published
-				%h1
+				%h1.admin_title
 					Published 
 				%div
 					Show 
-					=link_to("the loved", '/admin/?by_kudos=true')
-					\/
-					=link_to("all", '/admin/')
+					=link_to('', '/admin/?by_kudos=true', {:title=>'The Loved', :alt=>'The Loved', :class=>'icon-heart admin_toggle' + (params[:by_kudos] ? ' admin_toggle_highlighted' :  '')})
+					or 
+					=link_to('', '/admin/', {:title=>'Admin', :alt=>'Admin', :class=>'icon-list admin_toggle' + (params[:by_kudos] ? '' : ' admin_toggle_highlighted')})
 				- if ! params[:by_kudos]
 					.tags_list
 						-if @tags.size > 0

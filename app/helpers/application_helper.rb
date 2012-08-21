@@ -32,7 +32,7 @@ module ApplicationHelper
 	if post.permalinkable?
 		if not post.page?
 			date_plus_slug = post.posted_at.strftime(CONFIG['post_url_style']).gsub(':slug', post.slug)
-			return "#{ include_domain ? CONFIG['canonical_url'] : ''}#{date_plus_slug}"
+			return "#{ include_domain ? (localhost? ? 'http://localhost:3000' : CONFIG['canonical_url']) : ''}#{date_plus_slug}"
 		else
 			return post.slug
 		end

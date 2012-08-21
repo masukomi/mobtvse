@@ -2,8 +2,9 @@
 %html
 	%head
 		%title
-			= yield(:title)
+			= html_title yield(:title)
 			\- Admin
+		%meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
 		= csrf_meta_tag 
 		=javascript_include_tag 'css3-mediaqueries' 
 		=javascript_include_tag 'jquery-1.7.2.min'
@@ -40,14 +41,14 @@
 
 	%body.admin
 		.row
-			.twelvecol.last
-				%ul.admin_header_nav
-					%li
-						= link_to CONFIG['title'], root_url
-					%li
-						= link_to 'Admin', '/admin'
-					%li
-						= link_to 'Images', '/images'
+			.onecol
+				/ gutter
+			.tencol
+				%h1.admin_header_nav
+					= link_to 'Administration', '/admin', {:class=>'icon-wrench', :title=>'Administration Home', :alt=>'Administration Home'}
+					= link_to '', '/images', {:class=>'icon-picture', :title=>'Images', :alt=>'Images'}
+			.onecol.last
+				/ gutter
 		-if flash[:error] or flash[:notice]
 			.row
 				.twelvecol.last

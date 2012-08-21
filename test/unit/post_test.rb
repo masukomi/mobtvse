@@ -126,7 +126,7 @@ class PostTest < ActiveSupport::TestCase
 		p = Post.new({:title => 'this is a title', :draft=>false})
 		assert_not_nil p.posted_at, "posted_at was unexpectedly not populated" 
 			# if you set it to published and don't set a published_at it will use DateTime.now
-		past_date = DateTime.new(2001,2,3,4,5,6, '-0500') 
+		past_date = DateTime.new(2001,2,3,4,5,6) 
 			#Breaks due to mongoid bug if we set this to another time zone
 		p = Post.new({:title => 'this is a title', :draft=>false})
 		p.posted_at = past_date
