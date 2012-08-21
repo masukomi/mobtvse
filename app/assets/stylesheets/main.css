@@ -309,6 +309,10 @@ h1#heading {
 	margin-right: 1em;
 }
 
+.reading_time{
+	display: inline-block;
+}
+
 
 .header {
 	background: #556270; /* Old browsers */

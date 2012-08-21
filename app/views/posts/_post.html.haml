@@ -22,7 +22,12 @@
 							= link_to '', '#', {:title=>"Give it a Kudo", :alt=>"Give it a kudo", :class=>"icon-heart-empty  kudo_heart kudos kudoable", :id=>"kudo-#{post.id}", :onclick=>"javascript:sendKudo('kudo-#{post.id}');return false;"}
 		/.post_details{:id=>"post_details_#{post.id}", :style=>"display:none;"}
 		.post_details{:id=>"post_details_#{post.id}"}
+			-if post and post.word_count > 0
+				%i.icon-time
+				.reading_time
+					=reading_time(post.word_count)
 			-if post and post.posted_at
+				\-
 				= post.posted_at.to_formatted_s(:day_month_year)
 			- if post.tags_array.size > 0
 				.tags_list
