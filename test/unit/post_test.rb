@@ -17,11 +17,17 @@ class PostTest < ActiveSupport::TestCase
 		p.title = 'my title'
 		assert p.save!, "unable to save with just a title" # should be able to save with only a title
 		assert_not_nil p.slug, "slug was nil after save with title" 
+		assert_equal 0, p.word_count, "unexpected word count on contentless post"
 		assert p.draft, "post wasn't a draft by default" # it should default to being a draft.
 		assert_nil p.posted_at, "post had a posted on by default" 
 		assert_not_nil p.created_at
 		assert_not_nil p.kudos
 		assert_equal 0, p.kudos, "post did not start out with 0 kudos"
+
+		# the word count should get auto-calculated before save
+		p.content = "one two three four five"
+		p.save()
+		assert_equal 5, p.word_count, "post had unexpected word count for content" 
 	end
 	test "url creation" do
 		p = Post.new({:title => 'this is a title'})

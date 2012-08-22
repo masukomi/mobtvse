@@ -20,6 +20,7 @@ class Post
   field :updated_at,      :type => DateTime
   field :created_at,      :type => DateTime
   field :posted_at,       :type => DateTime
+  field :word_count,      :type => Integer, default: 0
   #NOTE field :tags, :type => String 
   # tags (comes in via Mongoid::Taggable don't uncomment)
 
@@ -36,6 +37,7 @@ class Post
   before_validation :slug_from_title, :update_posted_at, :ensure_url
     # You can't call before_save on a field that is part of 
     # the validations
+  before_save :update_word_count
   after_destroy :update_tags_index
 
   class << self
@@ -74,6 +76,11 @@ class Post
   def update_tags_index
     Post.save_tags_index!
   end
+
+  def update_word_count
+    self.word_count = ( content.nil? or content.empty? ) ? 0 : content.scan(/\w+/).size()
+  end
+
 
 
   # NOTE: 
@@ -166,4 +173,5 @@ class Post
   def to_s
     return "#<Post #{id}, \"#{title}\" #{slug} #{posted_at.nil? ? '' : posted_at}>"
   end
+
 end
