@@ -14,6 +14,10 @@
 		%meta{ :name=>"author", :content=>"#{CONFIG['name'] }"}
 		%meta{ :name=>"HandheldFriendly", :content=>"True"}
 		%meta{ :name=>'mobileOptimized', :content=>"320"}
+		%meta{ :name=>'generator', :content=>'MObtvse 0.5' }
+		-if @single_post and @post.draft?
+			%meta{'http-equiv'=>"Cache-control", :content=>"no-cache"}
+			%meta{'http-equiv'=>"Cache-control", :content=>"no-store"}
 		-if CONFIG['canonical_url']
 			- if ! @single_post
 				%meta{:name=>'canonical', :content=>"#{CONFIG['canonical_url']}"}
