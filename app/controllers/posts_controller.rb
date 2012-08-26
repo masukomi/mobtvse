@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   ## is a scope added to the model by the kaminari gem
   ##################
 
-  before_filter :authenticate, :except => [:index, :show, :update_kudo, :tag, :archive, :atom]
+  before_filter :authenticate, :except => [:index, :show, :update_kudo, :tag, :archive, :atom, :atom_md]
   layout :choose_layout
 
   def index
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
       format.atom { render :layout => false }
     end
   end
-
+  
   def atom
     response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     all_posts = nil
@@ -39,6 +39,8 @@ class PostsController < ApplicationController
       format.atom{render :layout => false} 
     end
   end
+  alias :atom_md :atom
+
   def tag
     response.headers['Cache-Control'] = "public, max-age=#{CONFIG['page_cache_length'] || 300}"
     @tag = params[:id]
