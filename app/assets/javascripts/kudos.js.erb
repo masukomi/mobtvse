@@ -49,27 +49,30 @@ $(function() {
 	});
 	// request a list of the current counts for those posts
 	var kudos_hash = {};
-	var url = "/kudos/count/" + post_ids.join(',') + '.json';
-	$.getJSON(url, function(data) {
-		var items = [];
-		$.each(data, function(key, value) {
-			kudos_hash[key] = value;
-			var text = value != 1 ? ' Kudos' : ' Kudo';
-			$('#kudo-'+key+'-count')[0].innerText = value + text;
+	if (post_ids.length > 0) {
+		var url = "/kudos/count/" + post_ids.join(',') + '.json';
+		$.getJSON(url, function(data) {
+			var items = [];
+			$.each(data, function(key, value) {
+				kudos_hash[key] = value;
+				var text = value != 1 ? ' Kudos' : ' Kudo';
+				$('#kudo-'+key+'-count')[0].innerText = value + text;
+			});
 		});
-	});
-	
+		
 
-	$("a.kudos").each(function(e) {
-		// test if they've already left a kudo for each article by 
-		// checking their cookies. 
-		// TODO: this WILL fail when you hit the max number of cookies for a site.
-		// remove their ability to give it a kudo if they've already done so.
-		var id = $(this).closest("article").attr("id");
-		if ($.cookie(id)){
-			$(this).removeClass("animate").removeClass("kudoable").addClass("completed").removeClass('icon-heart-empty').addClass('icon-heart');
-		} // otherwise the cookie is null and they haven't given a kudo
-	});
+		$("a.kudos").each(function(e) {
+			// test if they've already left a kudo for each article by 
+			// checking their cookies. 
+			// TODO: this WILL fail when you hit the max number of cookies for a site.
+			// remove their ability to give it a kudo if they've already done so.
+			var id = $(this).closest("article").attr("id");
+			if ($.cookie(id)){
+				$(this).removeClass("animate").removeClass("kudoable").addClass("completed").removeClass('icon-heart-empty').addClass('icon-heart');
+			} // otherwise the cookie is null and they haven't given a kudo
+		});
+
+	}
 }
 
 );
