@@ -1,29 +1,61 @@
 MObtvse
 ================
-A clean and simple markdown blog.  Inspired by [Svbtle](http://svbtle.com) and bootstrapped by [Obtvse](https://github.com/NateW/obtvse). 
+MObtvse is an easy to use blogging platform for people 
+who love Markdown and want a clean web based interface 
+for creating those posts without sacrificing functionality.
 
-## Notable differences from Obvtse
-### Current
+It is my firm belief that lovers of Markdown should no longer 
+have to live as second class citizens. We deserve awesome features, 
+and easy to use blogging tools without having to use crudely 
+implemented Markdown add-ons to other people's bloatware.
 
-* Image uploads via Amazon's S3 service (requires an S3 account)
-* Pages support (additional info pages like "About" that exist outside of your timeline)
-* Taggable posts ( users can view all posts with the same tag and admin can limit view to just posts with a specific tag )
-* [Disqus](http://disqus.com) integration for great comment functionality.
-* [Haml](http://haml-lang.com/) (partially implemented)
-* Svbtle-style Kudos
-* MObvtse uses [MongoDB](www.mongodb.org) via [MongoID](mongoid.org)
+Inspired by [Svbtle](http://svbtle.com) and bootstrapped by 
+[Obtvse](https://github.com/NateW/obtvse).  MObtvse has 
+come a long way, allowing for easy image uploads to Amazon's S3, 
+or simply managing images uploaded elsewhere, but used in 
+your posts. MObtvse has support for static pages (like an "About" 
+page), taggable posts, comments via [Disqus](http://disqus.com) 
+(excellent spam prevention), and Svbtle-style Kudos, and a dynamic 
+Archives page that integrates favorite posts (via Kudos), breaks your 
+posts down by month and allows for easy filtering via tags. 
+
+Geeks will be happy to know about its  [Haml](http://haml-lang.com/) 
+based markup (partially implemented) and [MongoDB](www.mongodb.org) 
+
+Everyone will be happy to know that there are screenshots available at 
+the bottom of this document, and a demo server is set up for you to kick 
+the tires on before you try your own installation. Just scroll down to the 
+"Test Drive" section below. 
+
+## Before you download...
+WordPress has had years to make its installation process almost 
+completely painless. Being a relatively new platform MObtvse 
+still requires a little bit of geekness, and familiarity with 
+installing Rails apps to get installed. But, the basics are all documented 
+and a step-by-step installation walk-through is in the works. 
 
 ### Planned
 The goal is to add support for:
 
-* Generation of static html files for fast serving, or tools for making that easily implementable.
+* Generation of static html files for fast serving, or tools 
+  for making that easily implementable.
 * [Mixpanel](http://mixpanel.com/)
-* Static File generation
-* Great features that HTML based blogging platforms like Wordpress have had for years.
+* The MetaWeblog API
+* Great features that HTML based blogging platforms like Wordpress 
+  have had for years.
 
 See [the major ToDo items here](https://github.com/masukomi/mobtvse/blob/experimental/ToDo.mkdn).
 
-Because of the significance of these infrastructural changes and a number of planned UI changes that are beyond the scope of what Nate wants to do with Obtvse MObvtuse has been created as an entirely separate project. With that said, MObtvse plans to continue pulling in updates from Obtvse whenever possible, and sharing changes back whenever appropriate. 
+## The New Hotness
+Want the *latest* tweaks, the *bleeding edge* functionality? Check out the "experimental" branch. New changes are pushed to experimental where they are allowed to percolate for a little while to increase stability, and catch any wayward bugs before they're pushed to the "master" branch. This also helps to minimize the churn in the "master" branch. 
+
+## Take it for a test drive!
+You can try out the recent changes from the "experimental" branch on our demo box, but **Please Note:** The demo is running on a free Heroku instance and may take a few seconds to boot up. For real-world performance you can see [the author's blog](http://weblog.masukomi.org).  
+
+The home page is [here](http://blazing-rain-3059.herokuapp.com/) and the admin page is [here](http://blazing-rain-3059.herokuapp.com/admin)
+
+* username: username
+* password: password 
 
 Free MongoDB hosts
 ==================
@@ -98,3 +130,7 @@ SCREENSHOTS
 ### Viewing a Single Post
 
 ![](http://mobtvse.com/images/mobtvse_single_post_500.jpg)
+
+Credit:
+==========
+MObtvse was written by Kay Rhodes. It's origin lies in Nate Wienert's excellent [Obtvse](https://github.com/NateW/obtvse). 
