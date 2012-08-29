@@ -9,16 +9,15 @@
 			.elevencol.last
 				.button_bar
 					.buttons
-						= link_to 'Back', '/admin', :id => "back-button", :class => 'icon-arrow-left'
-						= link_to 'Preview', "/posts/#{@post.id}", :id => 'preview-button', :class => 'icon-eye-open', :target=>"#{@post.id}_preview"
-						= link_to 'Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
-						= link_to 'Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
-						= link_to 'Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
-						= link_to 'Images', '#', :class=>'icon-picture', :onclick=>"toggleSubMenus('#menu-images'); return false;"
-						= link_to 'Tags', '#', :class=>'entypo-tag', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
-						= link_to 'Page', '#', :id => 'page-button', :class => 'entypo-written-doc wide_button', :onClick=>"return false; return false;"
-						= link_to 'Draft', '#', :id => 'publish-button', :class => 'icon-edit medium_button', :onClick=>"return false;"
-						= link_to 'Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
+						= link_to ' Preview', "/posts/#{@post.id}", :id => 'preview-button', :class => 'icon-eye-open', :target=>"#{@post.id}_preview"
+						= link_to ' Save', '#', :id => 'manual-save-button', :class => 'icon-asterisk', :onClick=>"javascript:document.forms['post_form'].submit();"
+						= link_to ' Date', '#', :id => 'date-button', :class => 'icon-calendar',  :onclick=>"toggleSubMenus('#menu-date'); return false;"
+						= link_to ' Info', '#', :class => 'icon-info-sign',  :onclick=>"toggleSubMenus('#menu-info'); return false;"
+						= link_to ' Images', '#', :class=>'icon-picture', :onclick=>"toggleSubMenus('#menu-images'); return false;"
+						= link_to ' Tags', '#', :class=>'icon-tags', :onclick=>"toggleSubMenus('#menu-tags'); return false;"
+						= link_to ' Page', '#', :id => 'page-button', :class => 'entypo-written-doc wide_button', :onClick=>"return false; return false;"
+						= link_to ' Draft', '#', :id => 'publish-button', :class => 'icon-edit medium_button', :onClick=>"return false;"
+						= link_to ' Delete', "/posts/#{@post._id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-trash'
 					.sub_menus.transparent_to_admin_bar_color
 						.sub_menu.transparent_to_admin_bar_color#menu-date
 							%ul#date
@@ -86,7 +85,8 @@
 			.sixcol.last
 				%h1
 					Preview:
-				#preview-container
+				#preview-container{:style=>"overflow:auto;"}
+					/ overflow:auto seemed to be occasionally ignored. Forcing the issue.
 					#preview
 
 :javascript

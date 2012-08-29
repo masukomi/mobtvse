@@ -27,7 +27,7 @@
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
-		- if CONFIG['disqus_enabled'] and @single_post and @post.comments_enabled?
+		- if CONFIG['disqus_enabled'] and not localhost? and @single_post and @post.comments_enabled? and not @post.draft?
 			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}
@@ -56,28 +56,23 @@
 								- if CONFIG['facebook_id']
 									=link_to '', "http://www.facebook.com/profile.php?id=#{CONFIG['facebook_id']}", {:title=>"Facebook", :alt=>"Facebook", :class=>"icon-facebook icon-large"}
 								=link_to '', "#{localhost? ? '' : CONFIG['canonical_url']}/atom.xml", {:class=>"icon-rss icon-large", :alt=>"Subscribe via RSS", :title=>"Subscribe via RSS"}
+								-if is_admin?
+									=link_to '', '/admin', {:title=>"Admin", :class=>'icon-wrench icon-large'}
 			/ END navigation
 			/ BEGIN main content block
 		.container
 			.row
-				.onecol
+				.twocol
+					-# it's onecol instead of two becaues 1140 has a brain tumor. 
 					/ left gutter
-				.tencol
+				.eightcol
 					#main
-						-#
-							-unless @no_header
-								/ TODO move this into _post.html.haml
-								%time
-									- if @post && @post.created_at
-										Posted 
-										= @post.created_at.to_formatted_s(:day_month_year)
-									- else 
-										= Time.now.to_formatted_s(:day_month_year)
 						#content
 							- if notice
 								%span.notice= notice
 							= yield
-				.onecol.last
+				.twocol.last
+					-# it's onecol instead of two becaues 1140 has a brain tumor. 
 					.sidebar
 						/TODO swap to 2 columns and dynamically load a sidebar here
 		.row
@@ -95,7 +90,8 @@
 							%br
 							#mobtvse_icon
 
-
+		:javascript
+			$("a.tooltipped[title]").tooltips();
 		- if CONFIG['google_analytics_id'] and not localhost?
 			/ Google Analytics
 			:javascript
