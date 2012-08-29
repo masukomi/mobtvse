@@ -31,7 +31,7 @@
 		-if CONFIG['disqus_developer']
 			:javascript
 				var disqus_developer = 1;
-		- if CONFIG['disqus_enabled'] and not localhost? and @single_post and @post.comments_enabled? and not @post.draft?
+		- if comments_viewable?(@single_post, @post)
 			= render :partial => "posts/disqus"
 
 	%body{:class=>"#{controller_name} #{action_name }"}

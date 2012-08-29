@@ -45,7 +45,7 @@
 			- if post.content
 				= markdown(post.content).to_html.html_safe
 				
-			- if CONFIG['disqus_enabled'] and not localhost? and @single_post and post.comments_enabled? and not post.draft?
+			- if comments_viewable?(@single_post, post)
 				.comments_section
 					%h1
 						Comments

@@ -7,5 +7,9 @@ module PostsHelper
 		#"%02d:%02d:%02d" % [ hours, minutes, seconds ]
 		return "~#{minutes}m #{seconds}s"
 	end
+
+	def comments_viewable?(single_post, post)
+		return (CONFIG['disqus_enabled'] and not localhost? and single_post and post.comments_enabled? and not post.draft? and not post.page? )
+	end
 end
 
