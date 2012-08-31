@@ -39,11 +39,21 @@
 										%li.current_tag=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t.sub(' ', '%20')}
 									-else
 										%li=link_to t, {:controller=>:posts, :action=>:admin, :tag=>t}
-				- else
+				- elsif @published.size() > 3
 					=graph_kudos(@published)
-				%ul
-					= render :partial => 'li', :collection => @published
-				= paginate @published , :param_name => "post_page"
+				- if @published.size() > 0
+					%ul
+						= render :partial => 'li', :collection => @published
+					= paginate @published , :param_name => "post_page"
+				- else
+					- if ! params[:by_kudos]
+						%p
+							Create a draft, set it to "Published", and save.
+					- else
+						%p
+							None of your posts have received any kudos
+							%i
+								yet.
 		.onecol.last
 			// gutter
 / END admin.html.haml
