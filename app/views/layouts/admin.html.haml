@@ -45,8 +45,8 @@
 				/ gutter
 			.tencol
 				%h1.admin_header_nav
-					= link_to 'Administration', '/admin', {:class=>'icon-wrench', :title=>'Administration Home', :alt=>'Administration Home'}
-					= link_to '', '/images', {:class=>'icon-picture', :title=>'Images', :alt=>'Images'}
+					= link_to '<i class="icon-wrench"></i> Administration'.html_safe, '/admin', {:title=>'Administration Home', :alt=>'Administration Home'}
+					= link_to '<i class="icon-picture"></i> Images'.html_safe, '/images', {:title=>'Images', :alt=>'Images'}
 			.onecol.last
 				/ gutter
 		-if flash[:error] or flash[:notice]
