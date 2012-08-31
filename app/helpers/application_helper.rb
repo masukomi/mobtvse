@@ -49,8 +49,9 @@ module ApplicationHelper
     options = {:include_internal=>true, :edit_link=>false}.merge(options) #override defaults
     flexgraph_data = []
     max_kudos = posts.max_by {|p| p.kudos }
-logger.debug("max_kudos.kudos: #{max_kudos.kudos}")
-    one_pct = max_kudos.kudos / 100
+    max_kudos_num = max_kudos.nil? ? 0 : max_kudos.kudos
+logger.debug("max_kudos.kudos: #{max_kudos_num}")
+    one_pct = max_kudos_num / 100
     one_pct = 1 if one_pct < 1
     posts.each do | post |
       p_kudo_pct = ( post.kudos / one_pct)
