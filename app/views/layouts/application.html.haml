@@ -22,7 +22,7 @@
 			- if ! @single_post
 				%meta{:name=>'canonical', :content=>"#{CONFIG['canonical_url']}"}
 			- else
-				%meta{:name=>'canonical', :content=>"#{CONFIG['canonical_url']}#{permalink_path_for(@post)}" }
+				%meta{:name=>'canonical', :content=>"#{permalink_path_for(@post)}" }
 		%link{:rel=>"shortcut icon",:href=>"/favicon.ico"}
 		-if CONFIG['me_link']
 			%link{:rel=>"me",:href=>"#{CONFIG['meta_description']}"}
