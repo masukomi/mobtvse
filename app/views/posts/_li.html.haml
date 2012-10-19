@@ -21,7 +21,7 @@
 				= link_to '', "/posts/#{li.id}", {:class => 'icon-eye-open', :title=>"view this post"}
 			= link_to "", "/posts/#{li.id}", :confirm => 'Are you sure?', :method => :delete, :class => 'icon-minus-sign', :title=>'delete this post'
 			-# alternately= button_to "X", li, :method=>:delete, :class=>'entypo admin-delete'
-		= link_to li.title, edit_post_path(li.id), {:class=>'limited_post_title'}
+		= link_to li.title, edit_post_path(li.id), {:class=>'limited_post_title', :title=>li.title, :alt=>li.title}
 		-if li.external? and ! li.page?
 			%span.sharing.inline_block.nobr.right
 				= link_to '', "http://twitter.com/home?status=New%20blog%20post:%20#{permalink_path_for(li, true)}", {:class => 'icon-twitter', :alt=>"tweet a link to this post", :title=>"tweet a link to this post", :target=>'twitter'}
