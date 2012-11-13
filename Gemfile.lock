@@ -41,7 +41,6 @@ GEM
     activesupport (3.2.0)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.2.8)
     ansi (1.4.3)
     arel (3.0.2)
     aws-s3 (0.6.3)
@@ -200,8 +199,6 @@ GEM
     turn (0.9.6)
       ansi
     tzinfo (0.3.32)
-    tzinfo (0.3.33)
-    uglifier (1.2.3)
     uglifier (1.2.6)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
